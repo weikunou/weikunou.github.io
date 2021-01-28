@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://example.com/images/Hexo/source.png">
 <meta property="og:image" content="http://example.com/images/Hexo/ssh.png">
 <meta property="article:published_time" content="2021-01-26T03:30:29.000Z">
-<meta property="article:modified_time" content="2021-01-28T10:41:11.790Z">
+<meta property="article:modified_time" content="2021-01-28T10:54:41.272Z">
 <meta property="article:author" content="欧伟坤">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/Hexo/repository.png">
@@ -138,12 +138,12 @@
 <h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>在 Git Bash 窗口（或者 cmd 命令提示符窗口），输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
 <p>就安装好了 Hexo。</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在电脑的某个盘上准备好要存放 Hexo 的文件夹。</p>
-<p>然后在 Git Bash 窗口下转到目录，比如 D 盘上的 Projects 文件夹下的 Hexo 子文件夹。这个文件夹必须是空的，否则会报错。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd &#x2F;d&#x2F;Projects&#x2F;Hexo</span><br></pre></td></tr></table></figure>
-<p>然后执行 Hexo 命令</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在电脑的某个盘上准备好要存放 Hexo 的文件夹，比如 myblog。</p>
+<p>然后在 Git Bash 窗口下转到目录，比如 D 盘上的 Projects 文件夹下的 myblog 子文件夹。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd &#x2F;d&#x2F;Projects&#x2F;myblog</span><br></pre></td></tr></table></figure>
+<p>然后执行初始化命令。如果文件夹不是空的，则会报错，需要保持 myblog 是一个空文件夹。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
-<p>此时 Hexo 文件夹下就有了一些文件。耐心等待一段时间，Hexo 会自动安装 node_modules 依赖包，如果没有发现这个文件夹，那么可以输入</p>
+<p>此时 myblog 文件夹下就有了一些文件。耐心等待一段时间，Hexo 会自动安装 node_modules 依赖包，如果没有发现这个文件夹，那么可以输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
 <p>手动安装 node_modules 依赖包。</p>
 <p>接下来，执行</p>
