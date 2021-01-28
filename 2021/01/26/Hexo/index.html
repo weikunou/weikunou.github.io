@@ -6,17 +6,18 @@
   
   <title>Hexo | 欧伟坤的网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Hexo 是一个网站框架，可以快速地搭建一个属于自己的网站。 下面介绍一下我的搭建过程。 准备 注册一个 Github 账号并创建远程仓库 安装 Git 安装 node.js 配置 SSH Key  GithubGithub 官网：https:&#x2F;&#x2F;github.com&#x2F; 点击右上角的 sign up 注册一个账号。 登录后，在 Github 上 new 一个 repository，名字叫做：git">
+  <meta name="description" content="Hexo 是一个网站框架，可以快速地搭建一个属于自己的网站。 下面介绍一下我的搭建过程。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://example.com/2021/01/26/Hexo/index.html">
 <meta property="og:site_name" content="欧伟坤的网站">
-<meta property="og:description" content="Hexo 是一个网站框架，可以快速地搭建一个属于自己的网站。 下面介绍一下我的搭建过程。 准备 注册一个 Github 账号并创建远程仓库 安装 Git 安装 node.js 配置 SSH Key  GithubGithub 官网：https:&#x2F;&#x2F;github.com&#x2F; 点击右上角的 sign up 注册一个账号。 登录后，在 Github 上 new 一个 repository，名字叫做：git">
+<meta property="og:description" content="Hexo 是一个网站框架，可以快速地搭建一个属于自己的网站。 下面介绍一下我的搭建过程。">
 <meta property="og:locale">
 <meta property="og:image" content="http://example.com/images/Hexo/repository.png">
 <meta property="og:image" content="http://example.com/images/Hexo/source.png">
+<meta property="og:image" content="http://example.com/images/Hexo/ssh.png">
 <meta property="article:published_time" content="2021-01-26T03:30:29.000Z">
-<meta property="article:modified_time" content="2021-01-26T05:47:10.871Z">
+<meta property="article:modified_time" content="2021-01-28T10:26:13.898Z">
 <meta property="article:author" content="欧伟坤">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/Hexo/repository.png">
@@ -100,6 +101,8 @@
       
         <p>Hexo 是一个网站框架，可以快速地搭建一个属于自己的网站。</p>
 <p>下面介绍一下我的搭建过程。</p>
+<a id="more"></a>
+
 <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
 <li>注册一个 Github 账号并创建远程仓库</li>
 <li>安装 Git</li>
@@ -118,16 +121,46 @@
 <p>Node.js 官网：<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></p>
 <h2 id="SSH-Key"><a href="#SSH-Key" class="headerlink" title="SSH Key"></a>SSH Key</h2><p>这个是用来提交代码到远程仓库的密钥，可以安全地将本地文件上传到 Github 服务器。</p>
 <p>打开 Git Bash，输入如下代码，先检查一下本机是否已经有 SSH Key：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;. ssh</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~&#x2F;. ssh</span><br></pre></td></tr></table></figure>
 <p>如果提示 No such file or directory 则说明没有 SSH Key。</p>
 <p>那么，输入如下代码创建 SSH Key：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;注册 Github 的邮箱地址&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;注册 Github 的邮箱地址&quot;</span><br></pre></td></tr></table></figure>
 <p>如果保持默认设置，可以直接连续按回车键。完成配置后，打开 C 盘里的用户文件夹，可以看到一个 .ssh 的文件夹，用文本编辑器打开 id_rsa.pub，复制所有的内容。</p>
+<p>回到 Github 主页，点击右上角的头像，点击 Settings，进入设置页面，找到 SSH and GPG keys，点击 New SSH key 按钮，Title 可以随意起，把复制的内容粘贴到 Key 的文本框内，最后点击 Add SSH key。</p>
+<p><img src="/../images/Hexo/ssh.png" alt="ssh"></p>
+<p>然后，测试一下是否配置成功。回到 Git Bash 面板，输入代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>如果有提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi weikunou! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+<p>就说明已经配置成功了。</p>
+<p>另外，还需要配置一下 Git 的用户名和邮箱，用来记录每次提交代码的人是谁。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;github 用户名&quot;</span><br><span class="line">$ git config --global user.email &quot;github 注册邮箱&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>在 Git Bash 窗口（或者 cmd 命令提示符窗口），输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
+<p>就安装好了 Hexo。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在电脑的某个盘上准备好要存放 Hexo 的文件夹。</p>
+<p>然后在 Git Bash 窗口下转到目录，比如 D 盘上的 Projects 文件夹下的 Hexo 子文件夹。这个文件夹必须是空的，否则会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd &#x2F;d&#x2F;Projects&#x2F;Hexo</span><br></pre></td></tr></table></figure>
+<p>然后执行 Hexo 命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+<p>此时 Hexo 文件夹下就有了一些文件。耐心等待一段时间，Hexo 会自动安装 node_modules 依赖包，如果没有发现这个文件夹，那么可以输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>手动安装 node_modules 依赖包。</p>
+<p>接下来，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>启动服务，然后打开浏览器，在地址栏输入 http:// localhost:4000/ 即可在本地预览网站。</p>
+<h2 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h2><p>安装一个插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>用文本编辑器打开 Hexo 文件夹下的 _config.yml，在最下面的 deploy 参数下，填写远程仓库的名称和分支。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https:&#x2F;&#x2F;github.com&#x2F;Github 用户名&#x2F;Github 项目名</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+<p>执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>就将项目发布成静态页面并上传到 Github 项目的 main 分支下了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/26/Hexo/" data-id="ckkf91btu0005mcv1e3yv4yfh" data-title="Hexo" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2021/01/26/Hexo/" data-id="ckkgprjrf0008rsv16xxg18wg" data-title="Hexo" class="article-share-link">Teilen</a>
       
       
       
