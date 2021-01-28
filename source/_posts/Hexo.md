@@ -102,21 +102,21 @@ $ npm install -g hexo
 
 ## 使用
 
-在电脑的某个盘上准备好要存放 Hexo 的文件夹。
+在电脑的某个盘上准备好要存放 Hexo 的文件夹，比如 myblog。
 
-然后在 Git Bash 窗口下转到目录，比如 D 盘上的 Projects 文件夹下的 Hexo 子文件夹。这个文件夹必须是空的，否则会报错。
+然后在 Git Bash 窗口下转到目录，比如 D 盘上的 Projects 文件夹下的 myblog 子文件夹。
 
 ```
-$ cd /d/Projects/Hexo
+$ cd /d/Projects/myblog
 ```
 
-然后执行 Hexo 命令
+然后执行初始化命令。如果文件夹不是空的，则会报错，需要保持 myblog 是一个空文件夹。
 
 ```
 $ hexo init
 ```
 
-此时 Hexo 文件夹下就有了一些文件。耐心等待一段时间，Hexo 会自动安装 node_modules 依赖包，如果没有发现这个文件夹，那么可以输入
+此时 myblog 文件夹下就有了一些文件。耐心等待一段时间，Hexo 会自动安装 node_modules 依赖包，如果没有发现这个文件夹，那么可以输入
 
 ```
 $ npm install
@@ -130,4 +130,49 @@ $ npm install
 $ hexo server
 ```
 
-启动服务，然后打开浏览器，在地址栏输入 http:// localhost:4000/ 即可打开网站。
+启动服务，然后打开浏览器，在地址栏输入 http:// localhost:4000/ 即可在本地预览网站。
+
+## 写作
+
+执行
+
+```
+$ hexo new "About-me"
+```
+
+hexo 会在 source/_posts 文件夹下生成一个新的 About-me.md 文件，打开这个文件，就可以开始写作啦。
+
+这里推荐一款 Markdown 写作软件，[Typora](https://www.typora.io/)。
+
+## 上传
+
+安装一个插件
+
+```
+$ npm install hexo-deployer-git --save
+```
+
+用文本编辑器打开 Hexo 文件夹下的 _config.yml，在最下面的 deploy 参数下，填写远程仓库的名称和分支。
+
+```
+deploy:
+  type: git
+  repo: https://github.com/Github 用户名/Github 项目名
+  branch: main
+```
+
+执行命令
+
+```
+$ hexo deploy
+```
+
+就将项目发布成静态页面并上传到 Github 项目的 main 分支下了。
+
+现在，只要在浏览器输入
+
+```
+https://Github项目名称/
+```
+
+就可以访问个人网站啦。
