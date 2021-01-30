@@ -6,4 +6,4 @@ tags:
 
 贪吃蛇项目演示。
 
-[GreedySnake](../WebGL/GreedySnake/index.html)
+[GreedySnake](../../../../WebGL/GreedySnake/index.html)
