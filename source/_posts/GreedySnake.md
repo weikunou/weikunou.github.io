@@ -1,7 +1,7 @@
 ---
 title: GreedySnake
 date: 2021-01-27 18:01:14
-tags:
+tags: WebGL
 ---
 
 贪吃蛇项目演示。
