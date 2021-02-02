@@ -16,7 +16,7 @@ tags: Hexo
 
 为了便于分类，在 images 文件夹下，还有一个 Hexo 文件夹，表示这个文件夹下的图片是 Hexo.md 这篇文章使用的。
 
-![Hexo文章里的图片](../images/Hexo-image/images_Hexo.png)
+![Hexo文章里的图片](../images/HexoImage/imagesHexo.png)
 
 接着，在 Typora 编辑器中插入图片，例如
 
@@ -44,4 +44,4 @@ $ hexo g
 $ hexo s
 ```
 
-![本地测试](../images/Hexo-image/images_test.png)
+![本地测试](../images/HexoImage/imagesTest.png)
