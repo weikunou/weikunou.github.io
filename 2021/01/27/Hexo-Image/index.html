@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://example.com/images/HexoImage/imagesHexo.png">
 <meta property="og:image" content="http://example.com/images/HexoImage/imagesTest.png">
 <meta property="article:published_time" content="2021-01-27T09:55:15.000Z">
-<meta property="article:modified_time" content="2021-02-02T13:39:44.288Z">
+<meta property="article:modified_time" content="2021-02-03T00:59:06.704Z">
 <meta property="article:author" content="欧伟坤">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
@@ -114,6 +114,7 @@
 <p>接着，在 Typora 编辑器中插入图片，例如</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![创建仓库](..&#x2F;images&#x2F;Hexo&#x2F;repository.png)</span><br></pre></td></tr></table></figure>
 <p>在输入图片路径时，要使用 / 而不是 \，虽然两种写法在 Typora 编辑器中都可以显示图片，但是在 Hexo 发布时却会导致路径出现问题。</p>
+<p>另外，图片和文件夹的名称也不能带有 - ，因为这个符号同样会让图片显示不出来。</p>
 <p>然后，安装一个插件。这个插件也是为了让文章被渲染后的图片路径变得正常。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-renderer-marked --save</span><br></pre></td></tr></table></figure>
 <p>最后，生成一下页面。</p>
