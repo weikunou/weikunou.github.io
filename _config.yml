@@ -32,6 +32,7 @@ i18n_dir: :lang
 skip_render:
   - 'README.md'
   - 'WebGL/GreedySnake/*.html'
+  - 'WebGL/PickGifts/*.html'
 
 # Writing
 new_post_name: :title.md # File name of new posts
