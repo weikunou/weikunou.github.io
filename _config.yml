@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 欧伟坤的网站
-subtitle: 一个精神家园
-description: 这里会发布一些作者在开发过程中的发现和启示
-keywords: 欧伟坤
-author: 欧伟坤
-language: zh
+title: Awake
+subtitle: Room
+description: Record
+keywords: Awake
+author: Awake
+language: zh-CN
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: http://example.com
+url: http://weikunou.github.io # 分享文章时创建网址需要
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -103,7 +103,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: hexo-theme-awake
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
