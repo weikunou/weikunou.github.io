@@ -109,5 +109,5 @@ theme: hexo-theme-awake
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/weikunou/weikunou.github.io
+  repo: git@github.com:weikunou/weikunou.github.io.git
   branch: main
