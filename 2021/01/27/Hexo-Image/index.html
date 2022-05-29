@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo-Image | Awake</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在写文章的过程中，有时需要插入图片。 如果直接在 Markdown 文件中使用相对路径引用图片，当网站发布时，首页显示了图片，文章页面却不会显示图片。 经过一番探索和尝试，我使用以下的方法插入图片。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo-Image">
+<meta property="og:url" content="http://weikunou.github.io/2021/01/27/Hexo-Image/index.html">
+<meta property="og:site_name" content="Awake">
+<meta property="og:description" content="在写文章的过程中，有时需要插入图片。 如果直接在 Markdown 文件中使用相对路径引用图片，当网站发布时，首页显示了图片，文章页面却不会显示图片。 经过一番探索和尝试，我使用以下的方法插入图片。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://weikunou.github.io/images/HexoImage/imagesHexo.png">
+<meta property="og:image" content="http://weikunou.github.io/images/HexoImage/imagesTest.png">
+<meta property="article:published_time" content="2021-01-27T09:55:15.000Z">
+<meta property="article:modified_time" content="2022-05-29T14:28:18.106Z">
+<meta property="article:author" content="Awake">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://weikunou.github.io/images/HexoImage/imagesHexo.png">
+  
+    <link rel="alternate" href="/" title="Awake" >
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Awake</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Room</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://weikunou.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Hexo-Image" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/27/Hexo-Image/" class="article-date">
+  <time class="dt-published" datetime="2021-01-27T09:55:15.000Z" itemprop="datePublished">2021-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Hexo-Image
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在写文章的过程中，有时需要插入图片。</p>
+<p>如果直接在 Markdown 文件中使用相对路径引用图片，当网站发布时，首页显示了图片，文章页面却不会显示图片。</p>
+<p>经过一番探索和尝试，我使用以下的方法插入图片。</p>
+<span id="more"></span>
+
+<p>首先，在 source 文件夹下创建一个 images 文件夹。</p>
+<p>为了便于分类，在 images 文件夹下，还有一个 Hexo 文件夹，表示这个文件夹下的图片是 Hexo.md 这篇文章使用的。</p>
+<p><img src="/../images/HexoImage/imagesHexo.png" alt="Hexo文章里的图片"></p>
+<p>接着，在 Typora 编辑器中插入图片，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![创建仓库](..&#x2F;images&#x2F;Hexo&#x2F;repository.png)</span><br></pre></td></tr></table></figure>
+
+<p>在输入图片路径时，要使用 / 而不是 \，虽然两种写法在 Typora 编辑器中都可以显示图片，但是在 Hexo 发布时却会导致路径出现问题。</p>
+<p>另外，图片和文件夹的名称也不能带有连字符 - ，因为这个符号同样会让图片显示不出来。</p>
+<p>然后，安装一个插件。这个插件也是为了让文章被渲染后的图片路径变得正常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-renderer-marked --save</span><br></pre></td></tr></table></figure>
+
+<p>在 config.yml 里配置一下，找到 Writing 这个标题下，新增字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">marked:</span><br><span class="line">  prependRoot: true</span><br></pre></td></tr></table></figure>
+
+<p>还要检查一下 URL 这个标题下，root 字段是否是一个斜杠</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root: &#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>这个 prependRoot 字段的作用是，在图片的路径前，加上 root 设置的路径。</p>
+<p>在这里，因为我设置的图片路径是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![创建仓库](..&#x2F;images&#x2F;Hexo&#x2F;repository.png)</span><br></pre></td></tr></table></figure>
+
+<p>按照上述的配置，生成的页面的图片路径就会变成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![创建仓库](&#x2F;..&#x2F;images&#x2F;Hexo&#x2F;repository.png)</span><br></pre></td></tr></table></figure>
+
+<p>原本发布后，文章页面的图片路径应该是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;2021&#x2F;01&#x2F;26&#x2F;images&#x2F;Hexo&#x2F;repository.png</span><br></pre></td></tr></table></figure>
+
+<p>就是路径的问题导致文章页面的图片显示不出来，而配置后的路径则是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;images&#x2F;Hexo&#x2F;repository.png</span><br></pre></td></tr></table></figure>
+
+<p>路径正确，图片也就正常地显示出来了。</p>
+<p>不过此处有个小问题，就是按照上述流程配置后，文章的图片还是显示不出来，经过测试发现，需要在文章里写一次</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--more--&gt; &#x2F;&#x2F; 首页会出现 Read More 的按钮，隐藏后面的内容</span><br></pre></td></tr></table></figure>
+
+<p>然后神奇的是，图片正常显示了。</p>
+<p>之后，即使把这个代码去掉，图片也是正常显示的。</p>
+<p>可能是这个插件的某个地方出了问题吧。</p>
+<p>如果直接写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+
+<p>也是显示不出来的，还是需要先安装插件，配置 config.yml，再写 Read More 的代码才行。</p>
+<p>最后，生成一下页面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+
+<p>在本地测试一下，可以看到图片已经显示出来了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/HexoImage/imagesTest.png" alt="本地测试"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://weikunou.github.io/2021/01/27/Hexo-Image/" data-id="cl3rfaqh7000pf0vc4c24friw" data-title="Hexo-Image" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/27/Hexo-Link/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Hexo-Link
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/27/Hexo-Config/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Hexo-Config</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebGL/" rel="tag">WebGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/20/Tetris/">Tetris</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/08/TheRestOfThePlanet/">TheRestOfThePlanet</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/17/ZerosSmartGrowth/">ZerosSmartGrowth</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/03/PickGifts/">PickGifts</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/27/GreedySnake/">GreedySnake</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Awake<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

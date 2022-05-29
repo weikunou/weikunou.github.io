@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo-Config | Awake</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在根目录下，有个叫 _config.yml 的文件，用文本编辑器打开，可以看到很多配置字段。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo-Config">
+<meta property="og:url" content="http://weikunou.github.io/2021/01/27/Hexo-Config/index.html">
+<meta property="og:site_name" content="Awake">
+<meta property="og:description" content="在根目录下，有个叫 _config.yml 的文件，用文本编辑器打开，可以看到很多配置字段。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-27T09:55:00.000Z">
+<meta property="article:modified_time" content="2022-05-29T14:28:18.106Z">
+<meta property="article:author" content="Awake">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/" title="Awake" >
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Awake</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Room</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://weikunou.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Hexo-Config" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/27/Hexo-Config/" class="article-date">
+  <time class="dt-published" datetime="2021-01-27T09:55:00.000Z" itemprop="datePublished">2021-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Hexo-Config
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在根目录下，有个叫 _config.yml 的文件，用文本编辑器打开，可以看到很多配置字段。</p>
+<span id="more"></span>
+
+<h1 id="Site"><a href="#Site" class="headerlink" title="Site"></a>Site</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>网站的标题</td>
+<td>默认会显示在网站顶部</td>
+</tr>
+<tr>
+<td>subtitle</td>
+<td>网站的副标题</td>
+<td>默认会显示在标题下方</td>
+</tr>
+<tr>
+<td>description</td>
+<td>网站的描述</td>
+<td>没有显示，跟搜索引擎有关</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>网站的关键词</td>
+<td>没有显示，跟搜索引擎有关</td>
+</tr>
+<tr>
+<td>author</td>
+<td>作者</td>
+<td>默认会显示在网站底部</td>
+</tr>
+<tr>
+<td>language</td>
+<td>网站的语言，使用 2 个字符的代码描述，中文是 zh</td>
+<td>没有显示，跟搜索引擎有关</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>网站的时区，Hexo会默认使用计算机上的设置</td>
+<td>没有显示，跟搜索引擎有关</td>
+</tr>
+</tbody></table>
+<h1 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>url</td>
+<td>网站的 URL</td>
+<td>如果网站在域名下的一个子目录里，则需要设置为 https://网址/子目录/</td>
+</tr>
+<tr>
+<td>root</td>
+<td>网站的根目录</td>
+<td>如果网站在域名下的一个子目录里，则需要设置为 /子目录/</td>
+</tr>
+<tr>
+<td>permalink</td>
+<td>文章的永久链接格式</td>
+<td>public 文件夹和网址的层级格式</td>
+</tr>
+<tr>
+<td>permalink_defaults</td>
+<td>永久链接格式的默认值</td>
+<td>为 permalink 设置默认值</td>
+</tr>
+<tr>
+<td>pretty_urls</td>
+<td>美化永久链接</td>
+<td>可以让 URL 更简洁</td>
+</tr>
+<tr>
+<td>pretty_urls.trailing_index</td>
+<td>链接尾部的 index.html</td>
+<td>设置为 false 可以让链接尾部的 index.html 不显示</td>
+</tr>
+<tr>
+<td>pretty_urls.trailing_html</td>
+<td>链接尾部的 .html</td>
+<td>设置为 false 可以让链接尾部的 .html 不显示</td>
+</tr>
+</tbody></table>
+<h1 id="Directory"><a href="#Directory" class="headerlink" title="Directory"></a>Directory</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>source_dir</td>
+<td>资源文件夹</td>
+<td>存放文章、图片等资源</td>
+</tr>
+<tr>
+<td>public_dir</td>
+<td>Hexo 发布的文件夹</td>
+<td>可以看到发布后的静态页面文件</td>
+</tr>
+<tr>
+<td>tag_dir</td>
+<td>标签文件夹</td>
+<td>给文章设置标签后，会多出一个标签文件夹，网站的侧边栏也会多出两栏标签导航栏</td>
+</tr>
+<tr>
+<td>archive_dir</td>
+<td>档案文件夹</td>
+<td>默认按照月份将文章归档</td>
+</tr>
+<tr>
+<td>category_dir</td>
+<td>分类文件夹</td>
+<td>跟标签文件夹差不多，同样在文章的顶部进行设置</td>
+</tr>
+<tr>
+<td>code_dir</td>
+<td>代码文件夹</td>
+<td>存放代码</td>
+</tr>
+<tr>
+<td>i18n_dir</td>
+<td>国际化文件夹</td>
+<td>跟语言相关</td>
+</tr>
+<tr>
+<td>skip_render</td>
+<td>跳过渲染，将路径下的文件直接拷贝到 public 文件夹下</td>
+<td>可以在发布时，将一些资源原封不动地拷贝到 public 文件夹，避免渲染后出现问题，比如 README.md 文件</td>
+</tr>
+</tbody></table>
+<h1 id="Writing"><a href="#Writing" class="headerlink" title="Writing"></a>Writing</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>new_post_name</td>
+<td>新建文章的名称格式，默认是 title.md</td>
+<td>新建文章后生成的文件名会是 标题.md 的格式</td>
+</tr>
+<tr>
+<td>default_layout</td>
+<td>新建文章的默认布局，默认是 post</td>
+<td>新建文章时使用的模板</td>
+</tr>
+<tr>
+<td>titlecase</td>
+<td>将标题转换成首字母大写的标题</td>
+<td></td>
+</tr>
+<tr>
+<td>external_link</td>
+<td>外部链接</td>
+<td></td>
+</tr>
+<tr>
+<td>external_link.enable</td>
+<td>是否在新标签页打开外部链接</td>
+<td></td>
+</tr>
+<tr>
+<td>external_link.field</td>
+<td>对整个网站还是当前文章生效</td>
+<td></td>
+</tr>
+<tr>
+<td>external_link.exclude</td>
+<td>排除哪些域名</td>
+<td></td>
+</tr>
+<tr>
+<td>filename_case</td>
+<td>把文章的名称改为小写（1）或大写（2），默认不改（0）</td>
+<td></td>
+</tr>
+<tr>
+<td>render_drafts</td>
+<td>是否渲染草稿</td>
+<td>设置为 true 后，将会显示通过草稿模板创建的文章</td>
+</tr>
+<tr>
+<td>post_asset_folder</td>
+<td>是否启用资源文件夹</td>
+<td>设置为 true 后，新建文章的同时，会在文章同级目录下生成一个同名文件夹存放资源</td>
+</tr>
+<tr>
+<td>relative_link</td>
+<td>是否把链接改为根目录的相对路径</td>
+<td></td>
+</tr>
+<tr>
+<td>future</td>
+<td>是否显示未来日期的文章</td>
+<td>设置为 false 后，将不会显示未来日期的文章</td>
+</tr>
+<tr>
+<td>highlight</td>
+<td>代码块设置</td>
+<td></td>
+</tr>
+<tr>
+<td>highlight.enable</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>highlight.line_number</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>highlight.auto_detect</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>highlight.tab_replace</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>highlight.wrap</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>highlight.hljs</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>prismjs</td>
+<td>代码块设置</td>
+<td></td>
+</tr>
+<tr>
+<td>prismjs.enable</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>prismjs.preprocess</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>prismjs.line_number</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>prismjs.tab_replace</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="Home-page-setting"><a href="#Home-page-setting" class="headerlink" title="Home page setting"></a>Home page setting</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>index_generator</td>
+<td>主页设置</td>
+<td></td>
+</tr>
+<tr>
+<td>index_generator.path</td>
+<td>主页的路径</td>
+<td></td>
+</tr>
+<tr>
+<td>index_generator.per_page</td>
+<td>每页显示的文章数目</td>
+<td></td>
+</tr>
+<tr>
+<td>index_generator.order_by</td>
+<td>文章排序</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="Category-amp-Tag"><a href="#Category-amp-Tag" class="headerlink" title="Category &amp; Tag"></a>Category &amp; Tag</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>default_category</td>
+<td>默认分类</td>
+<td></td>
+</tr>
+<tr>
+<td>category_map</td>
+<td>分类别名</td>
+<td></td>
+</tr>
+<tr>
+<td>tag_map</td>
+<td>标签别名</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="Metadata-elements"><a href="#Metadata-elements" class="headerlink" title="Metadata elements"></a>Metadata elements</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>meta_generator</td>
+<td>是否在页面头部插入 meta 标签</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="Date-Time-format"><a href="#Date-Time-format" class="headerlink" title="Date / Time format"></a>Date / Time format</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>date_format</td>
+<td>日期格式</td>
+<td></td>
+</tr>
+<tr>
+<td>time_format</td>
+<td>时间格式</td>
+<td></td>
+</tr>
+<tr>
+<td>updated_option</td>
+<td>如果文章中没有指定创建日期，就会使用更新日期</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="Pagination"><a href="#Pagination" class="headerlink" title="Pagination"></a>Pagination</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>per_page</td>
+<td>文章分页时，每页的文章数目</td>
+<td></td>
+</tr>
+<tr>
+<td>pagination_dir</td>
+<td>分页的目录</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="Include-Exclude-file-s"><a href="#Include-Exclude-file-s" class="headerlink" title="Include / Exclude file(s)"></a>Include / Exclude file(s)</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>include</td>
+<td>包括的文件</td>
+<td>Hexo 会将这个路径下的文件拷贝到 source 文件夹下</td>
+</tr>
+<tr>
+<td>exclude</td>
+<td>不包括的文件</td>
+<td>Hexo 会将这个路径下的文件排除在外</td>
+</tr>
+<tr>
+<td>ignore</td>
+<td>忽略的文件</td>
+<td>Hexo 不会对这些文件进行操作</td>
+</tr>
+</tbody></table>
+<h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>theme</td>
+<td>主题</td>
+<td>网站显示的样式</td>
+</tr>
+</tbody></table>
+<h1 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h1><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>deploy</td>
+<td>部署设置</td>
+<td></td>
+</tr>
+<tr>
+<td>deploy.type</td>
+<td>部署类型，默认是 git</td>
+<td></td>
+</tr>
+<tr>
+<td>deploy.repo</td>
+<td>部署地址，github 远程仓库地址</td>
+<td>将发布后的文件部署到相应的 Github 地址</td>
+</tr>
+<tr>
+<td>deploy.branch</td>
+<td>部署分支</td>
+<td>将发布后的文件部署到相应的 Github 地址的一个分支下</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://weikunou.github.io/2021/01/27/Hexo-Config/" data-id="cl3rfaqh6000jf0vce7mp1xmn" data-title="Hexo-Config" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/27/Hexo-Image/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Hexo-Image
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/26/Hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Hexo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebGL/" rel="tag">WebGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/20/Tetris/">Tetris</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/08/TheRestOfThePlanet/">TheRestOfThePlanet</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/17/ZerosSmartGrowth/">ZerosSmartGrowth</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/03/PickGifts/">PickGifts</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/27/GreedySnake/">GreedySnake</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Awake<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

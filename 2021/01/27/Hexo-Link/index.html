@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo-Link | Awake</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在文章中引入超链接，直接在 Typora 中写 1[GreedySnake](..&#x2F;WebGL&#x2F;GreedySnake&#x2F;index.html)  这里的文件夹层级是，_posts 和 WebGL 都放在 source 里。 和插入图片一样，首页显示了链接，并且可以正常打开，而文章页面却不能正常打开，找不到页面。 同样是路径的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo-Link">
+<meta property="og:url" content="http://weikunou.github.io/2021/01/27/Hexo-Link/index.html">
+<meta property="og:site_name" content="Awake">
+<meta property="og:description" content="在文章中引入超链接，直接在 Typora 中写 1[GreedySnake](..&#x2F;WebGL&#x2F;GreedySnake&#x2F;index.html)  这里的文件夹层级是，_posts 和 WebGL 都放在 source 里。 和插入图片一样，首页显示了链接，并且可以正常打开，而文章页面却不能正常打开，找不到页面。 同样是路径的问题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://weikunou.github.io/images/HexoLink/page_overlap.png">
+<meta property="og:image" content="http://weikunou.github.io/images/HexoLink/new_page.png">
+<meta property="article:published_time" content="2021-01-27T09:56:06.000Z">
+<meta property="article:modified_time" content="2022-05-29T14:28:18.107Z">
+<meta property="article:author" content="Awake">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://weikunou.github.io/images/HexoLink/page_overlap.png">
+  
+    <link rel="alternate" href="/" title="Awake" >
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Awake</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Room</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://weikunou.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Hexo-Link" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/27/Hexo-Link/" class="article-date">
+  <time class="dt-published" datetime="2021-01-27T09:56:06.000Z" itemprop="datePublished">2021-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Hexo-Link
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在文章中引入超链接，直接在 Typora 中写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[GreedySnake](..&#x2F;WebGL&#x2F;GreedySnake&#x2F;index.html)</span><br></pre></td></tr></table></figure>
+
+<p>这里的文件夹层级是，_posts 和 WebGL 都放在 source 里。</p>
+<p>和插入图片一样，首页显示了链接，并且可以正常打开，而文章页面却不能正常打开，找不到页面。</p>
+<p>同样是路径的问题。</p>
+<span id="more"></span>
+
+<p>在 Hexo-Image 这篇文章中，我使用了 hexo-renderer-marked 这个插件修改网站发布后的图片的路径。</p>
+<p>不过，超链接这一块，我还没有找到合适的插件去修正。</p>
+<p>所以这里就先用一个土方法，自己在路径前加上很多个 ../ 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[GreedySnake](..&#x2F;..&#x2F;..&#x2F;..&#x2F;WebGL&#x2F;GreedySnake&#x2F;index.html)</span><br></pre></td></tr></table></figure>
+
+<p>加多少个，要看文件夹的层级，根据实际情况去选择。这里我加上了三个 ../ ，因为我的文章页面的上级目录，有年月日三个层级。</p>
+<p>这样，文章页面的超链接路径就会回到根目录下去找 WebGL 这个文件夹，而主页同样是在根目录下找，因为根目录已经没有上级目录了，所以加多少个 ../ 也没关系（好像有点矛盾了）。</p>
+<p>不过，我觉得这个方法并不是最好的，以后估计会找到更好的解决方案吧。</p>
+<p>另外，超链接的路径里不能有空格，如果有空格，超链接会变成 p 标签。</p>
+<p>还有一个问题，就是 index.html 在发布时会被渲染，导致页面出现某些问题。比如，我打开的链接是 Unity WebGL 的页面，这个页面会直接在我的网站背景上显示，而不是打开一个新的页面。</p>
+<p><img src="/../images/HexoLink/page_overlap.png" alt="页面重叠"></p>
+<p>所以还需要去到 config.yml 文件里，找到 skip_render，让一些页面跳过渲染。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">skip_render:</span><br><span class="line">  - &#39;README.md&#39;</span><br><span class="line">  - &#39;WebGL&#x2F;GreedySnake&#x2F;*.html&#39;</span><br></pre></td></tr></table></figure>
+
+<p>参数前加的连字符 - 是 yml 的数组写法。这里我添加了 GreedySnake 下的所有 html 文件。</p>
+<p>清理一下数据库，清理之前，如果 public 文件夹下的有需要保存的东西，比如 README.md，需要先备份一下，因为清理的命令也会把 public 文件夹给删除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+
+<p>重新启动本地服务器，会发现，WebGL 页面已经在新页面打开了。</p>
+<p><img src="/../images/HexoLink/new_page.png" alt="打开新页面"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://weikunou.github.io/2021/01/27/Hexo-Link/" data-id="cl3rfaqh7000lf0vc07p09cjr" data-title="Hexo-Link" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/27/GreedySnake/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          GreedySnake
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/27/Hexo-Image/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Hexo-Image</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebGL/" rel="tag">WebGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/20/Tetris/">Tetris</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/08/TheRestOfThePlanet/">TheRestOfThePlanet</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/17/ZerosSmartGrowth/">ZerosSmartGrowth</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/03/PickGifts/">PickGifts</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/27/GreedySnake/">GreedySnake</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Awake<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
