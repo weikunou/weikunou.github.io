@@ -50,7 +50,7 @@ Node.js 官网：https://nodejs.org/zh-cn/
 打开 Git Bash，输入如下代码，先检查一下本机是否已经有 SSH Key：
 
 ```
-$ cd ~/. ssh
+$ cd ~/.ssh
 ```
 
 如果提示 No such file or directory 则说明没有 SSH Key。

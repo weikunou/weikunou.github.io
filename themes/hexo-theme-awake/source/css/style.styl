@@ -33,7 +33,7 @@ body
 
 .outer
   clearfix()
-  max-width: (column-width + gutter-width) * columns + gutter-width
+  // max-width: (column-width + gutter-width) * columns + gutter-width
   margin: 0 auto
   padding: 0 gutter-width
 
@@ -76,6 +76,13 @@ if sidebar is left
   @media mq-normal
     #main
       float: right
+
+if sidebar is false
+  #mainouter
+    position: relative
+    right: 0
+    left: 20%
+    width: 80%
 
 @import "_extend"
 @import "_partial/header"

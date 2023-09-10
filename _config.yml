@@ -4,7 +4,7 @@
 
 # Site
 title: Awake
-subtitle: Room
+# subtitle: Room
 description: Record
 keywords: Awake
 author: Awake
@@ -103,7 +103,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-yilia-master
+theme: hexo-theme-awake
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

@@ -1,8 +1,8 @@
 # Header
 menu:
-  Home: /
-  Archives: /archives
-rss: /
+  # Home: /
+  # Archives: /archives
+# rss: /
 banner: "images/banner.png"
 
 # Content
@@ -25,7 +25,7 @@ copyright:
 #   All website licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></br>
 
 # 侧边栏
-sidebar: left # 左侧
+sidebar: false # 左侧
 widgets: # 小组件
 - category
 - tag
