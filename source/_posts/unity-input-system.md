@@ -10,7 +10,7 @@ tags: Unity3D
 
 <!--more-->
 
-# 一、键盘按键
+## 一、键盘按键
 
 创建一个脚本，挂载到一个 Cube 上，在 Update 函数监听键盘按键。
 
@@ -84,7 +84,7 @@ void Update()
 
 除了 Input.GetKeyDown，还有 Input.GetButtonDown，它们都可以获取 Input Manager 设置的轴键，而 GetKeyDown 可以额外通过 KeyCode 枚举变量获取按键，GetButtonDown 则只能获取轴键（GetAxis 同理）。
 
-# 二、鼠标按键
+## 二、鼠标按键
 
 鼠标的三个按键也都是通过 Input 类的接口来监听。
 
@@ -117,7 +117,7 @@ void Update()
 }
 ```
 
-# 三、总结
+## 三、总结
 
 下面列出了一些常用的按键接口。
 
