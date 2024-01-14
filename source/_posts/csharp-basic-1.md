@@ -158,11 +158,11 @@ Console.WriteLine(scores[1, 1]); // 取第二行第二列，结果 44
 bool hasMoney = false;
 bool hasEnergy = false;
 
-if(hasMoney)
+if (hasMoney)
 {
     Console.WriteLine("买买买");
 }
-else if(hasEnergy)
+else if (hasEnergy)
 {
     Console.WriteLine("冲冲冲");
 }
@@ -206,7 +206,7 @@ switch (name)
 ### for 循环
 
 ```c#
-for(int i = 0; i < 5; i++)
+for (int i = 0; i < 5; i++)
 {
     if (i == 3)
     {
@@ -230,7 +230,7 @@ for(int i = 0; i < 5; i++)
 ```c#
 int[] num = {1, 2, 3};
 
-foreach(int x in num)
+foreach (int x in num)
 {
     // 打印 x
     Console.WriteLine(x);
@@ -248,7 +248,7 @@ foreach(int x in num)
 ```c#
 int i = 0;
 
-while(i < 3)
+while (i < 3)
 {
     // 打印 i
     Console.WriteLine(i);
@@ -274,7 +274,7 @@ do
     // 打印 i
     Console.WriteLine(i);
     i++;
-} while(i < 0);
+} while (i < 0);
 
 // 输出
 // 1
