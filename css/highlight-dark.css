@@ -1,64 +1,67 @@
 /*
-
-Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
-
+Date: 24 Fev 2015
+Author: Pedro Oliveira <kanytu@gmail . com>
 */
 
 .hljs {
+  color: #a9b7c6;
+  background: #282b2e;
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #444;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet {
+  color: #6897BB;
 }
 
 .hljs-keyword,
 .hljs-selector-tag,
-.hljs-literal,
-.hljs-section,
-.hljs-link {
-  color: white;
+.hljs-deletion {
+  color: #cc7832;
 }
 
-.hljs,
-.hljs-subst {
-  color: #ddd;
-}
-
-.hljs-string,
-.hljs-title,
-.hljs-name,
-.hljs-type,
-.hljs-attribute,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-built_in,
-.hljs-addition,
 .hljs-variable,
-.hljs-template-tag,
-.hljs-template-variable {
-  color: #d88;
+.hljs-template-variable,
+.hljs-link {
+  color: #629755;
 }
 
 .hljs-comment,
-.hljs-quote,
-.hljs-deletion,
-.hljs-meta {
-  color: #777;
+.hljs-quote {
+  color: #808080;
 }
 
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-literal,
-.hljs-title,
+.hljs-meta {
+  color: #bbb529;
+}
+
+.hljs-string,
+.hljs-attribute,
+.hljs-addition {
+  color: #6A8759;
+}
+
 .hljs-section,
-.hljs-doctag,
-.hljs-type,
+.hljs-title,
+.hljs-type {
+  color: #ffc66d;
+}
+
 .hljs-name,
-.hljs-strong {
-  font-weight: bold;
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #e8bf6a;
 }
 
 .hljs-emphasis {
   font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
 }
 
