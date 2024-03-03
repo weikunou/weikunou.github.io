@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Unity3D 基础 03 预制体</title>
+    <link href="/2024/03/03/unity-basic-3/"/>
+    <url>/2024/03/03/unity-basic-3/</url>
+    
+    <content type="html"><![CDATA[<p>Unity3D 基础系列（第三期）</p><span id="more"></span><h1 id="创建预制体"><a href="#创建预制体" class="headerlink" title="创建预制体"></a>创建预制体</h1><p>创建预制体的方法很简单，直接把场景中的游戏物体，拖拽到 Assets 文件夹里，就会生成一个预制体资源了。</p><p><img src="/../images/unity-basic-3/%E5%88%9B%E5%BB%BA%E9%A2%84%E5%88%B6%E4%BD%93.png"></p><p>除了拖拽的方式，也可以在 Create 菜单中找到创建预制体的按钮，此时会创建一个空的预制体。</p><p><img src="/../images/unity-basic-3/%E5%88%9B%E5%BB%BA%E9%A2%84%E5%88%B6%E4%BD%932.png"></p><h1 id="修改预制体"><a href="#修改预制体" class="headerlink" title="修改预制体"></a>修改预制体</h1><p>双击 Assets 文件夹里的预制体资源，可以进入编辑模式。</p><p>在编辑模式下，给预制体增加一个球模型，点击 Save 按钮保存。</p><p>保存之后，点击 Save 按钮旁边的 &lt; 按钮，退出编辑模式，回到场景。</p><p><img src="/../images/unity-basic-3/%E4%BF%AE%E6%94%B9%E9%A2%84%E5%88%B6%E4%BD%93.png"></p><p>回到场景之后，发现场景中的游戏物体都会随之修改。</p><p>同时，也可以把预制体从 Assets 文件夹里再次拖拽到场景中，会生成新的一模一样的游戏物体。</p><p>后续对预制体的修改，都会同时改变场景中引用同一个预制体资源的所有游戏物体。</p><p><img src="/../images/unity-basic-3/%E6%8B%96%E6%8B%BD%E6%96%B0%E7%9A%84%E9%A2%84%E5%88%B6%E4%BD%93.png"></p><p>除了在 Assets 文件夹中双击预制体进行编辑的方式外，还可以直接在场景中，对游戏物体进行修改，然后应用到预制体上。</p><p>例如，在其中一个游戏物体中，再次添加一个小球，点击 Overrides 按钮，可以看到有哪些修改。</p><p>如果直接点击 Apply All，就会把所有修改都覆盖到预制体。</p><p>也可以单独点击其中某个修改，点击 Apply 按钮，再次点击 Apply to Prefab ‘Cube’ 按钮，就可以把单条修改覆盖到预制体。</p><p><img src="/../images/unity-basic-3/%E5%9C%BA%E6%99%AF%E4%B8%AD%E4%BF%AE%E6%94%B9%E9%A2%84%E5%88%B6%E4%BD%93.png"></p><p>应用覆盖之后，场景中的游戏物体和资源里的预制体都会发生改变。</p><p><img src="/../images/unity-basic-3/%E8%A6%86%E7%9B%96%E9%A2%84%E5%88%B6%E4%BD%93.png"></p><h1 id="实例化预制体"><a href="#实例化预制体" class="headerlink" title="实例化预制体"></a>实例化预制体</h1><p>除了直接从 Assets 文件夹里拖拽预制体到场景中，进行游戏物体的生成外，还可以通过代码的方式实例化预制体。</p><p>创建一个脚本 CreateGameObjectByPrefab.cs，代码如下。</p><p>其中 cubePrefab 是要实例化的预制体资源，</p><p>pos 是生成的位置，</p><p>step 是每次修改生成位置的步长。</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CreateGameObjectByPrefab</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> GameObject cubePrefab;<br>    <span class="hljs-keyword">public</span> Vector3 pos;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> step = <span class="hljs-number">1f</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">// 按下键盘 G 键</span><br>        <span class="hljs-keyword">if</span> (Input.GetKeyDown(KeyCode.G))<br>        &#123;<br>            Generate();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Generate</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        GameObject obj = Instantiate(cubePrefab);<br>        obj.transform.position = pos;<br>        pos.x += step;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>在场景中创建一个空物体，并把脚本拖拽到空物体上，再把 Cube 预制体拖拽到 Cube Prefab 属性上，设置好 pos 和 step 的参数。</p><p><img src="/../images/unity-basic-3/%E6%8B%96%E6%8B%BD%E9%A2%84%E5%88%B6%E4%BD%93%E5%BC%95%E7%94%A8.png"></p><p>运行游戏，按下键盘 G 键，可以看到场景中不断地生成新的游戏物体。</p><p><img src="/../images/unity-basic-3/%E5%8A%A8%E6%80%81%E7%94%9F%E6%88%90%E6%B8%B8%E6%88%8F%E7%89%A9%E4%BD%93.gif"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Unity3D</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity3D 基础 02 控制移动</title>
     <link href="/2024/02/25/unity-basic-2/"/>
     <url>/2024/02/25/unity-basic-2/</url>
