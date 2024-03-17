@@ -16,28 +16,31 @@
   <meta name="author" content="Awake">
   <meta name="keywords" content="Awake">
   
-    <meta name="description" content="Unity3D 基础系列（第四期）">
+    <meta name="description" content="Unity3D 基础系列（第五期）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unity3D 基础 04 物理效果">
-<meta property="og:url" content="http://weikunou.github.io/2024/03/10/unity-basic-4/index.html">
+<meta property="og:title" content="Unity3D 基础 05 场景加载">
+<meta property="og:url" content="http://weikunou.github.io/2024/03/17/unity-basic-5/index.html">
 <meta property="og:site_name" content="Awake">
-<meta property="og:description" content="Unity3D 基础系列（第四期）">
+<meta property="og:description" content="Unity3D 基础系列（第五期）">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-4/%E6%B7%BB%E5%8A%A0%E5%88%9A%E4%BD%93.png">
-<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-4/%E5%B8%83%E7%BD%AE%E5%9C%BA%E6%99%AF.png">
-<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-4/%E5%88%9A%E4%BD%93%E7%A7%BB%E5%8A%A8.gif">
-<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-4/%E7%A2%B0%E6%92%9E%E4%BD%93%E5%B1%9E%E6%80%A7.png">
-<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-4/%E8%A7%A6%E5%8F%91.png">
-<meta property="article:published_time" content="2024-03-10T02:57:01.000Z">
-<meta property="article:modified_time" content="2024-03-10T02:58:58.371Z">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-5/%E5%B8%83%E7%BD%AE%E5%9C%BA%E6%99%AF.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-5/%E5%9C%BA%E6%99%AF%E6%89%93%E5%8C%85%E8%AE%BE%E7%BD%AE.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-5/%E7%9B%AE%E6%A0%87%E5%9C%BA%E6%99%AF.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-5/%E5%9B%9E%E5%88%B0%E4%B8%BB%E5%9C%BA%E6%99%AF.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-5/%E5%9C%BA%E6%99%AF%E5%88%87%E6%8D%A2%E6%95%88%E6%9E%9C.gif">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-5/%E4%BF%AE%E6%94%B9%E5%9C%BA%E6%99%AF.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-5/%E5%9C%BA%E6%99%AF%E5%8F%A0%E5%8A%A0.gif">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-5/%E5%9C%BA%E6%99%AF%E5%8F%A0%E5%8A%A02.gif">
+<meta property="article:published_time" content="2024-03-17T03:41:01.000Z">
+<meta property="article:modified_time" content="2024-03-17T03:45:20.224Z">
 <meta property="article:author" content="Awake">
 <meta property="article:tag" content="Unity3D">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://weikunou.github.io/images/unity-basic-4/%E6%B7%BB%E5%8A%A0%E5%88%9A%E4%BD%93.png">
+<meta name="twitter:image" content="http://weikunou.github.io/images/unity-basic-5/%E5%B8%83%E7%BD%AE%E5%9C%BA%E6%99%AF.png">
   
   
   
-  <title>Unity3D 基础 04 物理效果 - Awake</title>
+  <title>Unity3D 基础 05 场景加载 - Awake</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -191,7 +194,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Unity3D 基础 04 物理效果"></span>
+            <span id="subtitle" data-typed-text="Unity3D 基础 05 场景加载"></span>
           
         </div>
 
@@ -202,8 +205,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-10 10:57" pubdate>
-          2024年3月10日 上午
+        <time datetime="2024-03-17 11:41" pubdate>
+          2024年3月17日 中午
         </time>
       </span>
     
@@ -214,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          576 字
+          695 字
         
       </span>
     
@@ -225,7 +228,7 @@
         
         
         
-          5 分钟
+          6 分钟
         
       </span>
     
@@ -262,47 +265,55 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Unity3D 基础 04 物理效果</h1>
+            <h1 id="seo-header">Unity3D 基础 05 场景加载</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Unity3D 基础系列（第四期）</p>
+                <p>Unity3D 基础系列（第五期）</p>
 <span id="more"></span>
 
-<h1 id="刚体"><a href="#刚体" class="headerlink" title="刚体"></a>刚体</h1><p>在场景中创建一个 Cube，然后为它添加一个 Rigidbody 组件。</p>
-<p>此时，Cube 就有了重力，如果运行游戏，Cube 会模拟自由落体，往下掉落。</p>
-<p><img src="/../images/unity-basic-4/%E6%B7%BB%E5%8A%A0%E5%88%9A%E4%BD%93.png" srcset="/img/loading.gif" lazyload></p>
-<p>可以简单布置一下场景，在 Cube 下面放置一个 Plane，这样 Cube 就会站立在平面上。</p>
-<p>当然，也可以修改 Rigidbody 组件的参数，取消勾选 Use Gravity 或者勾选 Is Kinematic，也会取消重力效果。</p>
-<p><img src="/../images/unity-basic-4/%E5%B8%83%E7%BD%AE%E5%9C%BA%E6%99%AF.png" srcset="/img/loading.gif" lazyload></p>
-<p>刚体组件也可以让物体移动，只需要修改刚体的 velocity 属性。</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">RigidbodyMove</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> speed = <span class="hljs-number">5f</span>;   <span class="hljs-comment">// 移动速度</span><br>    <span class="hljs-keyword">public</span> Vector3 direction;  <span class="hljs-comment">// 移动方向</span><br>    <span class="hljs-keyword">public</span> Rigidbody rb;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        rb = GetComponent&lt;Rigidbody&gt;();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">// 水平偏移量</span><br>        <span class="hljs-built_in">float</span> h = Input.GetAxis(<span class="hljs-string">&quot;Horizontal&quot;</span>);<br>        <span class="hljs-comment">// 垂直偏移量</span><br>        <span class="hljs-built_in">float</span> v = Input.GetAxis(<span class="hljs-string">&quot;Vertical&quot;</span>);<br>        <span class="hljs-comment">// 修改方向向量</span><br>        direction.x = h;<br>        direction.z = v;<br>        <span class="hljs-comment">// 设置刚体速度</span><br>        rb.velocity = speed * direction;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="场景配置"><a href="#场景配置" class="headerlink" title="场景配置"></a>场景配置</h1><p>首先，在资源文件夹里创建一个 LoadScene 场景，摆放一些物体，用来做初始场景。</p>
+<p>然后创建一个 Stage 文件夹，并创建两个场景 Stage1、Stage2。</p>
+<p>两个 Stage 场景也可以简单布置一下，方便区分。</p>
+<p><img src="/../images/unity-basic-5/%E5%B8%83%E7%BD%AE%E5%9C%BA%E6%99%AF.png" srcset="/img/loading.gif" lazyload></p>
+<p>接着，打开 Build Settings，把需要加载的场景添加到配置中。</p>
+<p><img src="/../images/unity-basic-5/%E5%9C%BA%E6%99%AF%E6%89%93%E5%8C%85%E8%AE%BE%E7%BD%AE.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="切换场景"><a href="#切换场景" class="headerlink" title="切换场景"></a>切换场景</h1><p>创建一个 SceneLoader 脚本，并在 LoadScene 场景中创建一个空物体，挂载这个脚本。</p>
+<p>这里为了方便调用加载场景的方法，简单使用了单例模式，在 Awake 初始化时，把当前脚本实例保存到 instance 变量里，并且设置为 DontDestroyOnLoad，保证这个对象不会因为场景切换而被销毁，其他对象通过 Instance 属性获取到单例。</p>
+<p>当前脚本提供一个 LoadScene 方法，传入一个场景名称就可以直接切换场景。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.SceneManagement;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SceneLoader</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-comment">// 单例模式</span><br>    <span class="hljs-keyword">static</span> SceneLoader instance;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SceneLoader Instance<br>    &#123;<br>        <span class="hljs-keyword">get</span> &#123; <span class="hljs-keyword">return</span> instance; &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Awake</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">if</span> (instance != <span class="hljs-literal">null</span>)<br>        &#123;<br>            Destroy(gameObject);<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            instance = <span class="hljs-keyword">this</span>;<br>            DontDestroyOnLoad(gameObject);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LoadScene</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> sceneName</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        SceneManager.LoadScene(sceneName);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<p>运行效果：</p>
-<p><img src="/../images/unity-basic-4/%E5%88%9A%E4%BD%93%E7%A7%BB%E5%8A%A8.gif" srcset="/img/loading.gif" lazyload></p>
-<h1 id="碰撞体"><a href="#碰撞体" class="headerlink" title="碰撞体"></a>碰撞体</h1><p>在创建 Cube 时，默认会挂载一个碰撞体组件。</p>
-<p>勾选 Is Trigger 会取消碰撞效果，只做触发器。</p>
-<p>Center 和 Size 用来控制碰撞体的中心位置和大小。</p>
-<p><img src="/../images/unity-basic-4/%E7%A2%B0%E6%92%9E%E4%BD%93%E5%B1%9E%E6%80%A7.png" srcset="/img/loading.gif" lazyload></p>
-<p>如果要让两个物体碰撞，监听发生碰撞的时刻，需要其中一个物体带有刚体组件，另一个物体可以没有刚体。</p>
-<p>当然，两个物体都要有碰撞体。</p>
-<p>如果没有刚体的碰撞体，勾选了 Is Trigger，那么带有刚体的物体监听的碰撞回调函数是 OnTrigger 系列的函数。</p>
-<p>如果没有刚体的碰撞体，没有勾选 Is Trigger，那么带有刚体的物体监听的碰撞回调函数是 OnCollision 系列的函数。</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">RigidbodyMove</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-comment">// ...</span><br>    <br>    <span class="hljs-comment">// 进入触发</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnTriggerEnter</span>(<span class="hljs-params">Collider other</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Debug.Log(<span class="hljs-string">&quot;触发 &quot;</span> + other.name);<br>    &#125;<br><br>    <span class="hljs-comment">// 进入碰撞</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnCollisionEnter</span>(<span class="hljs-params">Collision other</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Debug.Log(<span class="hljs-string">&quot;碰撞 &quot;</span> + other.collider.name);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>接着再创建一个脚本 ChangeScene，挂载到场景中的 3D 物体上，并填写目标场景的名称。</p>
+<p>OnMouseDown 方法会在物体被鼠标点击时调用。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ChangeScene</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> sceneName;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnMouseDown</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        SceneLoader.Instance.LoadScene(sceneName);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<p>在场景中添加一个球体，并且把球的碰撞体设置为 Trigger。</p>
-<p>可以看到 Console 窗口打印的信息。</p>
-<p>因为 Plane 也带有碰撞体，并且不是 Trigger，所以会打印 碰撞 Plane。</p>
-<p>而球体是 Trigger，所以会打印 触发 Sphere。</p>
-<p><img src="/../images/unity-basic-4/%E8%A7%A6%E5%8F%91.png" srcset="/img/loading.gif" lazyload></p>
-<p>类似的碰撞回调函数</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// 进入触发器</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnTriggerEnter</span>(<span class="hljs-params">Collider other</span>)</span><br><span class="hljs-function"></span>&#123;<br>&#125;<br><br><span class="hljs-comment">// 停留触发器</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnTriggerStay</span>(<span class="hljs-params">Collider other</span>)</span><br><span class="hljs-function"></span>&#123;<br>&#125;<br><br><span class="hljs-comment">// 退出触发器</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnTriggerExit</span>(<span class="hljs-params">Collider other</span>)</span><br><span class="hljs-function"></span>&#123;<br>&#125;<br><br><span class="hljs-comment">// 进入碰撞体</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnCollisionEnter</span>(<span class="hljs-params">Collision other</span>)</span><br><span class="hljs-function"></span>&#123;<br>&#125;<br><br><span class="hljs-comment">// 停留碰撞体</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnCollisionStay</span>(<span class="hljs-params">Collision other</span>)</span><br><span class="hljs-function"></span>&#123;<br>&#125;<br><br><span class="hljs-comment">// 退出碰撞体</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnCollisionExit</span>(<span class="hljs-params">Collision other</span>)</span><br><span class="hljs-function"></span>&#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="/../images/unity-basic-5/%E7%9B%AE%E6%A0%87%E5%9C%BA%E6%99%AF.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/unity-basic-5/%E5%9B%9E%E5%88%B0%E4%B8%BB%E5%9C%BA%E6%99%AF.png" srcset="/img/loading.gif" lazyload></p>
+<p>场景切换效果：</p>
+<p><img src="/../images/unity-basic-5/%E5%9C%BA%E6%99%AF%E5%88%87%E6%8D%A2%E6%95%88%E6%9E%9C.gif" srcset="/img/loading.gif" lazyload></p>
+<h1 id="场景叠加"><a href="#场景叠加" class="headerlink" title="场景叠加"></a>场景叠加</h1><p>目前场景加载是卸载掉原来的场景，加载新的场景，DontDestroyOnLoad 场景一直存在。</p>
+<p>并且场景加载是同步的，如果新的场景包含的物体资源太多，加载时间稍慢的话，就会感觉到卡顿。</p>
+<p>场景是可以叠加的，也就是同时加载了多个场景，也有异步加载的方式。</p>
+<p>下面添加两个方法，用来加载或卸载场景。因为是异步加载，需要使用协程，场景加载完成后可以执行其他操作。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SceneLoader</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-comment">// ...</span><br>    <br>    <span class="hljs-comment">// 当前加载的场景</span><br>    Scene currentScene;<br>    <br>    <span class="hljs-comment">// 加载场景（异步加载，叠加模式）</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LoadSceneAdditive</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> sceneName</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        StartCoroutine(LoadSceneAsync(sceneName));<br>    &#125;<br><br>    <span class="hljs-function">IEnumerator <span class="hljs-title">LoadSceneAsync</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> sceneName</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);<br>        <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> operation;<br>        <span class="hljs-comment">// 加载完成后，保存当前加载的场景</span><br>        currentScene = SceneManager.GetSceneByName(sceneName);<br>    &#125;<br><br>    <span class="hljs-comment">// 卸载当前已加载的场景</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">UnloadCurrentScene</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">// 判断是否加载过当前场景</span><br>        <span class="hljs-keyword">if</span> (!currentScene.IsValid()) <span class="hljs-keyword">return</span>;<br>        StartCoroutine(UnloadCurrentSceneAsync());<br>    &#125;<br><br>    <span class="hljs-function">IEnumerator <span class="hljs-title">UnloadCurrentSceneAsync</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        AsyncOperation operation = SceneManager.UnloadSceneAsync(currentScene);<br>        <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> operation;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+
+
+<p>然后修改一下 ChangeScene 脚本调用的方法。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ChangeScene</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> sceneName;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnMouseDown</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">// 先卸载当前加载的场景</span><br>        SceneLoader.Instance.UnloadCurrentScene();<br>        <br>        <span class="hljs-comment">// 加载新的场景（叠加模式）</span><br>        SceneLoader.Instance.LoadSceneAdditive(sceneName);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>Stage 场景也需要修改一下，隐藏掉相机和灯光，因为主场景已经有了，多个相机和灯光会影响视觉效果。</p>
+<p><img src="/../images/unity-basic-5/%E4%BF%AE%E6%94%B9%E5%9C%BA%E6%99%AF.png" srcset="/img/loading.gif" lazyload></p>
+<p>场景叠加效果：</p>
+<p><img src="/../images/unity-basic-5/%E5%9C%BA%E6%99%AF%E5%8F%A0%E5%8A%A0.gif" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/unity-basic-5/%E5%9C%BA%E6%99%AF%E5%8F%A0%E5%8A%A02.gif" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -327,8 +338,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Unity3D 基础 04 物理效果</div>
-      <div>http://weikunou.github.io/2024/03/10/unity-basic-4/</div>
+      <div>Unity3D 基础 05 场景加载</div>
+      <div>http://weikunou.github.io/2024/03/17/unity-basic-5/</div>
     </div>
     <div class="license-meta">
       
@@ -340,7 +351,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月10日</div>
+          <div>2024年3月17日</div>
         </div>
       
       
@@ -372,18 +383,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/17/unity-basic-5/" title="Unity3D 基础 05 场景加载">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Unity3D 基础 05 场景加载</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/03/unity-basic-3/" title="Unity3D 基础 03 预制体">
-                        <span class="hidden-mobile">Unity3D 基础 03 预制体</span>
+                      <a href="/2024/03/10/unity-basic-4/" title="Unity3D 基础 04 物理效果">
+                        <span class="hidden-mobile">Unity3D 基础 04 物理效果</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
