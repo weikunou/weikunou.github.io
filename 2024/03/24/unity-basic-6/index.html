@@ -1,0 +1,666 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Awake">
+  <meta name="keywords" content="Awake">
+  
+    <meta name="description" content="Unity3D 基础系列（第六期）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity3D 基础 06 UGUI">
+<meta property="og:url" content="http://weikunou.github.io/2024/03/24/unity-basic-6/index.html">
+<meta property="og:site_name" content="Awake">
+<meta property="og:description" content="Unity3D 基础系列（第六期）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-6/%E5%88%9B%E5%BB%BA%E7%94%BB%E5%B8%83.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-6/%E7%94%BB%E5%B8%83%E7%BB%84%E4%BB%B6.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-6/%E5%9B%BE%E7%89%87%E5%92%8C%E6%96%87%E6%9C%AC.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-6/%E5%9B%BE%E7%89%87%E7%BB%84%E4%BB%B6.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-6/%E6%96%87%E6%9C%AC%E7%BB%84%E4%BB%B6.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-6/%E5%9B%BE%E7%89%87%E6%96%87%E6%9C%AC%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-6/%E6%8C%89%E9%92%AE.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-6/%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-basic-6/%E9%9A%90%E8%97%8F%E6%96%87%E6%9C%AC.gif">
+<meta property="article:published_time" content="2024-03-24T11:45:20.000Z">
+<meta property="article:modified_time" content="2024-03-24T11:48:15.332Z">
+<meta property="article:author" content="Awake">
+<meta property="article:tag" content="Unity3D">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://weikunou.github.io/images/unity-basic-6/%E5%88%9B%E5%BB%BA%E7%94%BB%E5%B8%83.png">
+  
+  
+  
+  <title>Unity3D 基础 06 UGUI - Awake</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"weikunou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Awake</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/wallhaven-jxl31y.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Unity3D 基础 06 UGUI"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-24 19:45" pubdate>
+          2024年3月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          633 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Unity3D 基础 06 UGUI</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Unity3D 基础系列（第六期）</p>
+<span id="more"></span>
+
+<h1 id="创建画布"><a href="#创建画布" class="headerlink" title="创建画布"></a>创建画布</h1><p>在 Hierarchy 面板右键，选择 UI -&gt; Canvas，创建一个画布。</p>
+<p><img src="/../images/unity-basic-6/%E5%88%9B%E5%BB%BA%E7%94%BB%E5%B8%83.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以看到画布默认带有一些组件：</p>
+<ul>
+<li>Canvas</li>
+<li>Canvas Scaler</li>
+<li>Graphic Raycaster</li>
+</ul>
+<p><img src="/../images/unity-basic-6/%E7%94%BB%E5%B8%83%E7%BB%84%E4%BB%B6.png" srcset="/img/loading.gif" lazyload></p>
+<p>Canvas 组件可以选择 Render Mode，有三种渲染模式。</p>
+<ol>
+<li>Overlay 模式会把画布渲染到最顶层，不会被其他元素遮挡。</li>
+<li>Camera 模式需要指定一个相机，画布会被缩小到相机的尺寸范围内，可以通过设置 Plane Distance、Sorting Layer、Order in Layer 来控制画布的渲染层级。通常是推荐使用 Camera 模式。</li>
+<li>World Space 模式是把画布当做 3D 世界物体来使用，可以自行调整画布的位置、旋转和缩放。</li>
+</ol>
+<p>Canvas Scaler 组件可以设置画布的分辨率。通常会设置成 Scale With Screen Size，指定一个合适的分辨率，当屏幕尺寸发生变化时，可以选择根据宽度还是高度进行适配。</p>
+<p>Graphic Raycaster 组件是一个容易被忽略的组件，如果没有这个组件，画布是不会响应点击事件的。</p>
+<h1 id="图片和文本"><a href="#图片和文本" class="headerlink" title="图片和文本"></a>图片和文本</h1><p>在 Hierarchy 面板右键，选择 UI -&gt; Image，创建一个图片。</p>
+<p>旧版文本是在 Legacy 菜单中，选择 Text。</p>
+<p>新版文本则是 Text-TextMeshPro。</p>
+<p><img src="/../images/unity-basic-6/%E5%9B%BE%E7%89%87%E5%92%8C%E6%96%87%E6%9C%AC.png" srcset="/img/loading.gif" lazyload></p>
+<p>Image 组件可以在 Source Image 属性选择想要显示的图片，</p>
+<p>Color 调整颜色和不透明度，</p>
+<p>Raycast Target 控制是否要接收点击事件，</p>
+<p>Maskable 控制是否被遮罩裁剪。</p>
+<p><img src="/../images/unity-basic-6/%E5%9B%BE%E7%89%87%E7%BB%84%E4%BB%B6.png" srcset="/img/loading.gif" lazyload></p>
+<p>Text 组件主要填写 Text 属性的内容，</p>
+<p>修改 Font 字体，Font Size 字体大小，Alignment 对齐方式。</p>
+<p>同样也有 Raycast Target 和 Maskable 属性。</p>
+<p><img src="/../images/unity-basic-6/%E6%96%87%E6%9C%AC%E7%BB%84%E4%BB%B6.png" srcset="/img/loading.gif" lazyload></p>
+<p>效果图：</p>
+<p><img src="/../images/unity-basic-6/%E5%9B%BE%E7%89%87%E6%96%87%E6%9C%AC%E6%95%88%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h1><p>在 Hierarchy 面板右键，选择 UI -&gt; Legacy -&gt; Button，创建一个按钮。</p>
+<p><img src="/../images/unity-basic-6/%E6%8C%89%E9%92%AE.png" srcset="/img/loading.gif" lazyload></p>
+<p>Button 组件主要添加 OnClick 点击事件。</p>
+<p>可以简单的，点击 OnClick 列表右下角的 + 号，添加一个事件，把标题文本拖拽到 Runtime Only 下面的选框中。</p>
+<p>点击 Runtime Only 右侧的方法列表，例如选择 GameObject -&gt; SetActive，方法下面就会出现一个方框，勾选则代表 true，不勾选则代表 false。</p>
+<p><img src="/../images/unity-basic-6/%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6.png" srcset="/img/loading.gif" lazyload></p>
+<p>除了直接在面板上添加点击事件，还可以通过代码添加。</p>
+<p>例如，创建一个脚本 ButtonClick.cs，挂到按钮上，并拖拽一个文本给 text 字段。</p>
+<p>在 Start 方法中，先获取按钮自身的 Button 组件，再通过 onClick.AddListener 方法添加另一个方法 HideText 作为点击事件，这个方法里把 text 字段引用的文本隐藏。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.UI;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ButtonClick</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> Text text;<br>    Button button;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        button = GetComponent&lt;Button&gt;();<br>        button.onClick.AddListener(HideText);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">HideText</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        text.gameObject.SetActive(<span class="hljs-literal">false</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>效果图：</p>
+<p><img src="/../images/unity-basic-6/%E9%9A%90%E8%97%8F%E6%96%87%E6%9C%AC.gif" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Unity3D/" class="print-no-link">#Unity3D</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Unity3D 基础 06 UGUI</div>
+      <div>http://weikunou.github.io/2024/03/24/unity-basic-6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Awake</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/17/unity-basic-5/" title="Unity3D 基础 05 场景加载">
+                        <span class="hidden-mobile">Unity3D 基础 05 场景加载</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

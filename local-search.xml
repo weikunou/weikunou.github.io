@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Unity3D 基础 06 UGUI</title>
+    <link href="/2024/03/24/unity-basic-6/"/>
+    <url>/2024/03/24/unity-basic-6/</url>
+    
+    <content type="html"><![CDATA[<p>Unity3D 基础系列（第六期）</p><span id="more"></span><h1 id="创建画布"><a href="#创建画布" class="headerlink" title="创建画布"></a>创建画布</h1><p>在 Hierarchy 面板右键，选择 UI -&gt; Canvas，创建一个画布。</p><p><img src="/../images/unity-basic-6/%E5%88%9B%E5%BB%BA%E7%94%BB%E5%B8%83.png"></p><p>可以看到画布默认带有一些组件：</p><ul><li>Canvas</li><li>Canvas Scaler</li><li>Graphic Raycaster</li></ul><p><img src="/../images/unity-basic-6/%E7%94%BB%E5%B8%83%E7%BB%84%E4%BB%B6.png"></p><p>Canvas 组件可以选择 Render Mode，有三种渲染模式。</p><ol><li>Overlay 模式会把画布渲染到最顶层，不会被其他元素遮挡。</li><li>Camera 模式需要指定一个相机，画布会被缩小到相机的尺寸范围内，可以通过设置 Plane Distance、Sorting Layer、Order in Layer 来控制画布的渲染层级。通常是推荐使用 Camera 模式。</li><li>World Space 模式是把画布当做 3D 世界物体来使用，可以自行调整画布的位置、旋转和缩放。</li></ol><p>Canvas Scaler 组件可以设置画布的分辨率。通常会设置成 Scale With Screen Size，指定一个合适的分辨率，当屏幕尺寸发生变化时，可以选择根据宽度还是高度进行适配。</p><p>Graphic Raycaster 组件是一个容易被忽略的组件，如果没有这个组件，画布是不会响应点击事件的。</p><h1 id="图片和文本"><a href="#图片和文本" class="headerlink" title="图片和文本"></a>图片和文本</h1><p>在 Hierarchy 面板右键，选择 UI -&gt; Image，创建一个图片。</p><p>旧版文本是在 Legacy 菜单中，选择 Text。</p><p>新版文本则是 Text-TextMeshPro。</p><p><img src="/../images/unity-basic-6/%E5%9B%BE%E7%89%87%E5%92%8C%E6%96%87%E6%9C%AC.png"></p><p>Image 组件可以在 Source Image 属性选择想要显示的图片，</p><p>Color 调整颜色和不透明度，</p><p>Raycast Target 控制是否要接收点击事件，</p><p>Maskable 控制是否被遮罩裁剪。</p><p><img src="/../images/unity-basic-6/%E5%9B%BE%E7%89%87%E7%BB%84%E4%BB%B6.png"></p><p>Text 组件主要填写 Text 属性的内容，</p><p>修改 Font 字体，Font Size 字体大小，Alignment 对齐方式。</p><p>同样也有 Raycast Target 和 Maskable 属性。</p><p><img src="/../images/unity-basic-6/%E6%96%87%E6%9C%AC%E7%BB%84%E4%BB%B6.png"></p><p>效果图：</p><p><img src="/../images/unity-basic-6/%E5%9B%BE%E7%89%87%E6%96%87%E6%9C%AC%E6%95%88%E6%9E%9C.png"></p><h1 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h1><p>在 Hierarchy 面板右键，选择 UI -&gt; Legacy -&gt; Button，创建一个按钮。</p><p><img src="/../images/unity-basic-6/%E6%8C%89%E9%92%AE.png"></p><p>Button 组件主要添加 OnClick 点击事件。</p><p>可以简单的，点击 OnClick 列表右下角的 + 号，添加一个事件，把标题文本拖拽到 Runtime Only 下面的选框中。</p><p>点击 Runtime Only 右侧的方法列表，例如选择 GameObject -&gt; SetActive，方法下面就会出现一个方框，勾选则代表 true，不勾选则代表 false。</p><p><img src="/../images/unity-basic-6/%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6.png"></p><p>除了直接在面板上添加点击事件，还可以通过代码添加。</p><p>例如，创建一个脚本 ButtonClick.cs，挂到按钮上，并拖拽一个文本给 text 字段。</p><p>在 Start 方法中，先获取按钮自身的 Button 组件，再通过 onClick.AddListener 方法添加另一个方法 HideText 作为点击事件，这个方法里把 text 字段引用的文本隐藏。</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.UI;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ButtonClick</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> Text text;<br>    Button button;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        button = GetComponent&lt;Button&gt;();<br>        button.onClick.AddListener(HideText);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">HideText</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        text.gameObject.SetActive(<span class="hljs-literal">false</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>效果图：</p><p><img src="/../images/unity-basic-6/%E9%9A%90%E8%97%8F%E6%96%87%E6%9C%AC.gif"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Unity3D</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity3D 基础 05 场景加载</title>
     <link href="/2024/03/17/unity-basic-5/"/>
     <url>/2024/03/17/unity-basic-5/</url>
