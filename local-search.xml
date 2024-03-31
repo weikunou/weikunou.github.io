@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Unity3D 基础 07 动画</title>
+    <link href="/2024/03/31/unity-basic-7/"/>
+    <url>/2024/03/31/unity-basic-7/</url>
+    
+    <content type="html"><![CDATA[<p>Unity3D 基础系列（第七期 完结）</p><span id="more"></span><h1 id="动画控制器"><a href="#动画控制器" class="headerlink" title="动画控制器"></a>动画控制器</h1><p>首先，创建一个 Animator Controller 和一个 Animation 资源文件。</p><p><img src="/../images/unity-basic-7/%E5%88%9B%E5%BB%BA%E5%8A%A8%E7%94%BB.png"></p><p>双击 Animator Controller 文件，可以打开 Animator 窗口。</p><p>然后把 Animation 文件拖拽到 Animator 窗口，生成一个动画片段。</p><p><img src="/../images/unity-basic-7/%E5%88%9B%E5%BB%BA%E5%8A%A8%E7%94%BB%E7%89%87%E6%AE%B5.png"></p><p>给场景中的 Cube 添加一个 Animator 组件，并把资源文件拖拽赋值。</p><p><img src="/../images/unity-basic-7/%E6%B7%BB%E5%8A%A0%E5%8A%A8%E7%94%BB%E6%8E%A7%E5%88%B6%E5%99%A8%E7%BB%84%E4%BB%B6.png"></p><p>通过顶部菜单栏打开 Animation 编辑窗口。</p><p><img src="/../images/unity-basic-7/%E5%8A%A8%E7%94%BB%E6%97%B6%E9%97%B4%E8%BD%B4%E7%AA%97%E5%8F%A3.png"></p><p>给 Cube 添加一个动画属性。</p><p><img src="/../images/unity-basic-7/%E6%B7%BB%E5%8A%A0%E5%8A%A8%E7%94%BB%E5%B1%9E%E6%80%A7.png"></p><p>点击录制按钮，开始录制动画。</p><p><img src="/../images/unity-basic-7/%E5%BD%95%E5%88%B6%E5%8A%A8%E7%94%BB.gif"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Unity3D</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity3D 基础 06 UGUI</title>
     <link href="/2024/03/24/unity-basic-6/"/>
     <url>/2024/03/24/unity-basic-6/</url>
