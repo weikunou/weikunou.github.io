@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Unity3D 菜单栏快速切换场景</title>
+    <link href="/2024/04/27/unity-editor-switch-scene/"/>
+    <url>/2024/04/27/unity-editor-switch-scene/</url>
+    
+    <content type="html"><![CDATA[<p>扩展编辑器菜单栏，快速切换常用场景。</p><span id="more"></span><h1 id="菜单栏快速切换场景"><a href="#菜单栏快速切换场景" class="headerlink" title="菜单栏快速切换场景"></a>菜单栏快速切换场景</h1><p>一般要打开一个场景，需要在 Assets 文件夹下找到场景文件，双击打开。</p><p>但是当资源文件夹太多，搜索起来也比较麻烦。</p><p>此时可以在顶部菜单栏上显示几个按钮，点击切换到常用的场景。</p><p>这类扩展了编辑器按钮的代码，需要在 Assets 下创建一个 Editor 文件夹，把脚本放到 Editor 文件夹中。</p><p>例如，在 Editor 文件夹中创建 EditorSwitchScene.cs，引用 <code>UnityEditor</code> 命名空间，在静态类中写静态方法。</p><p>使用 <code>MenuItem</code> 这个标签给编辑器添加新的菜单按钮，点击按钮则会调用对应的静态方法。</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> UnityEditor;<br><span class="hljs-keyword">using</span> UnityEditor.SceneManagement;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">EditorSwitchScene</span><br>&#123;<br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> 打开场景</span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;param name=&quot;filename&quot;&gt;</span>场景路径<span class="hljs-doctag">&lt;/param&gt;</span></span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OpenScene</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> filename</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">// 询问是否保存对当前场景的修改</span><br>        <span class="hljs-keyword">if</span> (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())<br>        &#123;<br>            EditorSceneManager.OpenScene(filename);<br>        &#125;<br>    &#125;<br><br>    [<span class="hljs-meta">MenuItem(<span class="hljs-meta-string">&quot;切换场景/Start&quot;</span>)</span>]<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SwitchStart</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        OpenScene(<span class="hljs-string">&quot;Assets/Scenes/Start.unity&quot;</span>);<br>    &#125;<br><br>    [<span class="hljs-meta">MenuItem(<span class="hljs-meta-string">&quot;切换场景/Game&quot;</span>)</span>]<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SwitchGame</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        OpenScene(<span class="hljs-string">&quot;Assets/Scenes/Game.unity&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>可以看到菜单栏多出的按钮：</p><p><img src="/../images/unity-editor-switch-scene/%E8%8F%9C%E5%8D%95%E6%A0%8F%E6%8C%89%E9%92%AE.png"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Unity3D</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity3D 存档读档</title>
     <link href="/2024/04/21/unity-save-data/"/>
     <url>/2024/04/21/unity-save-data/</url>
