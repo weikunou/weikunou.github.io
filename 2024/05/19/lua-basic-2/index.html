@@ -1,0 +1,638 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Awake">
+  <meta name="keywords" content="Awake">
+  
+    <meta name="description" content="Lua 基础相关知识 第二期">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lua 基础 02 元表">
+<meta property="og:url" content="http://weikunou.github.io/2024/05/19/lua-basic-2/index.html">
+<meta property="og:site_name" content="Awake">
+<meta property="og:description" content="Lua 基础相关知识 第二期">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-19T04:36:06.000Z">
+<meta property="article:modified_time" content="2024-05-19T04:37:04.559Z">
+<meta property="article:author" content="Awake">
+<meta property="article:tag" content="Lua">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Lua 基础 02 元表 - Awake</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"weikunou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Awake</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/wallhaven-jxl31y.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lua 基础 02 元表"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-19 12:36" pubdate>
+          2024年5月19日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          859 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lua 基础 02 元表</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Lua 基础相关知识 第二期</p>
+<span id="more"></span>
+
+<h1 id="元表"><a href="#元表" class="headerlink" title="元表"></a>元表</h1><p>元表是一种特殊类型，可以附加到另一个表上，控制该表的操作行为。</p>
+<p>元表通常会结合元方法一起使用，最常用的元方法是 <code>__index</code> 和 <code>__newindex</code>，它们的作用就相当于其他语言中的 get 和 set。</p>
+<ul>
+<li><code>__index</code>：当访问表中不存在的 key 时，会进一步查找元表中的 <code>__index</code> 元方法，将表和 key 传递进去，再次尝试访问该 key。</li>
+<li><code>__newindex</code>：当对表进行赋值时，如果不存在该 key，也就是新增 key，会调用元表中的 <code>__newindex</code> 元方法，将表、key 和 value 传递进去，可定义一些额外逻辑。</li>
+</ul>
+<p>其他的元方法还有：</p>
+<p><code>__add</code>、<code>__sub</code>、<code>__mul</code>、<code>__div</code>，重载表的算术运算符，对表进行算术运算时，可以自定义算术逻辑。</p>
+<p><code>__eq</code>、<code>__lt</code>、<code>__le</code>，重载表的比较运算符，对表进行逻辑运算时，可以自定义比较逻辑。</p>
+<p>要把元表附加到另一个表上，需要使用 <code>setmetatable</code> 函数，第一个参数是表，第二个参数是元表。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> obj = &#123;&#125;   <span class="hljs-comment">-- 表</span><br><span class="hljs-keyword">local</span> meta = &#123;&#125;  <span class="hljs-comment">-- 元表</span><br><span class="hljs-built_in">setmetatable</span>(obj, meta)  <span class="hljs-comment">-- 附加元表</span><br></code></pre></td></tr></table></figure>
+
+<p>接着，可以在元表中定义 <code>__index</code> 和 <code>__newindex</code> 元方法。</p>
+<p>首先尝试 <code>__index</code>，为它赋值一个函数，然后尝试访问 obj 表中不存在的 key，会调用 <code>__index</code>。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> obj = &#123;&#125;<br><span class="hljs-keyword">local</span> meta = &#123;<br>    <span class="hljs-built_in">__index</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(table, key)</span></span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;call __index&quot;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>)<br>        <span class="hljs-built_in">print</span>(key)<br>    <span class="hljs-keyword">end</span><br>&#125;<br><span class="hljs-built_in">setmetatable</span>(obj, meta)<br><br><span class="hljs-built_in">print</span>(obj.name)  <span class="hljs-comment">-- 访问 obj 表中不存在的 name 字段</span><br><br><span class="hljs-comment">-- call __index</span><br><span class="hljs-comment">-- table: 00000273AA151980</span><br><span class="hljs-comment">-- name</span><br><span class="hljs-comment">-- nil</span><br></code></pre></td></tr></table></figure>
+
+<p>接着尝试 <code>__newindex</code>，为它赋值一个函数，然后尝试为 obj 表赋值一个不存在的 key，会调用 <code>__newindex</code>。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> obj = &#123;&#125;<br><span class="hljs-keyword">local</span> meta = &#123;<br>    <span class="hljs-built_in">__newindex</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(table, key, value)</span></span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;call __newindex&quot;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>)<br>        <span class="hljs-built_in">print</span>(key)<br>        <span class="hljs-built_in">print</span>(value)<br>    <span class="hljs-keyword">end</span><br>&#125;<br><span class="hljs-built_in">setmetatable</span>(obj, meta)<br><br>obj.name = <span class="hljs-string">&quot;myObj&quot;</span>  <span class="hljs-comment">-- 赋值 obj 表中不存在的 name 字段</span><br><br><span class="hljs-comment">-- call __newindex</span><br><span class="hljs-comment">-- table: 0000017CCA2B0320</span><br><span class="hljs-comment">-- name</span><br><span class="hljs-comment">-- myObj</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><p>利用元表的 <code>__index</code> 元方法，为表 A 附加一个元表 B，表 A 就会在元表 B 中查找它所没有的操作。</p>
+<p>此时可以把表 A 看作对象，表 B 看作类。因为所谓的类，就是已经为对象定义好一系列的属性和方法，对象是以类为模板进行实例化。</p>
+<p>下面定义一个 Person 表，它拥有两个函数 New 和 Say，其中 New 函数是用来实例化对象的，可以传入一个已有的表，也可以不传，默认为空表。</p>
+<p>对于 <code>self.__index = self</code> 这行代码可能会有疑惑，此时 self 指的是 Person，为什么要把 Person 的 <code>__index</code> 指向自己呢？因为元表是需要结合元方法一起使用的，只设置了元表是没有作用的，我们需要从元表 Person 中获取 Person 已经定义好的函数，就需要为 <code>__index</code> 赋值，直接赋值为 Person 即可。</p>
+<p>最后就是调用 <code>setmetatable</code> 附加元表，把对象 o 返回。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs lua">Person = &#123;&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person:New</span><span class="hljs-params">(o)</span></span><br>    o = o <span class="hljs-keyword">or</span> &#123;&#125;             <span class="hljs-comment">-- 一个对象</span><br>    <span class="hljs-built_in">self</span>.<span class="hljs-built_in">__index</span> = <span class="hljs-built_in">self</span>     <span class="hljs-comment">-- Person.__index = Person</span><br>    <span class="hljs-built_in">setmetatable</span>(o, <span class="hljs-built_in">self</span>)   <span class="hljs-comment">-- 对象 o 附加元表 Person</span><br>    <span class="hljs-keyword">return</span> o                <span class="hljs-comment">-- 返回对象 o</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person:Say</span><span class="hljs-params">(content)</span></span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Person Say : &quot;</span> .. content)<br><span class="hljs-keyword">end</span><br><br><span class="hljs-keyword">local</span> obj = Person:New()    <span class="hljs-comment">-- 实例化对象</span><br>obj:Say(<span class="hljs-string">&quot;obj&quot;</span>)              <span class="hljs-comment">-- 调用 Say 函数</span><br><br><span class="hljs-comment">-- Person Say : obj</span><br></code></pre></td></tr></table></figure>
+
+<p>通过使用 <code>Person:New</code> 实例化一个对象，然后让对象调用 Say 函数，传入参数，打印结果。</p>
+<p>注意到，这里的函数定义和调用都是使用 : 冒号，其实是 Lua 的一个语法糖，隐式传入 self 参数，放在第一个参数位置。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person:Say</span><span class="hljs-params">(content)</span></span><br><br><span class="hljs-keyword">end</span><br><span class="hljs-comment">-- 等价于</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person.Say</span><span class="hljs-params">(self, content)</span></span><br><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Lua/" class="print-no-link">#Lua</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lua 基础 02 元表</div>
+      <div>http://weikunou.github.io/2024/05/19/lua-basic-2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Awake</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/12/lua-basic-1/" title="Lua 基础 01 入门">
+                        <span class="hidden-mobile">Lua 基础 01 入门</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
