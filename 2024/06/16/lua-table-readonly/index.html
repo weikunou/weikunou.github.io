@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Awake">
+  <meta name="keywords" content="Awake">
+  
+    <meta name="description" content="Lua 的 table 建立只读机制，保护 table 不能被随意修改。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lua 只读表">
+<meta property="og:url" content="http://weikunou.github.io/2024/06/16/lua-table-readonly/index.html">
+<meta property="og:site_name" content="Awake">
+<meta property="og:description" content="Lua 的 table 建立只读机制，保护 table 不能被随意修改。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-16T07:26:28.000Z">
+<meta property="article:modified_time" content="2024-06-16T07:29:47.758Z">
+<meta property="article:author" content="Awake">
+<meta property="article:tag" content="Lua">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Lua 只读表 - Awake</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"weikunou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Awake</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/wallhaven-jxl31y.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lua 只读表"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-16 15:26" pubdate>
+          2024年6月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          710 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lua 只读表</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Lua 的 table 建立只读机制，保护 table 不能被随意修改。</p>
+<span id="more"></span>
+
+<h1 id="建立只读机制"><a href="#建立只读机制" class="headerlink" title="建立只读机制"></a>建立只读机制</h1><p>Lua 的 table 通常情况下是可以随意修改字段的值，或者新增字段。</p>
+<p>如果想要建立只读机制，保护表只能读取，而不能被随意修改，可以利用元表。</p>
+<h1 id="禁止新增字段"><a href="#禁止新增字段" class="headerlink" title="禁止新增字段"></a>禁止新增字段</h1><p>首先，利用 <code>__newindex</code>，可以禁止新增字段。</p>
+<p>例如，现在有一个 student 表，包含 name 和 age。</p>
+<p>定义一个 mt 表，<code>__newindex</code> 打印只读提示。</p>
+<p>给 student 表设置元表 mt。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> student = &#123;<br>    name = <span class="hljs-string">&quot;Alice&quot;</span>,<br>    age = <span class="hljs-number">18</span><br>&#125;<br><br><span class="hljs-keyword">local</span> mt = &#123;<br>    <span class="hljs-built_in">__newindex</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Can not modify a readonly table&quot;</span>)<br>    <span class="hljs-keyword">end</span><br>&#125;<br><br><span class="hljs-built_in">setmetatable</span>(student, mt)<br></code></pre></td></tr></table></figure>
+
+<p>现在可以读取字段，但是不能新增字段了。</p>
+<p>例如给 student 增加一个 score 字段，但是会打印只读提示，没有赋值，尝试打印 score 字段会输出 nil。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> name = student.name<br><span class="hljs-built_in">print</span>(name)  <span class="hljs-comment">-- Alice</span><br><br>student.score = <span class="hljs-number">0</span>     <span class="hljs-comment">-- Can not modify a readonly table</span><br><span class="hljs-built_in">print</span>(student.score)  <span class="hljs-comment">-- nil</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="禁止修改字段"><a href="#禁止修改字段" class="headerlink" title="禁止修改字段"></a>禁止修改字段</h1><p>经过上述步骤后，虽然不能新增字段，但还是可以对已有的字段进行修改。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">student.age = <span class="hljs-number">20</span><br><span class="hljs-built_in">print</span>(student.age)  <span class="hljs-comment">-- 20</span><br></code></pre></td></tr></table></figure>
+
+<p>Lua 没有提供修改字段的元方法，不过我们可以利用空表，把修改字段的行为，转化成新增字段的行为。</p>
+<p>因为对于空表来说，访问任何字段都是不存在的，都会是新增字段的行为。</p>
+<p>修改一下之前的代码，定义一个 empty 表，给 empty 设置元表 mt，元表里定义 <code>__index</code>，赋值为 student。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> student = &#123;<br>    name = <span class="hljs-string">&quot;Alice&quot;</span>,<br>    age = <span class="hljs-number">18</span><br>&#125;<br><br><span class="hljs-keyword">local</span> empty = &#123;&#125;<br><span class="hljs-keyword">local</span> mt = &#123;<br>    <span class="hljs-built_in">__index</span> = student,<br>    <span class="hljs-built_in">__newindex</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Can not modify a readonly table&quot;</span>)<br>    <span class="hljs-keyword">end</span><br>&#125;<br><span class="hljs-built_in">setmetatable</span>(empty, mt)<br></code></pre></td></tr></table></figure>
+
+<p>此时，访问 empty 表，是不能修改字段值的。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">empty.age = <span class="hljs-number">20</span>    <span class="hljs-comment">-- Can not modify a readonly table</span><br><span class="hljs-built_in">print</span>(empty.age)  <span class="hljs-comment">-- 18</span><br></code></pre></td></tr></table></figure>
+
+<p>不过，此处仍然可以直接去修改 student 表，所以需要对这套方法做一个封装。</p>
+<h1 id="封装只读函数"><a href="#封装只读函数" class="headerlink" title="封装只读函数"></a>封装只读函数</h1><p>定义一个全局函数 Readonly，把上述的步骤放到函数中，接收一个 table，返回经过处理的空表。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs lua">Readonly = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(table)</span></span><br>    <span class="hljs-keyword">local</span> empty = &#123;&#125;<br>    <span class="hljs-keyword">local</span> mt = &#123;<br>        <span class="hljs-built_in">__index</span> = <span class="hljs-built_in">table</span>,<br>        <span class="hljs-built_in">__newindex</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Can not modify a readonly table&quot;</span>)<br>        <span class="hljs-keyword">end</span><br>    &#125;<br>    <span class="hljs-built_in">setmetatable</span>(empty, mt)<br>    <span class="hljs-keyword">return</span> empty<br><span class="hljs-keyword">end</span><br><br><span class="hljs-keyword">local</span> student = &#123;<br>    name = <span class="hljs-string">&quot;Alice&quot;</span>,<br>    age = <span class="hljs-number">18</span><br>&#125;<br>student = Readonly(student)<br></code></pre></td></tr></table></figure>
+
+<p>再尝试一下修改 student，已经不能修改字段的值了。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">student.age = <span class="hljs-number">20</span>    <span class="hljs-comment">-- Can not modify a readonly table</span><br><span class="hljs-built_in">print</span>(student.age)  <span class="hljs-comment">-- 18</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="嵌套表"><a href="#嵌套表" class="headerlink" title="嵌套表"></a>嵌套表</h1><p>上面的只读函数只能处理一层表，如果表里面还嵌套了表，那么嵌套的表还是非只读的。</p>
+<p>此时可以递归检查表里是否有嵌套表。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs lua">Readonly = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(table)</span></span><br>    <span class="hljs-comment">-- 遍历每个字段</span><br>    <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(<span class="hljs-built_in">table</span>) <span class="hljs-keyword">do</span><br>        <span class="hljs-comment">-- 有嵌套表</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span>(value) == <span class="hljs-string">&quot;table&quot;</span> <span class="hljs-keyword">then</span><br>            <span class="hljs-comment">-- 递归设置只读</span><br>            <span class="hljs-built_in">table</span>[key] = Readonly(value)<br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-comment">-- 设置只读的步骤</span><br>    <span class="hljs-keyword">local</span> empty = &#123;&#125;<br>    <span class="hljs-keyword">local</span> mt = &#123;<br>        <span class="hljs-built_in">__index</span> = <span class="hljs-built_in">table</span>,<br>        <span class="hljs-built_in">__newindex</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Can not modify a readonly table&quot;</span>)<br>        <span class="hljs-keyword">end</span><br>    &#125;<br>    <span class="hljs-built_in">setmetatable</span>(empty, mt)<br>    <span class="hljs-keyword">return</span> empty<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<p>在 student 表里新增一个 score 表，包含 math 和 english 字段。</p>
+<p>经过只读函数递归处理之后，score 表也是只读的。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> student = &#123;<br>    name = <span class="hljs-string">&quot;Alice&quot;</span>,<br>    age = <span class="hljs-number">18</span>,<br>    score = &#123;<br>        <span class="hljs-built_in">math</span> = <span class="hljs-number">100</span>,<br>        english = <span class="hljs-number">100</span><br>    &#125;<br>&#125;<br>student = Readonly(student)<br><br>student.score.<span class="hljs-built_in">math</span> = <span class="hljs-number">20</span>    <span class="hljs-comment">-- Can not modify a readonly table</span><br><span class="hljs-built_in">print</span>(student.score.<span class="hljs-built_in">math</span>)  <span class="hljs-comment">-- 100</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Lua/" class="print-no-link">#Lua</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lua 只读表</div>
+      <div>http://weikunou.github.io/2024/06/16/lua-table-readonly/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Awake</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/09/lua-basic-5/" title="Lua 基础 05 时间">
+                        <span class="hidden-mobile">Lua 基础 05 时间</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
