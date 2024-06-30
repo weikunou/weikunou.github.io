@@ -1479,6 +1479,7 @@ figure.highlight td.code > pre {
 }
 .markdown-body blockquote {
   color: var(--sec-text-color);
+  border-color: #e95f59;
 }
 .markdown-body details {
   cursor: pointer;
@@ -1506,6 +1507,17 @@ hr,
 }
 .markdown-body figcaption:not(.image-caption) {
   display: none;
+}
+.markdown-body kbd {
+  border: 0.1em solid #5b5b5e;
+  background: transparent;
+  color: var(--text-color);
+  margin: 0 0.4rem;
+  font-family: Consolas;
+  font-size: 0.95rem;
+  padding: 0.6em 0.4em;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em 0.2em rgba(0,0,0,0.5);
 }
 .post-content,
 post-custom {
