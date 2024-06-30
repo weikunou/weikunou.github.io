@@ -61,6 +61,7 @@
 
   blockquote
     color var(--sec-text-color)
+    border-color #e95f59
 
   details
     cursor pointer
@@ -90,3 +91,14 @@ hr, .markdown-body hr
 
   figcaption:not(.image-caption)
     display none
+
+.markdown-body kbd
+  border .1em solid #5b5b5e
+  background transparent
+  color var(--text-color)
+  margin 0 .4rem
+  font-family $font-family
+  font-size .95rem
+  padding .6em .4em
+  border-radius .4em
+  box-shadow .1em .1em .2em rgba(0, 0, 0, 0.5)
