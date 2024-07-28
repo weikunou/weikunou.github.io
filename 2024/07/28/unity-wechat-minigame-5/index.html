@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Awake">
+  <meta name="keywords" content="Awake">
+  
+    <meta name="description" content="Unity3D 转换微信小游戏指引系列（第五期 完结）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity3D 转换微信小游戏指引 05 广告内购">
+<meta property="og:url" content="http://weikunou.github.io/2024/07/28/unity-wechat-minigame-5/index.html">
+<meta property="og:site_name" content="Awake">
+<meta property="og:description" content="Unity3D 转换微信小游戏指引系列（第五期 完结）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-wechat-minigame-5/%E6%B5%81%E9%87%8F%E4%B8%BB%E5%85%A5%E5%8F%A3.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-wechat-minigame-5/%E6%B5%81%E9%87%8F%E4%B8%BB%E5%BC%80%E9%80%9A%E6%9D%A1%E4%BB%B6.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-wechat-minigame-5/%E8%99%9A%E6%8B%9F%E6%94%AF%E4%BB%98%E5%85%A5%E5%8F%A3.png">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-wechat-minigame-5/%E8%99%9A%E6%8B%9F%E6%94%AF%E4%BB%98%E5%BC%80%E9%80%9A%E6%9D%A1%E4%BB%B6.png">
+<meta property="article:published_time" content="2024-07-28T15:58:44.000Z">
+<meta property="article:modified_time" content="2024-07-28T16:01:57.061Z">
+<meta property="article:author" content="Awake">
+<meta property="article:tag" content="Unity3D">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://weikunou.github.io/images/unity-wechat-minigame-5/%E6%B5%81%E9%87%8F%E4%B8%BB%E5%85%A5%E5%8F%A3.png">
+  
+  
+  
+  <title>Unity3D 转换微信小游戏指引 05 广告内购 - Awake</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"weikunou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Awake</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/wallhaven-jxl31y.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Unity3D 转换微信小游戏指引 05 广告内购"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-28 23:58" pubdate>
+          2024年7月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Unity3D 转换微信小游戏指引 05 广告内购</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Unity3D 转换微信小游戏指引系列（第五期 完结）</p>
+<span id="more"></span>
+
+<h1 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h1><p>在小程序后台页面找到<kbd>推广</kbd>-&gt;<kbd>流量主</kbd></p>
+<p><img src="/../images/unity-wechat-minigame-5/%E6%B5%81%E9%87%8F%E4%B8%BB%E5%85%A5%E5%8F%A3.png" srcset="/img/loading.gif" lazyload></p>
+<p>开通条件如下：</p>
+<p><img src="/../images/unity-wechat-minigame-5/%E6%B5%81%E9%87%8F%E4%B8%BB%E5%BC%80%E9%80%9A%E6%9D%A1%E4%BB%B6.png" srcset="/img/loading.gif" lazyload></p>
+<p>开通之后，需要接入广告组件。</p>
+<p>调用创建广告组件的接口时，需要传入参数 <code>adUnitId</code>，这个是开通流量主之后可以获得的。</p>
+<blockquote>
+<p>注意：广告组件是一个单例，仅需创建一次，监听事件也仅需注册一次，否则会有多次回调。</p>
+</blockquote>
+<p>可以创建一个 <code>WXAdManager</code>，提供初始化、显示广告的接口，关闭广告时，判断广告是否完整播放，并调用奖励回调。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> WeChatWASM;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">WXAdManager</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">static</span> WXAdManager instance;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> WXAdManager Instance<br>    &#123;<br>        <span class="hljs-keyword">get</span> &#123; <span class="hljs-keyword">return</span> instance; &#125;<br>    &#125;<br><br>    WXRewardedVideoAd ad;    <span class="hljs-comment">// 广告单例</span><br>    Action rewardCallback;   <span class="hljs-comment">// 奖励回调</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Awake</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">if</span> (instance != <span class="hljs-literal">null</span>)<br>        &#123;<br>            Destroy(gameObject);<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            instance = <span class="hljs-keyword">this</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Init</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        ad = WX.CreateRewardedVideoAd(<span class="hljs-keyword">new</span> WXCreateRewardedVideoAdParam()<br>        &#123;<br>            adUnitId = <span class="hljs-string">&quot;...&quot;</span> <span class="hljs-comment">// 自己申请的广告单元 ID</span><br>        &#125;);<br><br>        ad.OnLoad((res) =&gt;<br>        &#123;<br>            Debug.Log(<span class="hljs-string">$&quot;广告加载 = <span class="hljs-subst">&#123;res.errMsg&#125;</span>&quot;</span>);<br>        &#125;);<br>        ad.OnError((res) =&gt;<br>        &#123;<br>            Debug.Log(<span class="hljs-string">$&quot;广告错误 = <span class="hljs-subst">&#123;res.errMsg&#125;</span>&quot;</span>);<br>        &#125;);<br>        ad.OnClose((res) =&gt;<br>        &#123;<br>            Debug.Log(<span class="hljs-string">$&quot;广告关闭  是否看完 = <span class="hljs-subst">&#123;res.isEnded&#125;</span>&quot;</span>);<br>            OnPlayEnd(res.isEnded);<br>        &#125;);<br>    &#125;<br><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> 显示广告</span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;param name=&quot;callback&quot;&gt;</span>看完广告后的回调<span class="hljs-doctag">&lt;/param&gt;</span></span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ShowAd</span>(<span class="hljs-params">Action callback</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Debug.Log(<span class="hljs-string">&quot;显示广告&quot;</span>);<br>        ad.Show();<br>        rewardCallback = callback;<br>    &#125;<br><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> 广告看完回调</span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;param name=&quot;isEnd&quot;&gt;</span>是否看完<span class="hljs-doctag">&lt;/param&gt;</span></span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnPlayEnd</span>(<span class="hljs-params"><span class="hljs-built_in">bool</span> isEnd</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">if</span> (isEnd)<br>        &#123;<br>            Debug.Log(<span class="hljs-string">&quot;完整看完广告&quot;</span>);<br>            rewardCallback?.Invoke();<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            Debug.Log(<span class="hljs-string">&quot;没有看完广告&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用时，先进行初始化，要在微信 SDK 初始化之后调用。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> WeChatWASM;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">WXDemo</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        WX.InitSDK((<span class="hljs-built_in">int</span> code)=&gt;<br>        &#123;<br>            Debug.Log(<span class="hljs-string">&quot;微信 SDK 初始化&quot;</span>);<br>            WXAdManager.Instance.Init();<br>            GameInit();<br>        &#125;);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GameInit</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Debug.Log(<span class="hljs-string">&quot;游戏主逻辑初始化&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在具体逻辑的位置，调用显示广告的接口，并传入奖励回调函数。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c#">WXAdManager.Instance.ShowAd(()=&gt;<br>&#123;<br>    <span class="hljs-comment">// 奖励回调</span><br>    Debug.Log(<span class="hljs-string">&quot;广告完整播放，发放奖励&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h1 id="内购"><a href="#内购" class="headerlink" title="内购"></a>内购</h1><p>在小程序后台页面找到<kbd>功能</kbd>-&gt;<kbd>虚拟支付</kbd></p>
+<p><img src="/../images/unity-wechat-minigame-5/%E8%99%9A%E6%8B%9F%E6%94%AF%E4%BB%98%E5%85%A5%E5%8F%A3.png" srcset="/img/loading.gif" lazyload></p>
+<p>开通条件如下：</p>
+<p><img src="/../images/unity-wechat-minigame-5/%E8%99%9A%E6%8B%9F%E6%94%AF%E4%BB%98%E5%BC%80%E9%80%9A%E6%9D%A1%E4%BB%B6.png" srcset="/img/loading.gif" lazyload></p>
+<p>开通之后，可以接入米大师安卓支付，iOS 系统暂时不支持。</p>
+<p>可以创建一个 <code>IAPManager</code>，提供购买的接口，支付成功时，根据产品 ID 发放奖励，也可以调用奖励回调。</p>
+<blockquote>
+<p>这里需要判断运行平台 <code>platform</code> 是安卓，如何获取 <code>platform</code> 参数，可以参考之前的文章《Unity3D 转换微信小游戏指引 03 微信SDK》里面的<kbd>获取系统参数</kbd>部分。</p>
+</blockquote>
+<p>在调用支付接口时，参数 <code>offerId</code> 是开通虚拟支付后可以获得的。</p>
+<p>需要特别注意的是，参数 <code>buyQuantity</code> 是有限制的，具体限制可以参考 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/minigame/dev/api/midas-payment/wx.requestMidasPayment.html#buyQuantity-%E9%99%90%E5%88%B6%E8%AF%B4%E6%98%8E">buyQuantity 限制说明</a>。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> WeChatWASM;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">IAPManager</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">static</span> IAPManager instance;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IAPManager Instance<br>    &#123;<br>        <span class="hljs-keyword">get</span> &#123; <span class="hljs-keyword">return</span> instance; &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> platform;          <span class="hljs-comment">// 运行平台</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> buyQuantityMul = <span class="hljs-number">10</span>;  <span class="hljs-comment">// 购买数量的倍数</span><br>    Action rewardCallback;           <span class="hljs-comment">// 奖励回调</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Awake</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">if</span> (instance != <span class="hljs-literal">null</span>)<br>        &#123;<br>            Destroy(gameObject);<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            instance = <span class="hljs-keyword">this</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> 发起支付</span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;param name=&quot;productID&quot;&gt;</span>产品 ID<span class="hljs-doctag">&lt;/param&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;param name=&quot;callback&quot;&gt;</span>支付成功的回调函数<span class="hljs-doctag">&lt;/param&gt;</span></span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Purchase</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> productID, Action callback</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        rewardCallback = callback;<br><br>        <span class="hljs-comment">// 安卓平台</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;android&quot;</span>.Equals(platform))<br>        &#123;<br>            <span class="hljs-comment">// 价格需要读表，此处只做演示</span><br>            <span class="hljs-built_in">double</span> price = <span class="hljs-number">1</span>;<br><br>            <span class="hljs-comment">// 规则：buyQuantity * 游戏币单价（0.1元） = 限定的价格等级</span><br>            <span class="hljs-comment">// 例如：购买价格为 1 元，需要乘以 10，计算出 buyQuantity = 10</span><br>            <span class="hljs-comment">// 此时 buyQuantity = 10 满足上述规则，即 10 * 0.1 = 1（限定的价格等级）</span><br>            <span class="hljs-built_in">double</span> quantity = price * buyQuantityMul;<br><br>            <span class="hljs-comment">// 米大师支付</span><br>            WX.RequestMidasPayment(<span class="hljs-keyword">new</span> RequestMidasPaymentOption()<br>            &#123;<br>                currencyType = <span class="hljs-string">&quot;CNY&quot;</span>,      <span class="hljs-comment">// 币种</span><br>                mode = <span class="hljs-string">&quot;game&quot;</span>,             <span class="hljs-comment">// 类型</span><br>                offerId = <span class="hljs-string">&quot;...&quot;</span>,           <span class="hljs-comment">// 在米大师侧申请的应用 id</span><br>                buyQuantity = quantity,    <span class="hljs-comment">// 购买数量 mode=game 时必填</span><br>                env = <span class="hljs-number">0</span>,                   <span class="hljs-comment">// 0: 米大师正式环境  1: 米大师沙箱环境</span><br>                success = (res) =&gt;<br>                &#123;<br>                    PurchaseSuccessful(productID);<br>                &#125;,<br>                fail = (res) =&gt;<br>                &#123;<br>                    Debug.Log(<span class="hljs-string">$&quot;购买失败 = <span class="hljs-subst">&#123;res.errMsg&#125;</span>&quot;</span>);<br>                &#125;<br>            &#125;);<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            Debug.Log(<span class="hljs-string">&quot;暂不支持内购&quot;</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> 购买成功</span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;param name=&quot;productID&quot;&gt;</span>产品 ID<span class="hljs-doctag">&lt;/param&gt;</span></span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PurchaseSuccessful</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> productID</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Debug.Log(<span class="hljs-string">$&quot;购买 <span class="hljs-subst">&#123;productID&#125;</span> 成功，发放奖励&quot;</span>);<br>        rewardCallback?.Invoke();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在具体逻辑的位置，调用发起支付的接口，并传入支付成功的回调函数。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c#">IAPManager.Instance.Purchase(<span class="hljs-string">&quot;1001&quot;</span>, ()=&gt;<br>&#123;<br>    <span class="hljs-comment">// 奖励回调</span><br>    Debug.Log(<span class="hljs-string">&quot;支付成功，发放奖励&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Unity3D/" class="print-no-link">#Unity3D</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Unity3D 转换微信小游戏指引 05 广告内购</div>
+      <div>http://weikunou.github.io/2024/07/28/unity-wechat-minigame-5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Awake</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/21/unity-wechat-minigame-4/" title="Unity3D 转换微信小游戏指引 04 云存档">
+                        <span class="hidden-mobile">Unity3D 转换微信小游戏指引 04 云存档</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
