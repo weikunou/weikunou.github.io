@@ -319,12 +319,12 @@
 <tbody><tr>
 <td>url</td>
 <td>网站的 URL</td>
-<td>如果网站在域名下的一个子目录里，则需要设置为 https://网址/子目录/</td>
+<td>如果网站在域名下的一个子目录里，则需要设置为 https:&#x2F;&#x2F;网址&#x2F;子目录&#x2F;</td>
 </tr>
 <tr>
 <td>root</td>
 <td>网站的根目录</td>
-<td>如果网站在域名下的一个子目录里，则需要设置为 /子目录/</td>
+<td>如果网站在域名下的一个子目录里，则需要设置为 &#x2F;子目录&#x2F;</td>
 </tr>
 <tr>
 <td>permalink</td>
@@ -559,7 +559,7 @@
 <td></td>
 </tr>
 </tbody></table>
-<h1 id="Category-amp-Tag"><a href="#Category-amp-Tag" class="headerlink" title="Category &amp; Tag"></a>Category &amp; Tag</h1><table>
+<h1 id="Category-Tag"><a href="#Category-Tag" class="headerlink" title="Category &amp; Tag"></a>Category &amp; Tag</h1><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -597,7 +597,7 @@
 <td></td>
 </tr>
 </tbody></table>
-<h1 id="Date-Time-format"><a href="#Date-Time-format" class="headerlink" title="Date / Time format"></a>Date / Time format</h1><table>
+<h1 id="Date-Time-format"><a href="#Date-Time-format" class="headerlink" title="Date &#x2F; Time format"></a>Date &#x2F; Time format</h1><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -640,7 +640,7 @@
 <td></td>
 </tr>
 </tbody></table>
-<h1 id="Include-Exclude-file-s"><a href="#Include-Exclude-file-s" class="headerlink" title="Include / Exclude file(s)"></a>Include / Exclude file(s)</h1><table>
+<h1 id="Include-Exclude-file-s"><a href="#Include-Exclude-file-s" class="headerlink" title="Include &#x2F; Exclude file(s)"></a>Include &#x2F; Exclude file(s)</h1><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -846,6 +846,12 @@
   
 
 
+  
+  
+
+
+
+
 
 
 
@@ -1037,6 +1043,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

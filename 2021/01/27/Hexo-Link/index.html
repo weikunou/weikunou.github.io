@@ -211,7 +211,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          556 字
+          559 字
         
       </span>
     
@@ -274,11 +274,11 @@
 
 <p>在 Hexo-Image 这篇文章中，我使用了 hexo-renderer-marked 这个插件修改网站发布后的图片的路径。</p>
 <p>不过，超链接这一块，我还没有找到合适的插件去修正。</p>
-<p>所以这里就先用一个土方法，自己在路径前加上很多个 ../ 。</p>
+<p>所以这里就先用一个土方法，自己在路径前加上很多个 ..&#x2F; 。</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">[GreedySnake](..<span class="hljs-regexp">/../</span>..<span class="hljs-regexp">/../</span>WebGL<span class="hljs-regexp">/GreedySnake/i</span>ndex.html)<br></code></pre></td></tr></table></figure>
 
-<p>加多少个，要看文件夹的层级，根据实际情况去选择。这里我加上了三个 ../ ，因为我的文章页面的上级目录，有年月日三个层级。</p>
-<p>这样，文章页面的超链接路径就会回到根目录下去找 WebGL 这个文件夹，而主页同样是在根目录下找，因为根目录已经没有上级目录了，所以加多少个 ../ 也没关系（好像有点矛盾了）。</p>
+<p>加多少个，要看文件夹的层级，根据实际情况去选择。这里我加上了三个 ..&#x2F; ，因为我的文章页面的上级目录，有年月日三个层级。</p>
+<p>这样，文章页面的超链接路径就会回到根目录下去找 WebGL 这个文件夹，而主页同样是在根目录下找，因为根目录已经没有上级目录了，所以加多少个 ..&#x2F; 也没关系（好像有点矛盾了）。</p>
 <p>不过，我觉得这个方法并不是最好的，以后估计会找到更好的解决方案吧。</p>
 <p>另外，超链接的路径里不能有空格，如果有空格，超链接会变成 p 标签。</p>
 <p>还有一个问题，就是 index.html 在发布时会被渲染，导致页面出现某些问题。比如，我打开的链接是 Unity WebGL 的页面，这个页面会直接在我的网站背景上显示，而不是打开一个新的页面。</p>
@@ -429,6 +429,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -622,6 +628,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

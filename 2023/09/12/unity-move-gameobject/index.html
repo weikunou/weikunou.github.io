@@ -208,7 +208,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          659 字
+          661 字
         
       </span>
     
@@ -284,8 +284,8 @@
 <p>这是因为 Update 函数每秒的执行次数是根据设备的性能来决定的。如果当前帧率是 60，那么 Update 函数每秒执行 60 次；如果帧率是 30，则执行 30 次。那么，物体的移动速度就不稳定了。</p>
 <p>为了保持物体在不同帧率下，都是同样的移动速度，Time.deltaTime 作为一个变量，就发挥作用了。</p>
 <ul>
-<li>在 60 帧的情况下，Time.deltaTime 的值为 1/60，Update 执行了 60 次，最终 1 秒移动了 Vector3.right * speed 的距离。</li>
-<li>在 30 帧的情况下，Time.deltaTime 的值为 1/30，Update 执行了 30 次，最终 1 秒移动了 Vector3.right * speed 的距离。</li>
+<li>在 60 帧的情况下，Time.deltaTime 的值为 1&#x2F;60，Update 执行了 60 次，最终 1 秒移动了 Vector3.right * speed 的距离。</li>
+<li>在 30 帧的情况下，Time.deltaTime 的值为 1&#x2F;30，Update 执行了 30 次，最终 1 秒移动了 Vector3.right * speed 的距离。</li>
 </ul>
 <p>第二个参数是坐标系，默认是使用物体自身的局部坐标系，也可以指定使用世界坐标系（Space.World）。</p>
 <h2 id="三、刚体"><a href="#三、刚体" class="headerlink" title="三、刚体"></a>三、刚体</h2><p>给物体挂上刚体组件（Rigidbody），修改 velocity 属性，让物体在指定的方向产生移动速度。</p>
@@ -435,6 +435,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -628,6 +634,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

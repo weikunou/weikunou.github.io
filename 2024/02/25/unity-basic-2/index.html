@@ -286,8 +286,8 @@
 <p>注意到，这里计算移动距离时，乘了一个 Time.deltaTime 变量，可以尝试去掉这个变量，看看效果。</p>
 </blockquote>
 <p>Time.deltaTime 表示一帧的间隔时间，根据设备配置和运行状况，这个变量的数值会不断变化。</p>
-<p>假设运行帧率是 30 FPS，Time.deltaTime 的数值是 1/30。</p>
-<p>假设运行帧率是 60 FPS，Time.deltaTime 的数值是 1/60。</p>
+<p>假设运行帧率是 30 FPS，Time.deltaTime 的数值是 1&#x2F;30。</p>
+<p>假设运行帧率是 60 FPS，Time.deltaTime 的数值是 1&#x2F;60。</p>
 <p>Update 方法是每帧调用一次，假设 Cube 每帧移动的距离为 5，在每秒 30 帧的情况下，每秒移动的距离是 150。</p>
 <p>而在每秒 60 帧的情况下，每秒移动的距离是 300。</p>
 <p>也就是说，不同帧率的效果表现是不同的。</p>
@@ -454,6 +454,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -647,6 +653,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

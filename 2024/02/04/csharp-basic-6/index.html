@@ -311,13 +311,13 @@
 
 
 <h3 id="多播"><a href="#多播" class="headerlink" title="多播"></a>多播</h3><p>委托是一对多的，也就是说，可以包装多个方法，当委托被调用时，会有多个方法被同时调用，调用的顺序则是方法被填入委托变量时的顺序。</p>
-<p>在上述的例子进行扩展，再实例化一个 Logger，会提示【请继续答题】，并且使用 += 符号给 action 变量再添加一个方法引用。</p>
+<p>在上述的例子进行扩展，再实例化一个 Logger，会提示【请继续答题】，并且使用 +&#x3D; 符号给 action 变量再添加一个方法引用。</p>
 <p>此时回调方法会输出两行。</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">// ...</span><br><br>        Logger logger1 = <span class="hljs-keyword">new</span> Logger(<span class="hljs-string">&quot;答题成功&quot;</span>);<br>        Logger logger2 = <span class="hljs-keyword">new</span> Logger(<span class="hljs-string">&quot;请继续答题&quot;</span>);<br>        Action action = <span class="hljs-keyword">new</span> Action(logger1.Log);<br>        action += logger2.Log;<br><br>        exam.AnswerQuestion(func1, action);<br>        exam.AnswerQuestion(func2, action);<br>        <br>        <span class="hljs-comment">// 答题人：小明 答案：鸡排</span><br>        <span class="hljs-comment">// 答题成功</span><br>        <span class="hljs-comment">// 请继续答题</span><br>        <span class="hljs-comment">// 答题人：小红 答案：奶茶</span><br>        <span class="hljs-comment">// 答题成功</span><br>        <span class="hljs-comment">// 请继续答题</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><p>事件是在委托的基础上，对委托的访问进行限制，事件的右侧只能是 += 或 -= 符号，不能被 = 符号直接覆盖，也不能被 .Invoke 调用。</p>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><p>事件是在委托的基础上，对委托的访问进行限制，事件的右侧只能是 +&#x3D; 或 -&#x3D; 符号，不能被 &#x3D; 符号直接覆盖，也不能被 .Invoke 调用。</p>
 <p>接着上述的例子，自定义一个 SubmitEventHandler 委托，和一个 SubmitSystem 类。</p>
 <p>SubmitSystem 类包含一个委托字段，和一个事件。</p>
 <p>事件必须同时包含 add 和 remove，对委托字段进行添加方法和移除方法。</p>
@@ -342,7 +342,7 @@
 
 
 <p>此时，事件的右侧似乎可以被 .Invoke 调用，还可以判空。</p>
-<p>实际上，因为 C# 会在编译时自动生成私有委托字段，但是编写代码时并没有私有委托字段，所以不得不使用事件来触发调用，不过外部对事件的访问依然只能是 += 和 -= 符号。</p>
+<p>实际上，因为 C# 会在编译时自动生成私有委托字段，但是编写代码时并没有私有委托字段，所以不得不使用事件来触发调用，不过外部对事件的访问依然只能是 +&#x3D; 和 -&#x3D; 符号。</p>
 
                 
               </div>
@@ -480,6 +480,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -673,6 +679,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

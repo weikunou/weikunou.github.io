@@ -307,7 +307,7 @@
 <p>这里之所以可以使用 Hero 变量引用 Blademaster 和 Archmage 对象，是因为他们继承了 Hero 类。</p>
 <p>可以说剑圣是一个英雄，但反过来不行，英雄不一定是剑圣。</p>
 <blockquote>
-<p>如果反过来写，Blademaster blademaster = new Hero(); 则会报错：无法将类型 Hero 隐式转换为 Blademaster。</p>
+<p>如果反过来写，Blademaster blademaster &#x3D; new Hero(); 则会报错：无法将类型 Hero 隐式转换为 Blademaster。</p>
 <p>如果要强制类型转换，运行起来也会报错，无法将 Hero 强制转换为 Blademaster：Unhandled exception. System.InvalidCastException: Unable to cast object of type ‘Hero’ to type ‘Blademaster’.</p>
 </blockquote>
 <p>同时，也可以使用数组统一管理。</p>
@@ -472,6 +472,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -665,6 +671,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

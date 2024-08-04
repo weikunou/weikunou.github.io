@@ -305,7 +305,7 @@
 <p>字符串可以使用两个方括号表示。</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs lua">html = <span class="hljs-string">[[</span><br><span class="hljs-string">&lt;html&gt;</span><br><span class="hljs-string">&lt;head&gt;&lt;/head&gt;</span><br><span class="hljs-string">&lt;body&gt;</span><br><span class="hljs-string">    &lt;p&gt;Lua&lt;/p&gt;</span><br><span class="hljs-string">&lt;/body&gt;</span><br><span class="hljs-string">&lt;/html&gt;</span><br><span class="hljs-string">]]</span><br><br><span class="hljs-built_in">print</span>(html)<br><br><span class="hljs-comment">--[[ 打印结果也有换行</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">&lt;html&gt;</span><br><span class="hljs-comment">&lt;head&gt;&lt;/head&gt;</span><br><span class="hljs-comment">&lt;body&gt;</span><br><span class="hljs-comment">    &lt;p&gt;Lua&lt;/p&gt;</span><br><span class="hljs-comment">&lt;/body&gt;</span><br><span class="hljs-comment">&lt;/html&gt;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">--]]</span><br></code></pre></td></tr></table></figure>
 
-<p>如果字符串的内容也有两个方括号，就会有语法错误，此时可以在最外围的两对方括号中间添加 = 号。</p>
+<p>如果字符串的内容也有两个方括号，就会有语法错误，此时可以在最外围的两对方括号中间添加 &#x3D; 号。</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs lua">html = <span class="hljs-string">[=[</span><br><span class="hljs-string">&lt;html&gt;</span><br><span class="hljs-string">&lt;head&gt;&lt;/head&gt;</span><br><span class="hljs-string">&lt;body&gt;</span><br><span class="hljs-string">    &lt;p&gt;Lua 这里多出的 ]]</span> 会和 <span class="hljs-string">[[ 匹配，后面的内容就不被包括在字符串内了&lt;/p&gt;</span><br><span class="hljs-string">&lt;/body&gt;</span><br><span class="hljs-string">&lt;/html&gt;</span><br><span class="hljs-string">]=]</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="表"><a href="#表" class="headerlink" title="表"></a>表</h2><p>表可以看成是数组或哈希表，取决于 key 值是从 1 开始的连续正整数还是其他类型。</p>
@@ -510,6 +510,12 @@
   
 
 
+  
+  
+
+
+
+
 
 
 
@@ -701,6 +707,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

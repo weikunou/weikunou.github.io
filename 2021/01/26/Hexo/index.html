@@ -212,7 +212,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          857 字
+          861 字
         
       </span>
     
@@ -325,11 +325,11 @@
 <p>接下来，执行</p>
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs axapta">$ hexo <span class="hljs-keyword">server</span><br></code></pre></td></tr></table></figure>
 
-<p>启动服务，然后打开浏览器，在地址栏输入 http:// localhost:4000/ 即可在本地预览网站。</p>
+<p>启动服务，然后打开浏览器，在地址栏输入 http:&#x2F;&#x2F; localhost:4000&#x2F; 即可在本地预览网站。</p>
 <h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><p>执行</p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">$ hexo <span class="hljs-keyword">new</span> <span class="hljs-string">&quot;About-me&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>hexo 会在 source/_posts 文件夹下生成一个新的 About-me.md 文件，打开这个文件，就可以开始写作啦。</p>
+<p>hexo 会在 source&#x2F;_posts 文件夹下生成一个新的 About-me.md 文件，打开这个文件，就可以开始写作啦。</p>
 <p>这里推荐一款 Markdown 写作软件，<a target="_blank" rel="noopener" href="https://www.typora.io/">Typora</a>。</p>
 <h2 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h2><p>安装一个插件</p>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">$ npm install hexo-deployer-git <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
@@ -476,6 +476,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -669,6 +675,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
