@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Unity3D 客户端多开</title>
+    <link href="/2024/09/29/unity-client-open-more/"/>
+    <url>/2024/09/29/unity-client-open-more/</url>
+    
+    <content type="html"><![CDATA[<p>Unity3D 实现客户端多开</p><span id="more"></span><h1 id="客户端多开"><a href="#客户端多开" class="headerlink" title="客户端多开"></a>客户端多开</h1><p>最近在做好友聊天系统，为了方便测试，需要再开一个客户端。</p><p>简单的方法，就是直接拷贝一个新的项目，但是需要很多时间和占用空间。</p><p>查阅了网络资料，发现有一种软链接，可以仅通过创建文件夹，就能实现多开。</p><h2 id="mklink"><a href="#mklink" class="headerlink" title="mklink"></a>mklink</h2><p>按下 win + R 键，打开 cmd 命令提示符，输入 <code>mklink</code>，可以看到关于该命令的一些参数介绍。</p><p><img src="/../images/unity-client-open-more/%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6.png"></p><p>我们需要使用 <code>mklink</code> 命令，对三个文件夹进行软链接。</p><ul><li>Assets</li><li>Packages</li><li>ProjectSettings</li></ul><p>如图，高亮的三个文件夹。</p><p><img src="/../images/unity-client-open-more/%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95.png"></p><h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><p>现在有一个工程，路径是</p><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">C:<span class="hljs-symbol">\B</span>uild<span class="hljs-symbol">\M</span>yProject<br></code></pre></td></tr></table></figure><p>创建一个文件夹，路径是（也可以放到别的磁盘目录）</p><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">C:<span class="hljs-symbol">\B</span>uild<span class="hljs-symbol">\M</span>yProjectCopy<br></code></pre></td></tr></table></figure><p><img src="/../images/unity-client-open-more/%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9.png"></p><p>打开命令提示符，输入 <code>mklink /j 目标文件夹 源文件夹</code></p><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">mklink /j C:<span class="hljs-symbol">\B</span>uild<span class="hljs-symbol">\M</span>yProjectCopy<span class="hljs-symbol">\A</span>ssets C:<span class="hljs-symbol">\B</span>uild<span class="hljs-symbol">\M</span>yProject<span class="hljs-symbol">\A</span>ssets<br></code></pre></td></tr></table></figure><p>按下回车键后，提示创建了联接。</p><p><img src="/../images/unity-client-open-more/%E5%88%9B%E5%BB%BA%E8%BD%AF%E9%93%BE%E6%8E%A5.png"></p><p>看看 MyProjectCopy 的文件夹目录，已经有一个 Assets 文件夹了，并且左下角有一个类似快捷方式的图标，但跟快捷方式还是有区别的。</p><p><img src="/../images/unity-client-open-more/%E6%96%B0%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9.png"></p><p>继续输入命令，直到把三个文件夹都联接上。</p><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">mklink /j C:<span class="hljs-symbol">\B</span>uild<span class="hljs-symbol">\M</span>yProjectCopy<span class="hljs-symbol">\P</span>ackages C:<span class="hljs-symbol">\B</span>uild<span class="hljs-symbol">\M</span>yProject<span class="hljs-symbol">\P</span>ackages<br></code></pre></td></tr></table></figure><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">mklink /j C:<span class="hljs-symbol">\B</span>uild<span class="hljs-symbol">\M</span>yProjectCopy<span class="hljs-symbol">\P</span>rojectSettings C:<span class="hljs-symbol">\B</span>uild<span class="hljs-symbol">\M</span>yProject<span class="hljs-symbol">\P</span>rojectSettings<br></code></pre></td></tr></table></figure><h2 id="打开新工程"><a href="#打开新工程" class="headerlink" title="打开新工程"></a>打开新工程</h2><p>现在就可以使用 hub 打开新的工程目录了。</p><p><img src="/../images/unity-client-open-more/%E6%89%93%E5%BC%80%E6%96%B0%E5%B7%A5%E7%A8%8B.png"></p><p>如图，已经打开了两个客户端，并且使用的是同一套资源代码。</p><p><img src="/../images/unity-client-open-more/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%8C%E5%BC%80.png"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Unity3D</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity3D 小案例 像素贪吃蛇 03 蛇的碰撞</title>
     <link href="/2024/09/22/unity-pixel-snake-3/"/>
     <url>/2024/09/22/unity-pixel-snake-3/</url>
