@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Unity3D 截图</title>
+    <link href="/2024/11/24/unity-screenshot-tool/"/>
+    <url>/2024/11/24/unity-screenshot-tool/</url>
+    
+    <content type="html"><![CDATA[<p>使用 Unity3D 自带的截图接口，制作截图工具。</p><span id="more"></span><h1 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h1><p>有时候我们想对 Unity 的窗口进行截图，如果直接使用一些截图工具，很难截取到一张完整分辨率的图片（例如，我们想要截取一张 1920 * 1080 的图片）。</p><p>其实 Unity 有提供截图的接口，我们只需要写一个脚本，把截图接口做成简单的菜单栏工具即可。</p><h2 id="创建工具脚本"><a href="#创建工具脚本" class="headerlink" title="创建工具脚本"></a>创建工具脚本</h2><p>创建脚本 <code>ScreenshotTool.cs</code>，写一个 <code>CaptureFull</code> 方法，调用 Unity 提供的 <code>ScreenCapture.CaptureScreenshot</code> 方法即可。</p><p>截图时，为了方便找到，保存的路径是 Assets 文件夹（<code>Application.dataPath</code>），截图的名称是 Screenshot 拼接了当前的时间（如果名称一样，每次截图都会覆盖原来的图片）。</p><p>我们在 <code>CaptureFull</code> 方法上面添加一个 <code>MenuItem</code>，就可以在菜单栏找到它，也可以使用 Alt + Q 快捷键（即路径末尾的 <code>&amp;Q</code>）。</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEditor;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ScreenshotTool</span><br>&#123;<br>    [<span class="hljs-meta">MenuItem(<span class="hljs-meta-string">&quot;截图/截取全屏 &amp;Q&quot;</span>)</span>]<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">CaptureFull</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-built_in">string</span> time = DateTime.Now.ToString(<span class="hljs-string">&quot;yyyy-MM-dd_HH-mm-ss&quot;</span>);<br>        <span class="hljs-built_in">string</span> path = <span class="hljs-string">$&quot;<span class="hljs-subst">&#123;Application.dataPath&#125;</span>/Screenshot_<span class="hljs-subst">&#123;time&#125;</span>.png&quot;</span>;<br>        ScreenCapture.CaptureScreenshot(path);<br>        Debug.Log(<span class="hljs-string">&quot;Screenshot saved at: &quot;</span> + path);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="截图效果"><a href="#截图效果" class="headerlink" title="截图效果"></a>截图效果</h2><p>如图，菜单栏出现按钮，并且有快捷键的描述。</p><p>运行游戏时，点击菜单栏按钮，或者按下 Alt + Q，控制台会打印截图的保存路径。</p><p>当 Unity 资源文件夹刷新时，也会看到 Assets 文件夹下多出来一张图片，尺寸是 1920 * 1080（当前 Game 窗口的分辨率）。</p><p><img src="/../images/unity-screenshot-tool/%E6%88%AA%E5%9B%BE%E6%95%88%E6%9E%9C.png"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Unity3D</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity3D UI 双击和长按</title>
     <link href="/2024/11/10/unity-ui-double-click-and-long-press/"/>
     <url>/2024/11/10/unity-ui-double-click-and-long-press/</url>

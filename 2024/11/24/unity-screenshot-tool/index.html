@@ -16,25 +16,24 @@
   <meta name="author" content="Awake">
   <meta name="keywords" content="Awake">
   
-    <meta name="description" content="Unity3D 实现 UI 元素双击和长按功能。">
+    <meta name="description" content="使用 Unity3D 自带的截图接口，制作截图工具。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unity3D UI 双击和长按">
-<meta property="og:url" content="http://weikunou.github.io/2024/11/10/unity-ui-double-click-and-long-press/index.html">
+<meta property="og:title" content="Unity3D 截图">
+<meta property="og:url" content="http://weikunou.github.io/2024/11/24/unity-screenshot-tool/index.html">
 <meta property="og:site_name" content="Awake">
-<meta property="og:description" content="Unity3D 实现 UI 元素双击和长按功能。">
+<meta property="og:description" content="使用 Unity3D 自带的截图接口，制作截图工具。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://weikunou.github.io/images/unity-ui-double-click-and-long-press/%E5%8F%8C%E5%87%BB.gif">
-<meta property="og:image" content="http://weikunou.github.io/images/unity-ui-double-click-and-long-press/%E9%95%BF%E6%8C%89.gif">
-<meta property="article:published_time" content="2024-11-10T10:41:50.000Z">
-<meta property="article:modified_time" content="2024-11-10T10:45:22.481Z">
+<meta property="og:image" content="http://weikunou.github.io/images/unity-screenshot-tool/%E6%88%AA%E5%9B%BE%E6%95%88%E6%9E%9C.png">
+<meta property="article:published_time" content="2024-11-24T07:34:23.000Z">
+<meta property="article:modified_time" content="2024-11-24T07:37:08.882Z">
 <meta property="article:author" content="Awake">
 <meta property="article:tag" content="Unity3D">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://weikunou.github.io/images/unity-ui-double-click-and-long-press/%E5%8F%8C%E5%87%BB.gif">
+<meta name="twitter:image" content="http://weikunou.github.io/images/unity-screenshot-tool/%E6%88%AA%E5%9B%BE%E6%95%88%E6%9E%9C.png">
   
   
   
-  <title>Unity3D UI 双击和长按 - Awake</title>
+  <title>Unity3D 截图 - Awake</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -188,7 +187,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Unity3D UI 双击和长按"></span>
+            <span id="subtitle" data-typed-text="Unity3D 截图"></span>
           
         </div>
 
@@ -199,8 +198,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-10 18:41" pubdate>
-          2024年11月10日 晚上
+        <time datetime="2024-11-24 15:34" pubdate>
+          2024年11月24日 下午
         </time>
       </span>
     
@@ -211,7 +210,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          407 字
+          382 字
         
       </span>
     
@@ -259,29 +258,25 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Unity3D UI 双击和长按</h1>
+            <h1 id="seo-header">Unity3D 截图</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Unity3D 实现 UI 元素双击和长按功能。</p>
+                <p>使用 Unity3D 自带的截图接口，制作截图工具。</p>
 <span id="more"></span>
 
-<h1 id="UI-双击和长按"><a href="#UI-双击和长按" class="headerlink" title="UI 双击和长按"></a>UI 双击和长按</h1><p>上一篇文章实现了拖拽接口，这篇文章来实现 UI 的双击和长按。</p>
-<h2 id="双击"><a href="#双击" class="headerlink" title="双击"></a>双击</h2><p>创建脚本 <code>UIDoubleClick.cs</code>，创建一个 Image，并把脚本挂载到它身上。</p>
-<p>在脚本中，继承 <code>IPointerClickHandler</code> 接口，实现 <code>OnPointerClick</code> 点击方法。</p>
-<p>第一次点击时，记录点击的时间，如果第二次点击的时间，和上次点击时间的间隔非常短，则判定为双击。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.EventSystems;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">UIDoubleClick</span> : <span class="hljs-title">MonoBehaviour</span>, <span class="hljs-title">IPointerClickHandler</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> doubleClickThreshold = <span class="hljs-number">0.2f</span>; <span class="hljs-comment">// 双击的时间间隔</span><br>    <span class="hljs-built_in">float</span> lastClickTime = <span class="hljs-number">0f</span>; <span class="hljs-comment">// 记录上次点击的时间</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnPointerClick</span>(<span class="hljs-params">PointerEventData eventData</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">// 获取当前点击的时间</span><br>        <span class="hljs-built_in">float</span> currentTime = Time.time;<br><br>        <span class="hljs-comment">// 判断两次点击时间间隔是否在阈值范围内</span><br>        <span class="hljs-keyword">if</span> (currentTime - lastClickTime &lt; doubleClickThreshold)<br>        &#123;<br>            OnDoubleClick();<br>        &#125;<br><br>        <span class="hljs-comment">// 更新上一次点击的时间</span><br>        lastClickTime = currentTime;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnDoubleClick</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Debug.Log(<span class="hljs-string">&quot;双击&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h1><p>有时候我们想对 Unity 的窗口进行截图，如果直接使用一些截图工具，很难截取到一张完整分辨率的图片（例如，我们想要截取一张 1920 * 1080 的图片）。</p>
+<p>其实 Unity 有提供截图的接口，我们只需要写一个脚本，把截图接口做成简单的菜单栏工具即可。</p>
+<h2 id="创建工具脚本"><a href="#创建工具脚本" class="headerlink" title="创建工具脚本"></a>创建工具脚本</h2><p>创建脚本 <code>ScreenshotTool.cs</code>，写一个 <code>CaptureFull</code> 方法，调用 Unity 提供的 <code>ScreenCapture.CaptureScreenshot</code> 方法即可。</p>
+<p>截图时，为了方便找到，保存的路径是 Assets 文件夹（<code>Application.dataPath</code>），截图的名称是 Screenshot 拼接了当前的时间（如果名称一样，每次截图都会覆盖原来的图片）。</p>
+<p>我们在 <code>CaptureFull</code> 方法上面添加一个 <code>MenuItem</code>，就可以在菜单栏找到它，也可以使用 Alt + Q 快捷键（即路径末尾的 <code>&amp;Q</code>）。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEditor;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ScreenshotTool</span><br>&#123;<br>    [<span class="hljs-meta">MenuItem(<span class="hljs-meta-string">&quot;截图/截取全屏 &amp;Q&quot;</span>)</span>]<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">CaptureFull</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-built_in">string</span> time = DateTime.Now.ToString(<span class="hljs-string">&quot;yyyy-MM-dd_HH-mm-ss&quot;</span>);<br>        <span class="hljs-built_in">string</span> path = <span class="hljs-string">$&quot;<span class="hljs-subst">&#123;Application.dataPath&#125;</span>/Screenshot_<span class="hljs-subst">&#123;time&#125;</span>.png&quot;</span>;<br>        ScreenCapture.CaptureScreenshot(path);<br>        Debug.Log(<span class="hljs-string">&quot;Screenshot saved at: &quot;</span> + path);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>运行效果：</p>
-<p><img src="/../images/unity-ui-double-click-and-long-press/%E5%8F%8C%E5%87%BB.gif" srcset="/img/loading.gif" lazyload></p>
-<h2 id="长按"><a href="#长按" class="headerlink" title="长按"></a>长按</h2><p>创建脚本 <code>UILongPress.cs</code>，并挂载到 Image 身上。</p>
-<p>在脚本中，继承 <code>IPointerDownHandler</code> 和 <code>IPointerUpHandler</code> 接口，实现 <code>OnPointerDown</code>（按下）和 <code>OnPointerUp</code>（抬起）方法。</p>
-<p>按下时，记录按下的时间和按住的状态，在 <code>Update</code> 中检查长按的时间和状态，达到长按的时间阈值后，执行一次长按的逻辑，并把长按状态重置。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.EventSystems;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">UILongPress</span> : <span class="hljs-title">MonoBehaviour</span>, <span class="hljs-title">IPointerDownHandler</span>, <span class="hljs-title">IPointerUpHandler</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> longPressThreshold = <span class="hljs-number">1.0f</span>; <span class="hljs-comment">// 长按的时间阈值</span><br>    <span class="hljs-built_in">float</span> pressStartTime; <span class="hljs-comment">// 按下的时间</span><br>    <span class="hljs-built_in">bool</span> isPressing = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 是否按住</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnPointerDown</span>(<span class="hljs-params">PointerEventData eventData</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        isPressing = <span class="hljs-literal">true</span>;<br>        pressStartTime = Time.time;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnPointerUp</span>(<span class="hljs-params">PointerEventData eventData</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        isPressing = <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">// 检查是否在长按状态</span><br>        <span class="hljs-keyword">if</span> (isPressing &amp;&amp; (Time.time - pressStartTime) &gt; longPressThreshold)<br>        &#123;<br>            OnLongPress();<br>            isPressing = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 只触发一次长按事件</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnLongPress</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Debug.Log(<span class="hljs-string">&quot;长按&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>运行效果：</p>
-<p><img src="/../images/unity-ui-double-click-and-long-press/%E9%95%BF%E6%8C%89.gif" srcset="/img/loading.gif" lazyload></p>
+<h2 id="截图效果"><a href="#截图效果" class="headerlink" title="截图效果"></a>截图效果</h2><p>如图，菜单栏出现按钮，并且有快捷键的描述。</p>
+<p>运行游戏时，点击菜单栏按钮，或者按下 Alt + Q，控制台会打印截图的保存路径。</p>
+<p>当 Unity 资源文件夹刷新时，也会看到 Assets 文件夹下多出来一张图片，尺寸是 1920 * 1080（当前 Game 窗口的分辨率）。</p>
+<p><img src="/../images/unity-screenshot-tool/%E6%88%AA%E5%9B%BE%E6%95%88%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -306,8 +301,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Unity3D UI 双击和长按</div>
-      <div>http://weikunou.github.io/2024/11/10/unity-ui-double-click-and-long-press/</div>
+      <div>Unity3D 截图</div>
+      <div>http://weikunou.github.io/2024/11/24/unity-screenshot-tool/</div>
     </div>
     <div class="license-meta">
       
@@ -319,7 +314,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月10日</div>
+          <div>2024年11月24日</div>
         </div>
       
       
@@ -351,18 +346,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/24/unity-screenshot-tool/" title="Unity3D 截图">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Unity3D 截图</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/03/unity-ui-drag/" title="Unity3D UI 拖拽">
-                        <span class="hidden-mobile">Unity3D UI 拖拽</span>
+                      <a href="/2024/11/10/unity-ui-double-click-and-long-press/" title="Unity3D UI 双击和长按">
+                        <span class="hidden-mobile">Unity3D UI 双击和长按</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
