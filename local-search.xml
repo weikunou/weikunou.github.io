@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>学习资料收藏 游戏开发</title>
+    <link href="/2025/01/27/learning-materials-collection-game-development/"/>
+    <url>/2025/01/27/learning-materials-collection-game-development/</url>
+    
+    <content type="html"><![CDATA[<p>本文整理了本人在学习 Unity3D 游戏开发过程中知晓的一些学习资料。</p><span id="more"></span><hr><p>视频教程</p><p><a href="https://www.sikiedu.com/">siki学院</a></p><p><a href="https://space.bilibili.com/370283072">M_Studio</a></p><p><a href="https://learn.u3d.cn/">Unity中文课堂</a></p><hr><p>博客</p><p><a href="https://blog.csdn.net/linxinfa?type=blog">林新发</a></p><p><a href="https://blog.csdn.net/poem_qianmo?type=blog">浅墨_毛星云</a></p><p><a href="https://blog.csdn.net/candycat1992?type=blog">冯乐乐</a></p><p><a href="https://roystan.net/">Roystan</a></p><p><a href="https://sorumi.xyz/">Sorumi</a></p><p><a href="https://www.xuanyusong.com/">宣雨松</a></p><p><a href="http://www.luzexi.com/">陆泽西</a></p><hr><p>书籍</p><p>《Unity 游戏设计与实现》（加藤政树）</p><p>《Unity Shader 入门精要》（冯乐乐）</p><p>《Unity3D 高级编程：主程手记》（陆泽西）</p><p>《游戏编程模式》（Robert Nystrom）</p><p>《Unity 游戏优化》（Chris Dickinson）</p><p>《Shader 开发实战》（Kyle Halladay）</p><hr><p>素材资源</p><p><a href="https://www.aigei.com/">爱给网</a></p><p><a href="https://itch.io/">itch</a></p><hr><p>Shader</p><p><a href="http://www.shaderslab.com/index.html">Shaders Laboratory</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>学习资料收藏</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity3D UI 嵌套滚动视图</title>
     <link href="/2024/12/01/unity-ui-nested-scrollview/"/>
     <url>/2024/12/01/unity-ui-nested-scrollview/</url>
