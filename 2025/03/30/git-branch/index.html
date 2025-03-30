@@ -16,39 +16,34 @@
   <meta name="author" content="Awake">
   <meta name="keywords" content="Awake">
   
-    <meta name="description" content="Git 入门笔记">
+    <meta name="description" content="Git 入门笔记 分支">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 入门">
-<meta property="og:url" content="http://weikunou.github.io/2025/02/23/git-introduction/index.html">
+<meta property="og:title" content="Git 分支">
+<meta property="og:url" content="http://weikunou.github.io/2025/03/30/git-branch/index.html">
 <meta property="og:site_name" content="Awake">
-<meta property="og:description" content="Git 入门笔记">
+<meta property="og:description" content="Git 入门笔记 分支">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E6%89%93%E5%BC%80Bash%E7%95%8C%E9%9D%A2.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%93%E5%BA%93.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E5%86%99%E5%85%A5%E4%B8%80%E8%A1%8C%E6%96%87%E6%9C%AC.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E6%B7%BB%E5%8A%A0%E5%B9%B6%E6%8F%90%E4%BA%A4.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E5%86%99%E5%85%A5%E7%AC%AC%E4%BA%8C%E8%A1%8C%E6%96%87%E6%9C%AC.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E6%9F%A5%E7%9C%8B%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%8F%90%E4%BA%A4.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E5%86%99%E5%85%A5%E7%AC%AC%E4%B8%89%E8%A1%8C%E6%96%87%E6%9C%AC.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%B7%AE%E5%BC%82.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E5%9B%9E%E9%80%80%E7%89%88%E6%9C%AC.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E5%9B%9E%E9%80%80%E5%90%8E%E7%9A%84%E5%86%85%E5%AE%B9.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4%E5%8E%86%E5%8F%B2.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E5%9B%9E%E9%80%80%E5%88%B0%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-introduction/%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E5%86%85%E5%AE%B9.png">
-<meta property="article:published_time" content="2025-02-23T07:11:53.000Z">
-<meta property="article:modified_time" content="2025-02-23T07:18:53.404Z">
+<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E6%9F%A5%E7%9C%8B%E5%92%8C%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E4%BF%AE%E6%94%B9dev%E6%96%87%E6%9C%AC.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E6%8F%90%E4%BA%A4dev%E5%88%86%E6%94%AF%E7%84%B6%E5%90%8E%E5%90%88%E5%B9%B6%E5%88%B0main%E5%88%86%E6%94%AF.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E4%BF%AE%E6%94%B9bug%E6%96%87%E6%9C%AC.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E6%8F%90%E4%BA%A4bug%E5%88%86%E6%94%AF.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E5%88%87%E6%8D%A2%E5%88%B0main%E5%88%86%E6%94%AF%E5%B9%B6%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E4%BA%A7%E7%94%9F%E5%86%B2%E7%AA%81.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E5%86%B2%E7%AA%81%E6%A0%87%E8%AE%B0.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E6%8F%90%E4%BA%A4%E8%A7%A3%E5%86%B3%E7%BB%93%E6%9E%9C.png">
+<meta property="article:published_time" content="2025-03-30T08:10:32.000Z">
+<meta property="article:modified_time" content="2025-03-30T08:13:23.206Z">
 <meta property="article:author" content="Awake">
 <meta property="article:tag" content="版本控制">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://weikunou.github.io/images/git-introduction/%E6%89%93%E5%BC%80Bash%E7%95%8C%E9%9D%A2.png">
+<meta name="twitter:image" content="http://weikunou.github.io/images/git-branch/%E6%9F%A5%E7%9C%8B%E5%92%8C%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF.png">
   
   
   
-  <title>Git 入门 - Awake</title>
+  <title>Git 分支 - Awake</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git 入门"></span>
+            <span id="subtitle" data-typed-text="Git 分支"></span>
           
         </div>
 
@@ -213,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-23 15:11" pubdate>
-          2025年2月23日 下午
+        <time datetime="2025-03-30 16:10" pubdate>
+          2025年3月30日 下午
         </time>
       </span>
     
@@ -225,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          876 字
+          1k 字
         
       </span>
     
@@ -236,7 +231,7 @@
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
@@ -273,90 +268,117 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Git 入门</h1>
+            <h1 id="seo-header">Git 分支</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Git 入门笔记</p>
+                <p>Git 入门笔记 分支</p>
 <span id="more"></span>
 
-<h1 id="Git-入门"><a href="#Git-入门" class="headerlink" title="Git 入门"></a>Git 入门</h1><p>Git 是一个分布式版本控制系统，广泛用于软件开发中。</p>
-<p>它可以帮助开发者跟踪代码的变化，协作开发，并管理项目的不同版本。</p>
-<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><h3 id="在-Windows-上安装"><a href="#在-Windows-上安装" class="headerlink" title="在 Windows 上安装"></a>在 Windows 上安装</h3><ol>
-<li>下载 Git 安装程序：<a target="_blank" rel="noopener" href="https://git-scm.com/downloads/win">Git for Windows</a></li>
-<li>运行下载的安装程序，并按照提示完成安装。</li>
+<h1 id="Git-分支管理"><a href="#Git-分支管理" class="headerlink" title="Git 分支管理"></a>Git 分支管理</h1><p>Git 分支是版本控制中最强大的功能之一，它允许开发者在不影响主线开发的情况下进行并行开发。</p>
+<p>本文将详细介绍 Git 分支的概念和常用操作。</p>
+<h2 id="分支基础"><a href="#分支基础" class="headerlink" title="分支基础"></a>分支基础</h2><h3 id="什么是分支"><a href="#什么是分支" class="headerlink" title="什么是分支"></a>什么是分支</h3><p>分支本质上是指向提交对象的可变指针。</p>
+<p>Git 默认分支名称是 <code>master</code>（现在推荐使用 <code>main</code>）。</p>
+<p>每次提交，分支指针都会自动向前移动。</p>
+<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><ul>
+<li>创建分支：<code>git branch 分支名</code></li>
+<li>切换分支：<code>git checkout 分支名</code> 或 <code>git switch 分支名</code></li>
+<li>创建并切换：<code>git checkout -b 分支名</code> 或 <code>git switch -c 分支名</code></li>
+<li>查看所有分支：<code>git branch</code></li>
+<li>删除分支：<code>git branch -d 分支名</code></li>
+<li>丢弃修改：<code>git checkout -- 文件名</code></li>
+</ul>
+<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><p>合并分支使用以下命令：</p>
+<ul>
+<li>合并指定分支到当前分支：<code>git merge 分支名</code></li>
+<li>使用快进模式合并：<code>git merge --ff 分支名</code></li>
+<li>禁用快进模式合并：<code>git merge --no-ff -m &quot;合并信息&quot; 分支名</code></li>
+<li>终止合并：<code>git merge --abort</code></li>
+</ul>
+<p>合并分支时，默认使用快进模式进行合并，删除分支后，会丢掉分支信息。</p>
+<p>如果禁用快进模式，在合并时会产生一个新的提交，需要填写提交信息，可以写明是从哪个分支合并过来的。</p>
+<p>合并时可能会遇到冲突，需要手动解决冲突后再提交。</p>
+<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><p>当两个分支修改了同一个文件的同一部分时，Git 无法自动合并，会产生冲突。</p>
+<p>冲突文件会包含如下标记：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>当前分支的内容<br>=======<br>要合并分支的内容<br>&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name<br></code></pre></td></tr></table></figure>
+
+<p>解决冲突的步骤：</p>
+<ol>
+<li>打开冲突文件，找到冲突位置（由上述标记标识）</li>
+<li>决定保留哪些内容，删除冲突标记</li>
+<li>添加修改后的文件到暂存区：<code>git add 文件名</code></li>
+<li>提交更改：<code>git commit -m &quot;解决冲突&quot;</code></li>
 </ol>
-<h3 id="在-macOS-上安装"><a href="#在-macOS-上安装" class="headerlink" title="在 macOS 上安装"></a>在 macOS 上安装</h3><ol>
-<li>打开终端。</li>
-<li>输入以下命令并按回车： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">brew install git<br></code></pre></td></tr></table></figure>
- 这将使用 Homebrew 包管理器安装 Git。</li>
-</ol>
-<h3 id="在-Linux-上安装"><a href="#在-Linux-上安装" class="headerlink" title="在 Linux 上安装"></a>在 Linux 上安装</h3><ol>
-<li>打开终端。</li>
-<li>输入以下命令并按回车： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt-get install git<br></code></pre></td></tr></table></figure>
- 这将使用 APT 包管理器安装 Git。</li>
-</ol>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>首先，创建一个空文件夹，然后右键点击空白处，选择 Open Git Bash here，打开 Bash 界面。</p>
-<p><img src="/../images/git-introduction/%E6%89%93%E5%BC%80Bash%E7%95%8C%E9%9D%A2.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="配置-Git"><a href="#配置-Git" class="headerlink" title="配置 Git"></a>配置 Git</h3><p>先配置一下 Git 的用户名和邮箱：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git config --global user.name <span class="hljs-string">&quot;你的名字&quot;</span><br>git config --global user.email <span class="hljs-string">&quot;你的邮箱&quot;</span><br></code></pre></td></tr></table></figure>
+<h2 id="分支操作实践"><a href="#分支操作实践" class="headerlink" title="分支操作实践"></a>分支操作实践</h2><h3 id="创建和查看分支"><a href="#创建和查看分支" class="headerlink" title="创建和查看分支"></a>创建和查看分支</h3><p>查看分支：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git branch<br></code></pre></td></tr></table></figure>
 
-<p>这个用户名和邮箱，主要是用于提交时的作者信息。</p>
-<h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><p>要创建一个新的 Git 仓库，使用以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git init<br></code></pre></td></tr></table></figure>
-<p>这将在当前目录下创建一个新的 Git 仓库。</p>
-<p><img src="/../images/git-introduction/%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%93%E5%BA%93.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h3><p>在空文件夹下，右键，创建一个文本文档 test.txt。</p>
-<p><img src="/../images/git-introduction/%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6.png" srcset="/img/loading.gif" lazyload></p>
-<p>然后在文档中写入一行文本。</p>
-<p><img src="/../images/git-introduction/%E5%86%99%E5%85%A5%E4%B8%80%E8%A1%8C%E6%96%87%E6%9C%AC.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="提交更改"><a href="#提交更改" class="headerlink" title="提交更改"></a>提交更改</h3><ol>
-<li>添加文件到暂存区： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git add 文件名<br></code></pre></td></tr></table></figure></li>
-<li>提交更改： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git commit -m <span class="hljs-string">&quot;提交信息&quot;</span><br></code></pre></td></tr></table></figure></li>
-</ol>
-<p><img src="/../images/git-introduction/%E6%B7%BB%E5%8A%A0%E5%B9%B6%E6%8F%90%E4%BA%A4.png" srcset="/img/loading.gif" lazyload></p>
-<p>现在，仓库里记录了 test.txt 这个文件，并且有一条提交记录，提交信息为 Add Test Document。</p>
-<h3 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h3><p>要查看当前仓库的状态，使用以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git status<br></code></pre></td></tr></table></figure>
+<p>当前只有一个 main 分支。</p>
+<p>创建并切换到 dev 分支：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git checkout -b dev<br></code></pre></td></tr></table></figure>
 
-<p>我们修改一下 test.txt 的内容，加上一行文本。</p>
-<p><img src="/../images/git-introduction/%E5%86%99%E5%85%A5%E7%AC%AC%E4%BA%8C%E8%A1%8C%E6%96%87%E6%9C%AC.png" srcset="/img/loading.gif" lazyload></p>
-<p>然后使用上述的命令，查看一下仓库的状态。</p>
-<p><img src="/../images/git-introduction/%E6%9F%A5%E7%9C%8B%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81.png" srcset="/img/loading.gif" lazyload></p>
-<p>可以看到一行红色的字体，它告诉我们，test.txt 这个文件被 modified（修改）了。</p>
-<p>我们可以再次使用 git add 和 git commit 命令，把这次的修改提交到 Git 仓库里。</p>
-<p><img src="/../images/git-introduction/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%8F%90%E4%BA%A4.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h3><p>要查看提交历史，使用以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">log</span><br></code></pre></td></tr></table></figure>
+<p>再次查看分支：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git branch<br></code></pre></td></tr></table></figure>
 
-<p>可以看到我们已经在仓库中提交了两次。</p>
-<p><img src="/../images/git-introduction/%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="查看文件差异"><a href="#查看文件差异" class="headerlink" title="查看文件差异"></a>查看文件差异</h3><p>要查看文件差异，使用以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git diff<br></code></pre></td></tr></table></figure>
+<p>可以看到当前有两个分支 dev 和 main，并且 dev 前面有个 * 号，表示当前处于 dev 分支。</p>
+<p><img src="/../images/git-branch/%E6%9F%A5%E7%9C%8B%E5%92%8C%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="修改分支内容及合并"><a href="#修改分支内容及合并" class="headerlink" title="修改分支内容及合并"></a>修改分支内容及合并</h3><p>修改文本内容，添加 The branch is dev</p>
+<p><img src="/../images/git-branch/%E4%BF%AE%E6%94%B9dev%E6%96%87%E6%9C%AC.png" srcset="/img/loading.gif" lazyload></p>
+<p>提交修改的内容：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git add test.txt<br>git commit -m <span class="hljs-string">&quot;modify dev branch&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>我们再修改一下 test.txt 的内容，加上一行文本。</p>
-<p><img src="/../images/git-introduction/%E5%86%99%E5%85%A5%E7%AC%AC%E4%B8%89%E8%A1%8C%E6%96%87%E6%9C%AC.png" srcset="/img/loading.gif" lazyload></p>
-<p>然后查看这个文件的差异。</p>
-<p><img src="/../images/git-introduction/%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%B7%AE%E5%BC%82.png" srcset="/img/loading.gif" lazyload></p>
-<p>可以看到，原来的 Hello Git 被删除，新增了 Hello Git 和 Hello … 两行，因为 Hello Git 后面多了一个换行符，所以会被 Git 认为原来那行被删除了。</p>
-<h3 id="回退版本"><a href="#回退版本" class="headerlink" title="回退版本"></a>回退版本</h3><p>要回退版本，使用以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh">git reset --hard HEAD^   回到上个版本的已提交状态<br>git reset --soft HEAD^   回到上个版本的未提交状态<br>git reset --mixed HEAD^  回到上个版本的已添加但未提交状态<br><br>HEAD^     上个版本<br>HEAD^^    上上个版本<br>HEAD~100  往上 100 个版本<br></code></pre></td></tr></table></figure>
+<p>切换回 main 分支：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git checkout main<br></code></pre></td></tr></table></figure>
 
-<p>我们使用第一行命令，让文件回退到上个版本。</p>
-<p><img src="/../images/git-introduction/%E5%9B%9E%E9%80%80%E7%89%88%E6%9C%AC.png" srcset="/img/loading.gif" lazyload></p>
-<p>可以看到，现在 HEAD 已经指向了第一次提交（Add Test Document），第二次提交的内容、第三次修改但未提交的内容就都不见了。</p>
-<p><img src="/../images/git-introduction/%E5%9B%9E%E9%80%80%E5%90%8E%E7%9A%84%E5%86%85%E5%AE%B9.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="查看命令历史"><a href="#查看命令历史" class="headerlink" title="查看命令历史"></a>查看命令历史</h3><p>要查看命令历史，使用以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git reflog<br></code></pre></td></tr></table></figure>
+<p>把 dev 分支合并到当前 main 分支：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git merge dev<br></code></pre></td></tr></table></figure>
 
-<p>如果我们现在后悔了，想要恢复到最新版本，找回第二次提交的内容，可以先查看命令历史。</p>
-<p><img src="/../images/git-introduction/%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4%E5%8E%86%E5%8F%B2.png" srcset="/img/loading.gif" lazyload></p>
-<p>可以看到，我们提交了两次，又回退了一次。</p>
-<p>第二次的提交命令，它的 id 是 b037670，我们就可以使用回退命令，带上这个命令的 id，就能够回到最新版本。</p>
-<p><img src="/../images/git-introduction/%E5%9B%9E%E9%80%80%E5%88%B0%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC.png" srcset="/img/loading.gif" lazyload></p>
-<p>现在，文本文档的内容就恢复到第二次提交的状态了。</p>
-<p><img src="/../images/git-introduction/%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E5%86%85%E5%AE%B9.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以看到 merge 的时候，显示的是 Fast-forward，表示这次合并很顺利，使用了快进模式。</p>
+<p><img src="/../images/git-branch/%E6%8F%90%E4%BA%A4dev%E5%88%86%E6%94%AF%E7%84%B6%E5%90%8E%E5%90%88%E5%B9%B6%E5%88%B0main%E5%88%86%E6%94%AF.png" srcset="/img/loading.gif" lazyload></p>
+<p>此时可以删掉 dev 分支，保持分支整洁：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git branch -d dev<br></code></pre></td></tr></table></figure>
+
+<p>再次查看分支：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git branch<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，已经没有 dev 分支了，只剩下一个 main 分支。</p>
+<p><img src="/../images/git-branch/%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="合并时产生冲突并解决"><a href="#合并时产生冲突并解决" class="headerlink" title="合并时产生冲突并解决"></a>合并时产生冲突并解决</h3><p>创建并切换到 bug 分支：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git checkout -b bug<br></code></pre></td></tr></table></figure>
+
+<p>修改文本内容为 The branch is bug</p>
+<p><img src="/../images/git-branch/%E4%BF%AE%E6%94%B9bug%E6%96%87%E6%9C%AC.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后提交本次修改：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git add test.txt<br>git commit -m <span class="hljs-string">&quot;modify bug branch&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/../images/git-branch/%E6%8F%90%E4%BA%A4bug%E5%88%86%E6%94%AF.png" srcset="/img/loading.gif" lazyload></p>
+<p>切换到 main 分支，同样修改文本内容，并提交。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git checkout main<br></code></pre></td></tr></table></figure>
+
+<p><img src="/../images/git-branch/%E5%88%87%E6%8D%A2%E5%88%B0main%E5%88%86%E6%94%AF%E5%B9%B6%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git add test.txt<br>git commit -m <span class="hljs-string">&quot;modify main branch&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>此时 bug 分支和 main 分支都对同一行文本进行了修改，并且在各自的分支上提交了。</p>
+<p>现在执行合并，把 bug 分支合并到当前的 main 分支上。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git merge bug<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，现在产生了一个冲突，不能自动合并提交了。</p>
+<p><img src="/../images/git-branch/%E4%BA%A7%E7%94%9F%E5%86%B2%E7%AA%81.png" srcset="/img/loading.gif" lazyload></p>
+<p>文本的内容也出现了标记。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD 下面的内容是当前 main 分支的内容<br><br>======= 是分隔行<br><br>&gt;&gt;&gt;&gt;&gt;&gt;&gt; bug 上面的内容是要合并过来的 bug 分支的内容<br></code></pre></td></tr></table></figure>
+
+<p><img src="/../images/git-branch/%E5%86%B2%E7%AA%81%E6%A0%87%E8%AE%B0.png" srcset="/img/loading.gif" lazyload></p>
+<p>现在需要手动修改这个文本，把认为正确的内容写上去，并删除标记。</p>
+<p><img src="/../images/git-branch/%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后把这次修改冲突的内容提交：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git add test.txt<br>git commit -m <span class="hljs-string">&quot;resolve conflict&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到，在提交的过程中，main 分支后面显示 MERGING，表示正在进行合并，提交后就没有这个状态了。</p>
+<p><img src="/../images/git-branch/%E6%8F%90%E4%BA%A4%E8%A7%A3%E5%86%B3%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果产生冲突的时候，不想解决，而是想取消这次合并，恢复到原来的样子，可以使用以下命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git merge --abort<br></code></pre></td></tr></table></figure>
+
+<p>这样也可以消除 MERGING 状态和冲突。</p>
 
                 
               </div>
@@ -381,8 +403,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git 入门</div>
-      <div>http://weikunou.github.io/2025/02/23/git-introduction/</div>
+      <div>Git 分支</div>
+      <div>http://weikunou.github.io/2025/03/30/git-branch/</div>
     </div>
     <div class="license-meta">
       
@@ -394,7 +416,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年2月23日</div>
+          <div>2025年3月30日</div>
         </div>
       
       
@@ -426,18 +448,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/30/git-branch/" title="Git 分支">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git 分支</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/01/27/learning-materials-collection-game-development/" title="学习资料收藏 游戏开发">
-                        <span class="hidden-mobile">学习资料收藏 游戏开发</span>
+                      <a href="/2025/02/23/git-introduction/" title="Git 入门">
+                        <span class="hidden-mobile">Git 入门</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
