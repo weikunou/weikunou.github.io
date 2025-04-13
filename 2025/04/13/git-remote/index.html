@@ -16,34 +16,35 @@
   <meta name="author" content="Awake">
   <meta name="keywords" content="Awake">
   
-    <meta name="description" content="Git 入门笔记 分支">
+    <meta name="description" content="Git 入门笔记 远程仓库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 分支">
-<meta property="og:url" content="http://weikunou.github.io/2025/03/30/git-branch/index.html">
+<meta property="og:title" content="Git 远程仓库">
+<meta property="og:url" content="http://weikunou.github.io/2025/04/13/git-remote/index.html">
 <meta property="og:site_name" content="Awake">
-<meta property="og:description" content="Git 入门笔记 分支">
+<meta property="og:description" content="Git 入门笔记 远程仓库">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E6%9F%A5%E7%9C%8B%E5%92%8C%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E4%BF%AE%E6%94%B9dev%E6%96%87%E6%9C%AC.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E6%8F%90%E4%BA%A4dev%E5%88%86%E6%94%AF%E7%84%B6%E5%90%8E%E5%90%88%E5%B9%B6%E5%88%B0main%E5%88%86%E6%94%AF.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E4%BF%AE%E6%94%B9bug%E6%96%87%E6%9C%AC.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E6%8F%90%E4%BA%A4bug%E5%88%86%E6%94%AF.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E5%88%87%E6%8D%A2%E5%88%B0main%E5%88%86%E6%94%AF%E5%B9%B6%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E4%BA%A7%E7%94%9F%E5%86%B2%E7%AA%81.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E5%86%B2%E7%AA%81%E6%A0%87%E8%AE%B0.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81.png">
-<meta property="og:image" content="http://weikunou.github.io/images/git-branch/%E6%8F%90%E4%BA%A4%E8%A7%A3%E5%86%B3%E7%BB%93%E6%9E%9C.png">
-<meta property="article:published_time" content="2025-03-30T08:10:32.000Z">
-<meta property="article:modified_time" content="2025-03-30T08:13:23.206Z">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/github%E8%AE%BE%E7%BD%AE.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/%E6%B7%BB%E5%8A%A0SSH.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/%E8%AE%BE%E7%BD%AESSH.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/%E5%85%8B%E9%9A%86%E4%BB%93%E5%BA%93.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/%E6%8F%90%E4%BA%A4%E5%B9%B6%E6%8E%A8%E9%80%81.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/%E8%BF%9C%E7%A8%8B%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/%E8%BF%9C%E7%A8%8B%E6%8F%90%E4%BA%A4.png">
+<meta property="og:image" content="http://weikunou.github.io/images/git-remote/%E6%8B%89%E5%8F%96%E6%9B%B4%E6%96%B0.png">
+<meta property="article:published_time" content="2025-04-13T12:11:04.000Z">
+<meta property="article:modified_time" content="2025-04-13T12:13:17.858Z">
 <meta property="article:author" content="Awake">
 <meta property="article:tag" content="版本控制">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://weikunou.github.io/images/git-branch/%E6%9F%A5%E7%9C%8B%E5%92%8C%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF.png">
+<meta name="twitter:image" content="http://weikunou.github.io/images/git-remote/github%E8%AE%BE%E7%BD%AE.png">
   
   
   
-  <title>Git 分支 - Awake</title>
+  <title>Git 远程仓库 - Awake</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git 分支"></span>
+            <span id="subtitle" data-typed-text="Git 远程仓库"></span>
           
         </div>
 
@@ -208,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-30 16:10" pubdate>
-          2025年3月30日 下午
+        <time datetime="2025-04-13 20:11" pubdate>
+          2025年4月13日 晚上
         </time>
       </span>
     
@@ -220,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          853 字
         
       </span>
     
@@ -231,7 +232,7 @@
         
         
         
-          9 分钟
+          8 分钟
         
       </span>
     
@@ -268,117 +269,88 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Git 分支</h1>
+            <h1 id="seo-header">Git 远程仓库</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Git 入门笔记 分支</p>
+                <p>Git 入门笔记 远程仓库</p>
 <span id="more"></span>
 
-<h1 id="Git-分支管理"><a href="#Git-分支管理" class="headerlink" title="Git 分支管理"></a>Git 分支管理</h1><p>Git 分支是版本控制中最强大的功能之一，它允许开发者在不影响主线开发的情况下进行并行开发。</p>
-<p>本文将详细介绍 Git 分支的概念和常用操作。</p>
-<h2 id="分支基础"><a href="#分支基础" class="headerlink" title="分支基础"></a>分支基础</h2><h3 id="什么是分支"><a href="#什么是分支" class="headerlink" title="什么是分支"></a>什么是分支</h3><p>分支本质上是指向提交对象的可变指针。</p>
-<p>Git 默认分支名称是 <code>master</code>（现在推荐使用 <code>main</code>）。</p>
-<p>每次提交，分支指针都会自动向前移动。</p>
-<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><ul>
-<li>创建分支：<code>git branch 分支名</code></li>
-<li>切换分支：<code>git checkout 分支名</code> 或 <code>git switch 分支名</code></li>
-<li>创建并切换：<code>git checkout -b 分支名</code> 或 <code>git switch -c 分支名</code></li>
-<li>查看所有分支：<code>git branch</code></li>
-<li>删除分支：<code>git branch -d 分支名</code></li>
-<li>丢弃修改：<code>git checkout -- 文件名</code></li>
-</ul>
-<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><p>合并分支使用以下命令：</p>
-<ul>
-<li>合并指定分支到当前分支：<code>git merge 分支名</code></li>
-<li>使用快进模式合并：<code>git merge --ff 分支名</code></li>
-<li>禁用快进模式合并：<code>git merge --no-ff -m &quot;合并信息&quot; 分支名</code></li>
-<li>终止合并：<code>git merge --abort</code></li>
-</ul>
-<p>合并分支时，默认使用快进模式进行合并，删除分支后，会丢掉分支信息。</p>
-<p>如果禁用快进模式，在合并时会产生一个新的提交，需要填写提交信息，可以写明是从哪个分支合并过来的。</p>
-<p>合并时可能会遇到冲突，需要手动解决冲突后再提交。</p>
-<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><p>当两个分支修改了同一个文件的同一部分时，Git 无法自动合并，会产生冲突。</p>
-<p>冲突文件会包含如下标记：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>当前分支的内容<br>=======<br>要合并分支的内容<br>&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name<br></code></pre></td></tr></table></figure>
-
-<p>解决冲突的步骤：</p>
+<h1 id="Git-远程仓库"><a href="#Git-远程仓库" class="headerlink" title="Git 远程仓库"></a>Git 远程仓库</h1><p>Git 远程仓库是一个托管在网络服务器上的代码仓库，它是团队协作开发的核心。</p>
+<p>通过远程仓库，开发者可以共享代码、同步更新，实现分布式协作。</p>
+<h2 id="SSH-密钥"><a href="#SSH-密钥" class="headerlink" title="SSH 密钥"></a>SSH 密钥</h2><p>SSH 密钥可以让你在使用 Git 时安全地连接远程仓库，无需每次都输入用户名和密码。</p>
 <ol>
-<li>打开冲突文件，找到冲突位置（由上述标记标识）</li>
-<li>决定保留哪些内容，删除冲突标记</li>
-<li>添加修改后的文件到暂存区：<code>git add 文件名</code></li>
-<li>提交更改：<code>git commit -m &quot;解决冲突&quot;</code></li>
+<li>检查现有 SSH 密钥</li>
 </ol>
-<h2 id="分支操作实践"><a href="#分支操作实践" class="headerlink" title="分支操作实践"></a>分支操作实践</h2><h3 id="创建和查看分支"><a href="#创建和查看分支" class="headerlink" title="创建和查看分支"></a>创建和查看分支</h3><p>查看分支：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git branch<br></code></pre></td></tr></table></figure>
+<p>检查 <code>C:\Users\你的用户名</code> 文件夹，看看有没有 <code>.ssh</code> 文件夹，再看看有没有 <code>id_rsa</code> 和 <code>id_rsa.pub</code> 文件。</p>
+<p>如果有的话，就不用生成了，直接跳过下一步。</p>
+<p>如果没有的话，就需要进行下一步，生成密钥。</p>
+<ol start="2">
+<li>生成新的 SSH 密钥对</li>
+</ol>
+<p>打开 Git Bash，输入以下指令：（最后那个字符串是你的邮箱地址）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ ssh-keygen -t rsa -b 4096 -C <span class="hljs-string">&quot;your_email@example.com&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>当前只有一个 main 分支。</p>
-<p>创建并切换到 dev 分支：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git checkout -b dev<br></code></pre></td></tr></table></figure>
+<p>可以保持默认值，一直按回车键。</p>
+<p>完成后，可以在第一步提到的文件夹里，看到那两个文件。</p>
+<ol start="3">
+<li>添加密钥</li>
+</ol>
+<p>登录 Github，点击右上角的头像，找到 <code>Settings</code>，在左侧的导航栏中，找到 <code>SSH and GPG keys</code> 选项。</p>
+<p><img src="/../images/git-remote/github%E8%AE%BE%E7%BD%AE.png" srcset="/img/loading.gif" lazyload></p>
+<p>点击 <code>New SSH key</code>，填写 Title，把 <code>id_rsa.pub</code> 文件的内容复制，粘贴到 Key 那一栏，最后点击 <code>Add SSH key</code> 就添加完成了。</p>
+<p><img src="/../images/git-remote/%E6%B7%BB%E5%8A%A0SSH.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/git-remote/%E8%AE%BE%E7%BD%AESSH.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="远程仓库操作"><a href="#远程仓库操作" class="headerlink" title="远程仓库操作"></a>远程仓库操作</h2><h3 id="远程仓库管理"><a href="#远程仓库管理" class="headerlink" title="远程仓库管理"></a>远程仓库管理</h3><ul>
+<li>克隆远程仓库：<code>git clone 仓库地址</code></li>
+<li>查看远程仓库：<code>git remote -v</code></li>
+<li>添加远程仓库：<code>git remote add 远程仓库名 仓库地址</code></li>
+<li>删除远程仓库：<code>git remote remove 远程仓库名</code></li>
+<li>重命名远程仓库：<code>git remote rename 旧名称 新名称</code></li>
+</ul>
+<h3 id="远程分支操作"><a href="#远程分支操作" class="headerlink" title="远程分支操作"></a>远程分支操作</h3><ul>
+<li>查看远程分支：<code>git branch -r</code></li>
+<li>查看所有分支：<code>git branch -a</code></li>
+<li>查看分支跟踪：<code>git branch -vv</code></li>
+<li>拉取远程分支：<code>git pull origin 分支名</code></li>
+<li>推送本地分支：<code>git push origin 分支名</code></li>
+<li>删除远程分支：<code>git push origin --delete 分支名</code></li>
+<li>跟踪远程分支：<code>git branch --track 分支名 origin/分支名</code></li>
+</ul>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><h3 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h3><p>登录 Github，点击右上角的加号，点击 <code>New repository</code>，填写仓库名称，点击 <code>Create repository</code> 即可创建远程仓库。</p>
+<p><img src="/../images/git-remote/%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/git-remote/%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF.png" srcset="/img/loading.gif" lazyload></p>
+<p>创建完成后，仓库默认是空的，点击 SSH 按钮，右侧显示了仓库的地址。点击最右侧的复制按钮，可以把这个地址复制下来。</p>
+<p><img src="/../images/git-remote/%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="克隆到本地"><a href="#克隆到本地" class="headerlink" title="克隆到本地"></a>克隆到本地</h3><p>在本地找一个空的文件夹，打开 Git Bash 窗口，执行命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ git <span class="hljs-built_in">clone</span> 仓库地址<br></code></pre></td></tr></table></figure>
 
-<p>再次查看分支：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git branch<br></code></pre></td></tr></table></figure>
+<p>就可以把远程仓库克隆到本地了。</p>
+<p><img src="/../images/git-remote/%E5%85%8B%E9%9A%86%E4%BB%93%E5%BA%93.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="创建本地文件"><a href="#创建本地文件" class="headerlink" title="创建本地文件"></a>创建本地文件</h3><p>进入 MyProject 文件夹，创建一个 README.md 文件，输入一行文本。</p>
+<p><img src="/../images/git-remote/%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="提交并推送"><a href="#提交并推送" class="headerlink" title="提交并推送"></a>提交并推送</h3><p>回到 Git Bash 窗口，执行命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ <span class="hljs-built_in">cd</span> MyProject<br></code></pre></td></tr></table></figure>
 
-<p>可以看到当前有两个分支 dev 和 main，并且 dev 前面有个 * 号，表示当前处于 dev 分支。</p>
-<p><img src="/../images/git-branch/%E6%9F%A5%E7%9C%8B%E5%92%8C%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="修改分支内容及合并"><a href="#修改分支内容及合并" class="headerlink" title="修改分支内容及合并"></a>修改分支内容及合并</h3><p>修改文本内容，添加 The branch is dev</p>
-<p><img src="/../images/git-branch/%E4%BF%AE%E6%94%B9dev%E6%96%87%E6%9C%AC.png" srcset="/img/loading.gif" lazyload></p>
-<p>提交修改的内容：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git add test.txt<br>git commit -m <span class="hljs-string">&quot;modify dev branch&quot;</span><br></code></pre></td></tr></table></figure>
+<p>进入 MyProject 文件夹，然后执行简单的提交命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ git add README.md<br>$ git commit -m <span class="hljs-string">&quot;Add README&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>切换回 main 分支：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git checkout main<br></code></pre></td></tr></table></figure>
+<p>由于我们是从远程仓库克隆到本地，只有一个 main 分支，本地的 main 分支和远程的 main 分支是关联的，所以可以直接执行命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ git push<br></code></pre></td></tr></table></figure>
 
-<p>把 dev 分支合并到当前 main 分支：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git merge dev<br></code></pre></td></tr></table></figure>
+<p>此时，我们提交的 README.md 文件就被推送到远程仓库了。</p>
+<p><img src="/../images/git-remote/%E6%8F%90%E4%BA%A4%E5%B9%B6%E6%8E%A8%E9%80%81.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="远程修改文件"><a href="#远程修改文件" class="headerlink" title="远程修改文件"></a>远程修改文件</h3><p>在 Github 页面上，点击编辑按钮。</p>
+<p><img src="/../images/git-remote/%E8%BF%9C%E7%A8%8B%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6.png" srcset="/img/loading.gif" lazyload></p>
+<p>修改一下文件内容，点击 <code>Commit changes</code> 按钮进行提交。</p>
+<p><img src="/../images/git-remote/%E8%BF%9C%E7%A8%8B%E6%8F%90%E4%BA%A4.png" srcset="/img/loading.gif" lazyload></p>
+<p>此时远程仓库就有了两次提交，而本地仓库只有一次。</p>
+<h3 id="拉取更新"><a href="#拉取更新" class="headerlink" title="拉取更新"></a>拉取更新</h3><p>现在要从远程仓库拉取更新，把本地仓库的内容也更到最新版本，执行命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ git pull<br></code></pre></td></tr></table></figure>
 
-<p>可以看到 merge 的时候，显示的是 Fast-forward，表示这次合并很顺利，使用了快进模式。</p>
-<p><img src="/../images/git-branch/%E6%8F%90%E4%BA%A4dev%E5%88%86%E6%94%AF%E7%84%B6%E5%90%8E%E5%90%88%E5%B9%B6%E5%88%B0main%E5%88%86%E6%94%AF.png" srcset="/img/loading.gif" lazyload></p>
-<p>此时可以删掉 dev 分支，保持分支整洁：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git branch -d dev<br></code></pre></td></tr></table></figure>
-
-<p>再次查看分支：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git branch<br></code></pre></td></tr></table></figure>
-
-<p>可以看到，已经没有 dev 分支了，只剩下一个 main 分支。</p>
-<p><img src="/../images/git-branch/%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="合并时产生冲突并解决"><a href="#合并时产生冲突并解决" class="headerlink" title="合并时产生冲突并解决"></a>合并时产生冲突并解决</h3><p>创建并切换到 bug 分支：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git checkout -b bug<br></code></pre></td></tr></table></figure>
-
-<p>修改文本内容为 The branch is bug</p>
-<p><img src="/../images/git-branch/%E4%BF%AE%E6%94%B9bug%E6%96%87%E6%9C%AC.png" srcset="/img/loading.gif" lazyload></p>
-<p>然后提交本次修改：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git add test.txt<br>git commit -m <span class="hljs-string">&quot;modify bug branch&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="/../images/git-branch/%E6%8F%90%E4%BA%A4bug%E5%88%86%E6%94%AF.png" srcset="/img/loading.gif" lazyload></p>
-<p>切换到 main 分支，同样修改文本内容，并提交。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git checkout main<br></code></pre></td></tr></table></figure>
-
-<p><img src="/../images/git-branch/%E5%88%87%E6%8D%A2%E5%88%B0main%E5%88%86%E6%94%AF%E5%B9%B6%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9.png" srcset="/img/loading.gif" lazyload></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git add test.txt<br>git commit -m <span class="hljs-string">&quot;modify main branch&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>此时 bug 分支和 main 分支都对同一行文本进行了修改，并且在各自的分支上提交了。</p>
-<p>现在执行合并，把 bug 分支合并到当前的 main 分支上。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git merge bug<br></code></pre></td></tr></table></figure>
-
-<p>可以看到，现在产生了一个冲突，不能自动合并提交了。</p>
-<p><img src="/../images/git-branch/%E4%BA%A7%E7%94%9F%E5%86%B2%E7%AA%81.png" srcset="/img/loading.gif" lazyload></p>
-<p>文本的内容也出现了标记。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD 下面的内容是当前 main 分支的内容<br><br>======= 是分隔行<br><br>&gt;&gt;&gt;&gt;&gt;&gt;&gt; bug 上面的内容是要合并过来的 bug 分支的内容<br></code></pre></td></tr></table></figure>
-
-<p><img src="/../images/git-branch/%E5%86%B2%E7%AA%81%E6%A0%87%E8%AE%B0.png" srcset="/img/loading.gif" lazyload></p>
-<p>现在需要手动修改这个文本，把认为正确的内容写上去，并删除标记。</p>
-<p><img src="/../images/git-branch/%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81.png" srcset="/img/loading.gif" lazyload></p>
-<p>然后把这次修改冲突的内容提交：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git add test.txt<br>git commit -m <span class="hljs-string">&quot;resolve conflict&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>可以看到，在提交的过程中，main 分支后面显示 MERGING，表示正在进行合并，提交后就没有这个状态了。</p>
-<p><img src="/../images/git-branch/%E6%8F%90%E4%BA%A4%E8%A7%A3%E5%86%B3%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
-<p>如果产生冲突的时候，不想解决，而是想取消这次合并，恢复到原来的样子，可以使用以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git merge --abort<br></code></pre></td></tr></table></figure>
-
-<p>这样也可以消除 MERGING 状态和冲突。</p>
+<p>执行完成后，本地的文件就跟远程仓库同步版本了。</p>
+<p><img src="/../images/git-remote/%E6%8B%89%E5%8F%96%E6%9B%B4%E6%96%B0.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -403,8 +375,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git 分支</div>
-      <div>http://weikunou.github.io/2025/03/30/git-branch/</div>
+      <div>Git 远程仓库</div>
+      <div>http://weikunou.github.io/2025/04/13/git-remote/</div>
     </div>
     <div class="license-meta">
       
@@ -416,7 +388,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年3月30日</div>
+          <div>2025年4月13日</div>
         </div>
       
       
@@ -448,18 +420,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/04/13/git-remote/" title="Git 远程仓库">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git 远程仓库</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/02/23/git-introduction/" title="Git 入门">
-                        <span class="hidden-mobile">Git 入门</span>
+                      <a href="/2025/03/30/git-branch/" title="Git 分支">
+                        <span class="hidden-mobile">Git 分支</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
