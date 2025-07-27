@@ -1,0 +1,761 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#565656">
+  <meta name="author" content="Awake">
+  <meta name="keywords" content="Awake">
+  
+    <meta name="description" content="Unity3D 平台宏定义的介绍和使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity3D 平台宏定义">
+<meta property="og:url" content="http://weikunou.github.io/2025/07/27/unity-scripting-define-symbols/index.html">
+<meta property="og:site_name" content="Awake">
+<meta property="og:description" content="Unity3D 平台宏定义的介绍和使用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-27T02:37:27.000Z">
+<meta property="article:modified_time" content="2025-07-27T02:46:58.517Z">
+<meta property="article:author" content="Awake">
+<meta property="article:tag" content="Unity3D">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Unity3D 平台宏定义 - Awake</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"weikunou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Awake</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/wallhaven-jxl31y.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Unity3D 平台宏定义"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-27 10:37" pubdate>
+          2025年7月27日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Unity3D 平台宏定义</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Unity3D 平台宏定义的介绍和使用。</p>
+<span id="more"></span>
+
+<h1 id="平台宏定义"><a href="#平台宏定义" class="headerlink" title="平台宏定义"></a>平台宏定义</h1><p>在 Unity 开发过程中，经常需要写一些平台相关、调试用、或只在编辑器运行的代码。</p>
+<p>为了避免打包错误或平台兼容问题，我们可以使用 Unity 提供的 <strong>宏指令（平台宏定义）</strong> 来控制代码的编译范围。</p>
+<p>一个最常见的示例如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> UNITY_EDITOR</span><br>    Debug.Log(<span class="hljs-string">&quot;仅在编辑器中输出&quot;</span>);<br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+
+<p>这段代码只会在 Unity 编辑器中编译执行，打包时会被自动忽略。</p>
+<h2 id="常见-Unity-平台宏定义一览"><a href="#常见-Unity-平台宏定义一览" class="headerlink" title="常见 Unity 平台宏定义一览"></a>常见 Unity 平台宏定义一览</h2><table>
+<thead>
+<tr>
+<th>宏定义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>UNITY_EDITOR</code></td>
+<td>Unity 编辑器中生效</td>
+</tr>
+<tr>
+<td><code>UNITY_ANDROID</code></td>
+<td>安卓平台</td>
+</tr>
+<tr>
+<td><code>UNITY_IOS</code></td>
+<td>iOS 平台</td>
+</tr>
+<tr>
+<td><code>UNITY_STANDALONE_WIN</code></td>
+<td>Windows 平台（PC 端）</td>
+</tr>
+<tr>
+<td><code>UNITY_STANDALONE_OSX</code></td>
+<td>macOS 平台</td>
+</tr>
+<tr>
+<td><code>UNITY_STANDALONE</code></td>
+<td>所有桌面平台（Windows、Mac、Linux）通用</td>
+</tr>
+<tr>
+<td><code>UNITY_WEBGL</code></td>
+<td>WebGL 平台</td>
+</tr>
+<tr>
+<td><code>UNITY_SERVER</code></td>
+<td>Server 构建模式（无图形）</td>
+</tr>
+<tr>
+<td><code>DEVELOPMENT_BUILD</code></td>
+<td>开发者模式构建</td>
+</tr>
+<tr>
+<td><code>UNITY_EDITOR_WIN</code></td>
+<td>Windows 编辑器环境</td>
+</tr>
+<tr>
+<td><code>UNITY_EDITOR_OSX</code></td>
+<td>macOS 编辑器环境</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 Unity 会根据打包平台自动启用这些宏，无需手动添加，直接在代码中使用即可。</p>
+</blockquote>
+<h2 id="实际使用示例"><a href="#实际使用示例" class="headerlink" title="实际使用示例"></a>实际使用示例</h2><h3 id="编辑器专用代码"><a href="#编辑器专用代码" class="headerlink" title="编辑器专用代码"></a>编辑器专用代码</h3><p>如菜单功能、调试工具等。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> UNITY_EDITOR</span><br><span class="hljs-keyword">using</span> UnityEditor;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">EditorOnlyTool</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">StopPlaymode</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> UNITY_EDITOR</span><br>        EditorApplication.isPlaying = <span class="hljs-literal">false</span>;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="路径适配"><a href="#路径适配" class="headerlink" title="路径适配"></a>路径适配</h3><p>适用于不同平台存档路径处理。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">GetSavePath</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> UNITY_EDITOR</span><br>    <span class="hljs-keyword">return</span> Application.dataPath + <span class="hljs-string">&quot;/&quot;</span>;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span><br>    <span class="hljs-keyword">return</span> Application.persistentDataPath + <span class="hljs-string">&quot;/&quot;</span>;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="自定义宏定义"><a href="#自定义宏定义" class="headerlink" title="自定义宏定义"></a>自定义宏定义</h2><p>除了系统默认的宏，我们也可以在项目中自定义宏。</p>
+<p>设置位置：<kbd>Edit</kbd> &gt; <kbd>Project Settings</kbd> &gt; <kbd>Player</kbd> &gt; <kbd>Other Settings</kbd> &gt; <kbd>Scripting Define Symbols</kbd></p>
+<blockquote>
+<p>💡 自定义宏非常适合用于功能开关、调试模式、模块切换等场景。</p>
+</blockquote>
+<h3 id="小游戏平台"><a href="#小游戏平台" class="headerlink" title="小游戏平台"></a>小游戏平台</h3><p>例如添加：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">WX_GAME;DY_GAME;<br></code></pre></td></tr></table></figure>
+
+<p>然后代码中使用：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> WX_GAME</span><br>    <span class="hljs-comment">// 微信小游戏逻辑</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">elif</span> DY_GAME</span><br>    <span class="hljs-comment">// 抖音小游戏逻辑</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span><br>    <span class="hljs-comment">// 其他平台逻辑</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+
+<p>在打包微信小游戏时，移除 <code>DY_GAME</code> 宏定义，只会编译微信小游戏的逻辑。同理，打包抖音小游戏时，移除 <code>WX_GAME</code> 宏定义。</p>
+<p>可以写一个菜单工具，一键切换平台宏定义，避免手动删来删去。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> System.Linq;<br><span class="hljs-keyword">using</span> UnityEditor;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">PlatformMacroSwitcher</span><br>&#123;<br>    <span class="hljs-comment">// 所有小游戏平台的宏，用于互斥</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-built_in">string</span>[] MiniGameMacros = &#123; <span class="hljs-string">&quot;WX_GAME&quot;</span>, <span class="hljs-string">&quot;DY_GAME&quot;</span> &#125;;<br><br>    [<span class="hljs-meta">MenuItem(<span class="hljs-meta-string">&quot;Tools/小游戏平台切换/切换到微信小游戏&quot;</span>)</span>]<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SwitchToWXGame</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        SetExclusiveMacro(<span class="hljs-string">&quot;WX_GAME&quot;</span>);<br>    &#125;<br><br>    [<span class="hljs-meta">MenuItem(<span class="hljs-meta-string">&quot;Tools/小游戏平台切换/切换到抖音小游戏&quot;</span>)</span>]<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SwitchToDYGame</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        SetExclusiveMacro(<span class="hljs-string">&quot;DY_GAME&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetExclusiveMacro</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> targetMacro</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">var</span> targetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;<br>        <span class="hljs-keyword">var</span> symbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);<br>        <span class="hljs-keyword">var</span> symbolList = symbols.Split(<span class="hljs-string">&#x27;;&#x27;</span>).Where(s =&gt; !<span class="hljs-built_in">string</span>.IsNullOrWhiteSpace(s)).ToList();<br><br>        <span class="hljs-comment">// 移除所有小游戏平台宏</span><br>        symbolList.RemoveAll(s =&gt; MiniGameMacros.Contains(s));<br><br>        <span class="hljs-comment">// 添加目标平台宏</span><br>        <span class="hljs-keyword">if</span> (!symbolList.Contains(targetMacro))<br>        &#123;<br>            symbolList.Add(targetMacro);<br>        &#125;<br><br>        <span class="hljs-comment">// 更新宏定义</span><br>        <span class="hljs-built_in">string</span> newSymbols = <span class="hljs-built_in">string</span>.Join(<span class="hljs-string">&quot;;&quot;</span>, symbolList);<br>        PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, newSymbols);<br><br>        Debug.Log(<span class="hljs-string">$&quot;已切换到平台宏：<span class="hljs-subst">&#123;targetMacro&#125;</span>&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="日志开关"><a href="#日志开关" class="headerlink" title="日志开关"></a>日志开关</h3><p>例如添加：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">ENABLE_LOG;<br></code></pre></td></tr></table></figure>
+
+<p>封装一个日志工具类，可以通过宏定义控制是否打印日志。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">LogUtil</span><br>&#123;<br>    [<span class="hljs-meta">System.Diagnostics.Conditional(<span class="hljs-meta-string">&quot;ENABLE_LOG&quot;</span>)</span>]<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Log</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Debug.Log(message);<br>    &#125;<br><br>    [<span class="hljs-meta">System.Diagnostics.Conditional(<span class="hljs-meta-string">&quot;ENABLE_LOG&quot;</span>)</span>]<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LogWarning</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Debug.LogWarning(message);<br>    &#125;<br><br>    [<span class="hljs-meta">System.Diagnostics.Conditional(<span class="hljs-meta-string">&quot;ENABLE_LOG&quot;</span>)</span>]<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LogError</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Debug.LogError(message);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以写一个菜单工具，一键开关日志宏定义，避免手动删来删去。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> System.Linq;<br><span class="hljs-keyword">using</span> UnityEditor;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ToggleLogMacro</span><br>&#123;<br>    [<span class="hljs-meta">MenuItem(<span class="hljs-meta-string">&quot;Tools/日志开关/开启 ENABLE_LOG&quot;</span>)</span>]<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">EnableLog</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        ToggleMacro(<span class="hljs-string">&quot;ENABLE_LOG&quot;</span>, <span class="hljs-literal">true</span>);<br>    &#125;<br><br>    [<span class="hljs-meta">MenuItem(<span class="hljs-meta-string">&quot;Tools/日志开关/关闭 ENABLE_LOG&quot;</span>)</span>]<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DisableLog</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        ToggleMacro(<span class="hljs-string">&quot;ENABLE_LOG&quot;</span>, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ToggleMacro</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> macro, <span class="hljs-built_in">bool</span> enable</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">var</span> targetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;<br>        <span class="hljs-keyword">var</span> symbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);<br>        <span class="hljs-keyword">var</span> symbolList = symbols.Split(<span class="hljs-string">&#x27;;&#x27;</span>);<br><br>        <span class="hljs-keyword">if</span> (enable &amp;&amp; !symbols.Contains(macro))<br>        &#123;<br>            symbols = <span class="hljs-built_in">string</span>.IsNullOrEmpty(symbols) ? macro : symbols + <span class="hljs-string">&quot;;&quot;</span> + macro;<br>            Debug.Log(<span class="hljs-string">$&quot;启用宏定义: <span class="hljs-subst">&#123;macro&#125;</span>&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!enable &amp;&amp; symbols.Contains(macro))<br>        &#123;<br>            symbols = <span class="hljs-built_in">string</span>.Join(<span class="hljs-string">&quot;;&quot;</span>, symbolList.Where(s =&gt; s != macro));<br>            Debug.Log(<span class="hljs-string">$&quot;关闭宏定义: <span class="hljs-subst">&#123;macro&#125;</span>&quot;</span>);<br>        &#125;<br><br>        PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, symbols);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="使用技巧与注意事项"><a href="#使用技巧与注意事项" class="headerlink" title="使用技巧与注意事项"></a>使用技巧与注意事项</h2><h3 id="建议使用的场景"><a href="#建议使用的场景" class="headerlink" title="建议使用的场景"></a>建议使用的场景</h3><ul>
+<li>✅ <strong>平台适配</strong>：Android&#x2F;iOS 的不同 API、路径、权限处理</li>
+<li>✅ <strong>调试工具</strong>：只在开发时使用的代码</li>
+<li>✅ <strong>构建优化</strong>：排除测试代码、防止泄露敏感信息</li>
+</ul>
+<h3 id="不建议滥用宏指令"><a href="#不建议滥用宏指令" class="headerlink" title="不建议滥用宏指令"></a>不建议滥用宏指令</h3><ul>
+<li>❌ 大段平台逻辑堆叠在一个文件中，可读性差</li>
+<li>❌ 宏代替运行时判断，导致运行逻辑不一致</li>
+<li>❌ 自定义宏未文档化，易被遗忘或误用</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>Unity 的宏指令是跨平台开发的重要工具，它让我们可以为不同平台编写不同的逻辑代码，也能帮助我们控制调试和发布行为。</p>
+<p>但使用时要保持 <strong>清晰结构</strong> 和 <strong>文档记录</strong> ，避免维护困难。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Unity3D/" class="print-no-link">#Unity3D</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Unity3D 平台宏定义</div>
+      <div>http://weikunou.github.io/2025/07/27/unity-scripting-define-symbols/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Awake</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/22/unity-screen-click-effect/" title="Unity3D 屏幕点击特效">
+                        <span class="hidden-mobile">Unity3D 屏幕点击特效</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
