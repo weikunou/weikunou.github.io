@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://weikunou.github.io/images/unity-shader-intro/%E6%8B%96%E5%8A%A8%E6%9D%90%E8%B4%A8.png">
 <meta property="og:image" content="http://weikunou.github.io/images/unity-shader-intro/%E8%B0%83%E6%95%B4%E9%A2%9C%E8%89%B2.png">
 <meta property="article:published_time" content="2025-09-14T02:42:48.000Z">
-<meta property="article:modified_time" content="2025-09-14T02:46:08.303Z">
+<meta property="article:modified_time" content="2025-09-14T02:55:47.986Z">
 <meta property="article:author" content="Awake">
 <meta property="article:tag" content="Unity3D">
 <meta name="twitter:card" content="summary_large_image">
@@ -289,7 +289,7 @@
 
 <p>每个 Shader 都需要一个唯一的名字，格式通常是 <code>Shader &quot;路径/名字&quot;</code>。</p>
 <p>这里并不是文件路径，而是 <strong>Unity 内部的命名空间</strong>。</p>
-<p>在材质球 (Material) 的 <strong>Shader 下拉菜单</strong>里，这个名字会决定 Shader 的显示位置。</p>
+<p>在材质球 (Material) 的 <strong>Shader 下拉菜单</strong> 里，这个名字会决定 Shader 的显示位置。</p>
 <h3 id="Properties-块"><a href="#Properties-块" class="headerlink" title="Properties 块"></a>Properties 块</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">Properties<br>&#123;<br>    _Color (<span class="hljs-string">&quot;Main Color&quot;</span>, Color) = (<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这里定义了材质面板中可调的属性。</p>
@@ -325,7 +325,7 @@
 <p>在代码区域定义的 <code>_Color</code> 变量，使用的是 <code>Properties</code> 定义的 <code>_Color</code> 属性，名称要一致才能获取到。</p>
 <h3 id="顶点数据-appdata"><a href="#顶点数据-appdata" class="headerlink" title="顶点数据 appdata"></a>顶点数据 appdata</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">appdata</span></span><br><span class="hljs-class">&#123;</span><br>    float4 vertex : POSITION;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
-<p><code>appdata</code> 是一个 <strong>输入结构体</strong>，表示从 <strong>CPU -&gt; GPU</strong> 传递过来的信息（网格顶点数据），是 GPU <strong>渲染管线的入口数据</strong>。</p>
+<p><code>appdata</code> 是一个 <strong>输入结构体</strong>，表示从 <strong>CPU → GPU</strong> 传递过来的信息（网格顶点数据），是 GPU <strong>渲染管线的入口数据</strong>。</p>
 <p>这里的 <strong>语义标识符</strong>（<code>: POSITION</code>）告诉 GPU，<code>vertex</code> 对应的是顶点坐标。</p>
 <p>Mesh 的每个顶点都会生成一个 <code>appdata</code>，送入顶点着色器。</p>
 <h3 id="顶点着色器-vert"><a href="#顶点着色器-vert" class="headerlink" title="顶点着色器 vert"></a>顶点着色器 vert</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">v2f</span></span><br><span class="hljs-class">&#123;</span><br>    float4 pos : SV_POSITION;<br>&#125;;<br><br><span class="hljs-function">v2f <span class="hljs-title">vert</span> <span class="hljs-params">(appdata v)</span></span><br><span class="hljs-function"></span>&#123;<br>    v2f o;<br>    o.pos = UnityObjectToClipPos(v.vertex);<br>    <span class="hljs-keyword">return</span> o;<br>&#125;<br></code></pre></td></tr></table></figure>
