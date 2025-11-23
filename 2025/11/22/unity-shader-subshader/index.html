@@ -16,22 +16,22 @@
   <meta name="author" content="Awake">
   <meta name="keywords" content="Awake">
   
-    <meta name="description" content="Unity3D Shader 属性详解。">
+    <meta name="description" content="Unity3D Shader 结构详解。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unity3D Shader 属性详解">
-<meta property="og:url" content="http://weikunou.github.io/2025/10/26/unity-shader-properties/index.html">
+<meta property="og:title" content="Unity Shader 结构详解">
+<meta property="og:url" content="http://weikunou.github.io/2025/11/22/unity-shader-subshader/index.html">
 <meta property="og:site_name" content="Awake">
-<meta property="og:description" content="Unity3D Shader 属性详解。">
+<meta property="og:description" content="Unity3D Shader 结构详解。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-10-26T08:47:55.000Z">
-<meta property="article:modified_time" content="2025-10-26T08:48:50.948Z">
+<meta property="article:published_time" content="2025-11-22T08:40:40.000Z">
+<meta property="article:modified_time" content="2025-11-22T08:41:16.962Z">
 <meta property="article:author" content="Awake">
 <meta property="article:tag" content="Unity3D">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Unity3D Shader 属性详解 - Awake</title>
+  <title>Unity Shader 结构详解 - Awake</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -185,7 +185,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Unity3D Shader 属性详解"></span>
+            <span id="subtitle" data-typed-text="Unity Shader 结构详解"></span>
           
         </div>
 
@@ -196,8 +196,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-26 16:47" pubdate>
-          2025年10月26日 下午
+        <time datetime="2025-11-22 16:40" pubdate>
+          2025年11月22日 下午
         </time>
       </span>
     
@@ -208,7 +208,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          741 字
+          1k 字
         
       </span>
     
@@ -219,7 +219,7 @@
         
         
         
-          7 分钟
+          9 分钟
         
       </span>
     
@@ -256,184 +256,235 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Unity3D Shader 属性详解</h1>
+            <h1 id="seo-header">Unity Shader 结构详解</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Unity3D Shader 属性详解。</p>
+                <p>Unity3D Shader 结构详解。</p>
 <span id="more"></span>
 
-<h1 id="Unity3D-Shader-属性详解"><a href="#Unity3D-Shader-属性详解" class="headerlink" title="Unity3D Shader 属性详解"></a>Unity3D Shader 属性详解</h1><p>在 Shader 里，我们经常能看到这样的代码片段：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">Properties<br>&#123;<br>    _Color (<span class="hljs-string">&quot;Main Color&quot;</span>, Color) = (<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)<br>    _MainTex (<span class="hljs-string">&quot;Base Texture&quot;</span>, <span class="hljs-number">2</span>D) = <span class="hljs-string">&quot;white&quot;</span> &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="Unity-Shader-结构详解"><a href="#Unity-Shader-结构详解" class="headerlink" title="Unity Shader 结构详解"></a>Unity Shader 结构详解</h1><p>当你打开一个 Unity Shader 文件时，第一眼看到的一定是这样的结构：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c">Shader <span class="hljs-string">&quot;Custom/Simple&quot;</span><br>&#123;<br>    Properties &#123; ... &#125;<br><br>    SubShader<br>    &#123;<br>        Pass &#123; ... &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>这些写在 <code>Properties &#123;&#125;</code> 里的内容，就是 <strong>Shader 属性（Properties）</strong>。</p>
-<p>它们的作用是让 <strong>美术或程序</strong> 能够在 <strong>Unity 材质面板</strong> 或 <strong>C# 脚本</strong> 中修改 Shader 内部变量，从而让同一个 Shader 产生不同的视觉效果。</p>
-<h2 id="Properties-是什么"><a href="#Properties-是什么" class="headerlink" title="Properties 是什么"></a>Properties 是什么</h2><p><code>Properties</code> 块定义的是 <strong>Shader 可以从外部编辑的参数</strong>。</p>
-<p>这些参数会自动出现在材质球（Material）面板上。</p>
-<p>在 <code>SubShader</code> 中，你会用到同名变量（例如 <code>_Color</code>、<code>_MainTex</code>），Unity 会自动把它们链接起来。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c">Properties<br>&#123;<br>    _Color (<span class="hljs-string">&quot;Main Color&quot;</span>, Color) = (<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)<br>&#125;<br><br>SubShader<br>&#123;<br>    fixed4 _Color; <span class="hljs-comment">// 对应 Properties 中的 _Color</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>刚接触 Shader 时，你可能会疑惑：</p>
+<ul>
+<li><strong>SubShader 是什么？为什么有多个？</strong></li>
+<li><strong>Pass 是做什么的？能不能只写一个？</strong></li>
+<li><strong>为什么有些 Shader 会写 UsePass 或 GrabPass？</strong></li>
+<li><strong>Unity 渲染时到底会用哪个 SubShader？</strong></li>
+</ul>
+<p>本篇将从宏观结构入手，带你彻底理解 Shader 的层级与执行顺序。</p>
+<h1 id="Shader-的总体结构"><a href="#Shader-的总体结构" class="headerlink" title="Shader 的总体结构"></a>Shader 的总体结构</h1><p>Unity Shader 最顶层结构如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">Shader<br> ├── Properties<br> ├── SubShader（通常 <span class="hljs-number">1</span>~<span class="hljs-number">2</span> 个）<br> │     ├── Tags<br> │     ├── Pass（一个或多个）<br> │     └── UsePass / GrabPass（可选）<br> └── Fallback（可选）<br></code></pre></td></tr></table></figure>
 
-<h2 id="Properties-的常见类型"><a href="#Properties-的常见类型" class="headerlink" title="Properties 的常见类型"></a>Properties 的常见类型</h2><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>示例</th>
-<th>默认值格式</th>
-<th>面板表现</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Color</strong></td>
-<td><code>_Color(&quot;Main Color&quot;, Color) = (1,1,1,1)</code></td>
-<td>RGBA</td>
-<td>颜色选择器</td>
-</tr>
-<tr>
-<td><strong>Vector</strong></td>
-<td><code>_Offset(&quot;Offset&quot;, Vector) = (1,0,0,0)</code></td>
-<td>4D 向量</td>
-<td>四个浮点输入框</td>
-</tr>
-<tr>
-<td><strong>Range</strong></td>
-<td><code>_Intensity(&quot;Intensity&quot;, Range(0,1)) = 0.5</code></td>
-<td>数值区间</td>
-<td>滑动条</td>
-</tr>
-<tr>
-<td><strong>Float</strong></td>
-<td><code>_Power(&quot;Power&quot;, Float) = 2.0</code></td>
-<td>单个数值</td>
-<td>数值输入框</td>
-</tr>
-<tr>
-<td><strong>2D</strong></td>
-<td><code>_MainTex(&quot;Base Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;</code></td>
-<td>贴图</td>
-<td>纹理选择框</td>
-</tr>
-<tr>
-<td><strong>Cube</strong></td>
-<td><code>_CubeMap(&quot;Environment&quot;, Cube) = &quot;&quot; &#123;&#125;</code></td>
-<td>立方体贴图</td>
-<td>CubeMap 选择</td>
-</tr>
-<tr>
-<td><strong>3D</strong></td>
-<td><code>_VolumeTex(&quot;Volume&quot;, 3D) = &quot;black&quot; &#123;&#125;</code></td>
-<td>三维贴图</td>
-<td>Volume 选择</td>
-</tr>
-</tbody></table>
-<h2 id="Properties-与-Shader-变量的对应关系"><a href="#Properties-与-Shader-变量的对应关系" class="headerlink" title="Properties 与 Shader 变量的对应关系"></a>Properties 与 Shader 变量的对应关系</h2><p>定义完 Properties 后，要在 CG 代码里定义同名变量，类型要匹配：</p>
+<p>你可以把结构理解为：</p>
+<ul>
+<li><strong>Shader 是一本书</strong></li>
+<li><strong>SubShader 是书的不同版本（兼容方案）</strong></li>
+<li><strong>Pass 是每个版本中的章节（渲染步骤）</strong></li>
+</ul>
+<h2 id="Properties-外部可调节的属性"><a href="#Properties-外部可调节的属性" class="headerlink" title="Properties 外部可调节的属性"></a>Properties 外部可调节的属性</h2><p>一个 Shader 可以定义外部可编辑的属性：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">Properties<br>&#123;<br>    _Color(<span class="hljs-string">&quot;Color&quot;</span>, Color) = (<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这些属性会自动出现在材质面板(Mesh Renderer → Material)。</p>
+<p>我们在上一篇《Unity3D Shader 属性详解》已经详细讲过，这里略过。</p>
+<h2 id="SubShader-多个兼容方案（Unity-自动选择）"><a href="#SubShader-多个兼容方案（Unity-自动选择）" class="headerlink" title="SubShader 多个兼容方案（Unity 自动选择）"></a>SubShader 多个兼容方案（Unity 自动选择）</h2><p>一个 Unity Shader 可以包含 <strong>多个 SubShader</strong>。</p>
+<p>示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">SubShader &#123; ... &#125;  <span class="hljs-comment">// 高级显卡使用</span><br>SubShader &#123; ... &#125;  <span class="hljs-comment">// 低级显卡使用</span><br>FallBack <span class="hljs-string">&quot;Diffuse&quot;</span> <span class="hljs-comment">// 都不支持则使用 Fallback</span><br></code></pre></td></tr></table></figure>
+
+<p>Unity 的选择规则：</p>
+<p>Unity <strong>从上到下依次测试</strong> SubShader，遇到 <strong>支持的平台能力</strong> 的那一个就使用它。</p>
+<p>例如：</p>
 <table>
 <thead>
 <tr>
-<th>Properties 类型</th>
-<th>CG&#x2F;HLSL 变量类型</th>
+<th>SubShader</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>Color &#x2F; Vector</td>
-<td><code>float4</code> &#x2F; <code>fixed4</code></td>
+<td>第一个 SubShader</td>
+<td>用到了高端特性（例如 Shader Model 4.5、曲面细分）</td>
 </tr>
 <tr>
-<td>Range &#x2F; Float</td>
-<td><code>float</code> &#x2F; <code>half</code> &#x2F; <code>fixed</code></td>
-</tr>
-<tr>
-<td>2D</td>
-<td><code>sampler2D</code></td>
-</tr>
-<tr>
-<td>Cube</td>
-<td><code>samplerCUBE</code></td>
-</tr>
-<tr>
-<td>3D</td>
-<td><code>sampler3D</code></td>
+<td>第二个 SubShader</td>
+<td>使用了更古老、低端显卡支持的语法</td>
 </tr>
 </tbody></table>
-<p>例如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">Properties<br>&#123;<br>    _Color (<span class="hljs-string">&quot;Main Color&quot;</span>, Color) = (<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)<br>    _MainTex (<span class="hljs-string">&quot;Base Texture&quot;</span>, <span class="hljs-number">2</span>D) = <span class="hljs-string">&quot;white&quot;</span> &#123;&#125;<br>&#125;<br><br>SubShader<br>&#123;<br>    fixed4 _Color;<br>    sampler2D _MainTex;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在手机端，Unity 会跳过无法执行的 SubShader，改用第二个。</p>
+<p>你可以把 SubShader 理解为</p>
+<ul>
+<li>PC 端 → 高画质版本</li>
+<li>手机端 → 简化版本</li>
+<li>老设备 → 最低画质版本</li>
+</ul>
+<h2 id="Pass-渲染步骤（每个-Pass-画一遍）"><a href="#Pass-渲染步骤（每个-Pass-画一遍）" class="headerlink" title="Pass 渲染步骤（每个 Pass 画一遍）"></a>Pass 渲染步骤（每个 Pass 画一遍）</h2><p>每个 SubShader 可以包含多个 Pass：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">SubShader<br>&#123;<br>    Pass &#123; ... &#125;  <span class="hljs-comment">// 第一次渲染</span><br>    Pass &#123; ... &#125;  <span class="hljs-comment">// 第二次渲染</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="C-中修改-Shader-属性"><a href="#C-中修改-Shader-属性" class="headerlink" title="C# 中修改 Shader 属性"></a>C# 中修改 Shader 属性</h2><p>在脚本中可以通过材质访问这些属性：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs csharp">Renderer renderer = GetComponent&lt;Renderer&gt;();<br>Material mat = renderer.material;<br><br><span class="hljs-comment">// 设置颜色</span><br>mat.SetColor(<span class="hljs-string">&quot;_Color&quot;</span>, Color.red);<br><br><span class="hljs-comment">// 设置纹理</span><br>mat.SetTexture(<span class="hljs-string">&quot;_MainTex&quot;</span>, someTexture);<br><br><span class="hljs-comment">// 获取浮点数</span><br><span class="hljs-built_in">float</span> power = mat.GetFloat(<span class="hljs-string">&quot;_Intensity&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p><strong>一个 Pass &#x3D; 一次 DrawCall</strong></p>
+<p>多 Pass Shader 常用于：</p>
+<ul>
+<li>描边 Outline（Pass1 渲染外轮廓，Pass2 渲染本体）</li>
+<li>闪光效果（先渲染辉光，再渲染本体）</li>
+<li>延迟渲染（分多步输出数据）</li>
+<li>阴影渲染（ShadowCaster、ShadowCollector）</li>
+</ul>
+<h3 id="最简单的单-Pass-Shader-如"><a href="#最简单的单-Pass-Shader-如" class="headerlink" title="最简单的单 Pass Shader 如"></a>最简单的单 Pass Shader 如</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">Pass<br>&#123;<br>    CGPROGRAM<br>    <span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> vertex vert</span><br>    <span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> fragment frag</span><br>    ENDCG<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h3 id="多-Pass-Shader-示例：简单角色描边"><a href="#多-Pass-Shader-示例：简单角色描边" class="headerlink" title="多 Pass Shader 示例：简单角色描边"></a>多 Pass Shader 示例：简单角色描边</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c">SubShader<br>&#123;<br>    <span class="hljs-comment">// Pass1：渲染外描边</span><br>    Pass<br>    &#123;<br>        <span class="hljs-comment">// 外扩、单色渲染</span><br>    &#125;<br><br>    <span class="hljs-comment">// Pass2：渲染物体本体</span><br>    Pass<br>    &#123;<br>        <span class="hljs-comment">// 正常贴图渲染</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最终输出效果是两个 Pass 合成的结果。</p>
+<h2 id="Tags-渲染排序与类别的重要设置"><a href="#Tags-渲染排序与类别的重要设置" class="headerlink" title="Tags 渲染排序与类别的重要设置"></a>Tags 渲染排序与类别的重要设置</h2><p>SubShader 和 Pass 都可以设置 Tags。</p>
+<p>SubShader 常用 Tags</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">Tags &#123; <span class="hljs-string">&quot;RenderType&quot;</span>=<span class="hljs-string">&quot;Opaque&quot;</span> <span class="hljs-string">&quot;Queue&quot;</span>=<span class="hljs-string">&quot;Geometry&quot;</span> &#125;<br></code></pre></td></tr></table></figure>
+
+<p>常见值：</p>
+<table>
+<thead>
+<tr>
+<th>RenderType</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Opaque</td>
+<td>不透明物体</td>
+</tr>
+<tr>
+<td>Transparent</td>
+<td>透明物体</td>
+</tr>
+<tr>
+<td>TransparentCutout</td>
+<td>透明裁剪</td>
+</tr>
+<tr>
+<td>Background</td>
+<td>背景</td>
+</tr>
+<tr>
+<td>Overlay</td>
+<td>UI、特效等</td>
+</tr>
+</tbody></table>
+<p>Queue（渲染队列）决定渲染顺序：</p>
+<table>
+<thead>
+<tr>
+<th>队列</th>
+<th>数值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Background</td>
+<td>1000</td>
+<td>最早绘制</td>
+</tr>
+<tr>
+<td>Geometry</td>
+<td>2000</td>
+<td>不透明物体</td>
+</tr>
+<tr>
+<td>AlphaTest</td>
+<td>2450</td>
+<td>透明裁剪</td>
+</tr>
+<tr>
+<td>Transparent</td>
+<td>3000</td>
+<td>半透明物体（晚画）</td>
+</tr>
+<tr>
+<td>Overlay</td>
+<td>4000</td>
+<td>UGUI 最后画</td>
+</tr>
+</tbody></table>
+<p>半透明一定要排在后面，否则会穿插错误。</p>
+<h2 id="UsePass-复用其他-Shader-的-Pass"><a href="#UsePass-复用其他-Shader-的-Pass" class="headerlink" title="UsePass 复用其他 Shader 的 Pass"></a>UsePass 复用其他 Shader 的 Pass</h2><p>可引用其他 Shader 的 Pass：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">UsePass <span class="hljs-string">&quot;Legacy Shaders/Specular/BASE&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>用途：</p>
+<ul>
+<li>自己写一个 Pass，其他部分继承内置 Shader</li>
+<li>避免重复代码</li>
+<li>快速拼装效果</li>
+</ul>
+<h2 id="GrabPass-抓取屏幕（用于玻璃、水面等特效）"><a href="#GrabPass-抓取屏幕（用于玻璃、水面等特效）" class="headerlink" title="GrabPass 抓取屏幕（用于玻璃、水面等特效）"></a>GrabPass 抓取屏幕（用于玻璃、水面等特效）</h2><p>示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">GrabPass &#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>GrabPass 会把当前屏幕渲染成一张纹理，让 Shader 可以使用：</p>
+<p>常用于：</p>
+<ul>
+<li>水波扰动</li>
+<li>玻璃折射</li>
+<li>高斯模糊</li>
+<li>UI 变形效果</li>
+</ul>
+<p>但要注意：</p>
+<p><strong>GrabPass 很耗性能</strong>，移动端慎用。</p>
+<h2 id="Fallback-多数新项目用不到"><a href="#Fallback-多数新项目用不到" class="headerlink" title="Fallback 多数新项目用不到"></a>Fallback 多数新项目用不到</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">Fallback <span class="hljs-string">&quot;Diffuse&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>意味着：</p>
+<p>如果所有 SubShader 都不支持，则使用 Unity 内置的 Diffuse。</p>
+<p>现代项目中通常不使用 Fallback，因为我们会自己写多个 SubShader 兼容。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>作用</th>
+<th>重点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Shader</strong></td>
+<td>顶层容器</td>
+<td>同一个 Shader 对应一个材质</td>
+</tr>
+<tr>
+<td><strong>Properties</strong></td>
+<td>外部可调参数</td>
+<td>可在 Inspector 和 C# 调节</td>
+</tr>
+<tr>
+<td><strong>SubShader</strong></td>
+<td>不同设备的兼容版本</td>
+<td>Unity 自动选择支持的版本</td>
+</tr>
+<tr>
+<td><strong>Pass</strong></td>
+<td>一次实际渲染</td>
+<td>多 Pass &#x3D; 多次 DrawCall</td>
+</tr>
+<tr>
+<td><strong>Tags</strong></td>
+<td>渲染顺序&#x2F;类型</td>
+<td>Queue 和 RenderType 最重要</td>
+</tr>
+<tr>
+<td><strong>UsePass</strong></td>
+<td>复用别的 Pass</td>
+<td>对内置 Shader 的继承</td>
+</tr>
+<tr>
+<td><strong>GrabPass</strong></td>
+<td>抓屏</td>
+<td>性能消耗大，慎用</td>
+</tr>
+<tr>
+<td><strong>Fallback</strong></td>
+<td>无法渲染时的后备方案</td>
+<td>新项目一般不用</td>
+</tr>
+</tbody></table>
 <blockquote>
-<p>注意：属性名要与 Shader 中的变量名（如 <code>_Color</code>）<strong>完全一致</strong>。</p>
+<p><strong>Shader &#x3D; 属性 + 若干 SubShader；</strong></p>
+<p><strong>SubShader &#x3D; 若干 Pass；</strong></p>
+<p><strong>Pass 就是一次画图，本质是一个 DrawCall。</strong></p>
 </blockquote>
-<h2 id="默认贴图关键字"><a href="#默认贴图关键字" class="headerlink" title="默认贴图关键字"></a>默认贴图关键字</h2><p>Unity 内置了一些特殊的默认贴图关键字，方便调试：</p>
-<table>
-<thead>
-<tr>
-<th>默认字符串</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>&quot;white&quot;</code></td>
-<td>白色纹理</td>
-</tr>
-<tr>
-<td><code>&quot;black&quot;</code></td>
-<td>黑色纹理</td>
-</tr>
-<tr>
-<td><code>&quot;gray&quot;</code></td>
-<td>灰色纹理</td>
-</tr>
-<tr>
-<td><code>&quot;bump&quot;</code></td>
-<td>法线贴图默认纹理</td>
-</tr>
-<tr>
-<td><code>&quot;&quot;</code></td>
-<td>空贴图</td>
-</tr>
-</tbody></table>
-<p>例如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">_MainTex (<span class="hljs-string">&quot;Texture&quot;</span>, <span class="hljs-number">2</span>D) = <span class="hljs-string">&quot;white&quot;</span> &#123;&#125;<br></code></pre></td></tr></table></figure>
-
-<p>表示如果没有指定纹理，就使用一张白色默认贴图。</p>
-<h2 id="Range-与-Float-的区别"><a href="#Range-与-Float-的区别" class="headerlink" title="Range 与 Float 的区别"></a>Range 与 Float 的区别</h2><p><code>Range</code> 只是带有一个 UI 滑条的 <code>Float</code>。</p>
-<p>两者在 Shader 代码里其实是一样的类型。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">_RangeValue (<span class="hljs-string">&quot;Brightness&quot;</span>, Range(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)) = <span class="hljs-number">1</span><br>_FloatValue (<span class="hljs-string">&quot;Brightness&quot;</span>, Float) = <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
-
-<p>在代码中它们都对应一个 <code>float</code>，区别仅在于 Inspector 显示方式。</p>
-<h2 id="隐藏属性与调试技巧"><a href="#隐藏属性与调试技巧" class="headerlink" title="隐藏属性与调试技巧"></a>隐藏属性与调试技巧</h2><p>有时你不希望某个属性在面板中显示，可以用 <code>[HideInInspector]</code>：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">[HideInInspector]_HiddenValue (<span class="hljs-string">&quot;Hidden&quot;</span>, Float) = <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
-
-<p>其他常用标签：</p>
-<table>
-<thead>
-<tr>
-<th>修饰符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>[NoScaleOffset]</code></td>
-<td>关闭纹理的 Tiling&#x2F;Offset 控制</td>
-</tr>
-<tr>
-<td><code>[Normal]</code></td>
-<td>表示贴图是法线贴图</td>
-</tr>
-<tr>
-<td><code>[HDR]</code></td>
-<td>支持高动态范围颜色</td>
-</tr>
-<tr>
-<td><code>[Toggle]</code></td>
-<td>显示成开关</td>
-</tr>
-<tr>
-<td><code>[Enum]</code></td>
-<td>枚举选择</td>
-</tr>
-</tbody></table>
 
                 
               </div>
@@ -458,8 +509,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Unity3D Shader 属性详解</div>
-      <div>http://weikunou.github.io/2025/10/26/unity-shader-properties/</div>
+      <div>Unity Shader 结构详解</div>
+      <div>http://weikunou.github.io/2025/11/22/unity-shader-subshader/</div>
     </div>
     <div class="license-meta">
       
@@ -471,7 +522,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年10月26日</div>
+          <div>2025年11月22日</div>
         </div>
       
       
@@ -503,18 +554,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/22/unity-shader-subshader/" title="Unity Shader 结构详解">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Unity Shader 结构详解</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/09/14/unity-shader-intro/" title="Unity3D Shader 入门知识">
-                        <span class="hidden-mobile">Unity3D Shader 入门知识</span>
+                      <a href="/2025/10/26/unity-shader-properties/" title="Unity3D Shader 属性详解">
+                        <span class="hidden-mobile">Unity3D Shader 属性详解</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
